@@ -50,7 +50,7 @@ se puede generear espacio entre las imagenes*/
    padding: 0;
 }
 
-.contenedorCarrusel2{
+.contenedorCarrusel2 {
    text-align: center;
    justify-content: center;
    background-color: dimgrey;
@@ -62,18 +62,101 @@ se puede generear espacio entre las imagenes*/
    border-radius: 38px;
 }
 
-.imgCarruselContainer2{
+.imgCarruselContainer2 {
    width: 100%;
    height: auto;
    margin: 0;
    padding: 0;
 }
-.itemImage{
+
+.itemImage {
    width: auto;
    height: 60px;
    margin: 0;
    padding: 0;
 }
 
-/*carrusel numero 3*/
+/*imagen carrusel */
 
+.imageCarrusel {
+   width: 10rem;
+   height: 7rem;
+   margin: 0;
+   padding: 0;
+}
+
+/*carrusel numero 3*/
+.containerMaster2 {
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   text-align: center;
+   width: 100%;
+   padding: 6rem;
+   /* margin: 6rem; */
+}
+
+.containerCarrusel {
+   align-items: center;
+   border-radius: 18px;
+   justify-content: center;
+   width: 60vw;
+   margin-right: 0;
+   height: 30vh;
+}
+
+.divImg {
+   width: 100%;
+   border-radius: 28px;
+   height: 30vh;
+   overflow: hidden;
+}
+
+.itemImage3 {
+   width: 100%;
+   height: 100%;
+   cursor: pointer;
+   object-fit: cover;
+}
+
+/*logo carrusel 4*/
+.containerImg {
+   margin-top: 2rem;
+}
+
+.imageCarrusel2 {
+   width: 10rem;
+   cursor: pointer;
+   height: 7rem;
+   z-index: 4;
+   padding: 0;
+}
+
+/* .imageCarrusel2:hover{
+    transition-delay: ;
+} */
+
+@media (max-width:400px) {
+   .container {
+      width: 100vw;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .divImg {
+      width: 100vw;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .containerCarrusel {
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0;
+      margin-right: 0;
+   }
+}
