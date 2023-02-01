@@ -11,6 +11,7 @@ import imagen6 from "../image/imgCarrusel/imagen6.jpg";
 import imagen7 from "../image/imgCarrusel/imagen7.jpg";
 import imagen9 from "../image/imgCarrusel/imagen9.jpg";
 import "./Home.css";
+import Navbar from './Navbar/Navbar';
 
 const Home = () => {
   const responsive = {
@@ -34,8 +35,10 @@ const Home = () => {
   };
   return (
     <div className=''>
+      <Navbar/>
       {/* primer carrusel del home */}
       <div className='containerGeneral'>
+        
         <Carousel responsive={responsive} infinite={true} className="imgCarruselContainer">
           <div className="item">
             <img className="imagenStyle" src={imagen1} alt="Image" />
