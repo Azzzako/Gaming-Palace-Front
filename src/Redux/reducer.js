@@ -1,21 +1,26 @@
-
+import { GET_ALL_PRODUCTS } from "./Actions/actions";
 
 
 const initialState = {
-    allProducts: [],
-    allCategories: [],
+  allProducts: [],
+  allCategories: [],
 
-   };
+};
 
 
 
 
 const rootReducer = (state = initialState, action) => {
 
- switch(action.type){
+  switch (action.type) {
 
-   default: return state;
- };
+    case GET_ALL_PRODUCTS:
+    return { ...state, allProducts: action.payload}
+
+    default: return state;
+
+  };
+  
 };
 
 export default rootReducer;
