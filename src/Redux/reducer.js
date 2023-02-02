@@ -2,20 +2,22 @@
 
 
 const initialState = {
-    allProducts: [],
-    allCategories: [],
+  allProducts: [],
+  allCategories: [],
 
-   };
+};
 
 
 
 
 const rootReducer = (state = initialState, action) => {
 
- switch(action.type){
+  switch (action.type) {
 
-   default: return state;
- };
+    default: return state;
+
+  };
+  
 };
 
 export default rootReducer;
