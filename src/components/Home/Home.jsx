@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Row, Col } from "react-bootstrap";
 import icono1 from "../../image/imgCarrusel/logo1.png";
 import imagen1 from "../../image/imgCarrusel/imagen1.jpg";
 import imagen2 from "../../image/imgCarrusel/imagen2.jpg";
 import imagen3 from "../../image/imgCarrusel/imagen3.jpg";
 import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
-
 import "./Home.css";
-import Navbar from '../Navbar/Navbar';
+import { getAllProducts } from '../../Redux/Actions/actions';
+
 
 const Home = () => {
   const responsive = {
@@ -31,11 +31,21 @@ const Home = () => {
       items: 1
     }
   };
+
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.allProducts)
+
+  useEffect(() => {
+    dispatch(getAllProducts())
+  },[dispatch])
+  
+  console.log(products)
+
   return (
     <div className=''>
       {/* primer carrusel del home */}
       <div className='containerGeneral'>
-        
+
         <Carousel responsive={responsive} infinite={true} className="imgCarruselContainer">
           <div className="item">
             <img className="imagenStyle" src={imagen1} alt="Image" />
