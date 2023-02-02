@@ -1,9 +1,12 @@
 import React from 'react';
-import Home from './components/Home';
+import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home';
+import "./App.css"
 
 function App() {
   return (
-    <div className="">
+    <div className="App">
+      <Navbar/>
       <Home />
     </div>
   );
