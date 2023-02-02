@@ -1,7 +1,7 @@
-.container {
-    width: 100vw;
+.navbarContainer {
+    width: 100%;
     height: 80px;
-    background-color: black;
+    background-color: #262831;
 }
 
 .wrapper {
@@ -24,13 +24,13 @@
 
 .logo_container>p:nth-child(2) {
     font-size: 1.3rem;
-    color: #fff;
+    color: #95c827;
     font-weight: 500;
     padding-top: 10%;
 }
 
 .logo_container>svg:nth-child(1) {
-    fill: #c0f698;
+    fill: #4b526e;
     margin-right: 0.5rem;
 }
 
@@ -39,6 +39,7 @@
     display: flex;
     justify-content: space-around;
     list-style: none;
+    z-index: 1;
 }
 
 @media(max-width: 960px) {
@@ -92,7 +93,7 @@
 
 .items:hover {
     color: #fff;
-    background-color: #c0f698;
+    background-color: #95c827;
     transition: 0.5s all ease;
 }
 
@@ -112,15 +113,15 @@
 }
 
 .length_cart {
-    color: #c0f698;
+    color: #fff;
     position: relative;
     right: 12px;
     top: 5px;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .shopping_cart>svg {
-    color: #fff;
+    color: #95c827;
 }
 
 

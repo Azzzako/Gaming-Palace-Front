@@ -13,7 +13,7 @@ const Navbar = () => {
     const carritoLength = carrito.length
 
     return (
-        <nav className="container">
+        <nav className="navbarContainer">
             <div className="wrapper">
 
                 <IconContext.Provider value={{ style: { fontSize: "2em" } }}>

@@ -2,17 +2,14 @@ import React from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Row, Col } from "react-bootstrap";
-import icono1 from "../image/imgCarrusel/logo1.png";
-import imagen1 from "../image/imgCarrusel/imagen1.jpg";
-import imagen2 from "../image/imgCarrusel/imagen2.jpg";
-import imagen3 from "../image/imgCarrusel/imagen3.jpg";
-import imagen4 from "../image/imgCarrusel/imagen4.jpg";
-import imagen5 from "../image/imgCarrusel/imagen5.jpg";
-import imagen6 from "../image/imgCarrusel/imagen6.jpg";
-import imagen7 from "../image/imgCarrusel/imagen7.jpg";
-import imagen9 from "../image/imgCarrusel/imagen9.jpg";
+import icono1 from "../../image/imgCarrusel/logo1.png";
+import imagen1 from "../../image/imgCarrusel/imagen1.jpg";
+import imagen2 from "../../image/imgCarrusel/imagen2.jpg";
+import imagen3 from "../../image/imgCarrusel/imagen3.jpg";
+import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
+
 import "./Home.css";
-import Navbar from './Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
   const responsive = {
@@ -36,7 +33,6 @@ const Home = () => {
   };
   return (
     <div className=''>
-      <Navbar/>
       {/* primer carrusel del home */}
       <div className='containerGeneral'>
         
