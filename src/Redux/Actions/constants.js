@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from "axios"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
 
@@ -11,3 +12,6 @@ export const getAllProducts = () => {
         })
     }
 }
+=======
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+>>>>>>> DEVELOP
