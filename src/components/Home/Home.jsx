@@ -40,7 +40,7 @@ const Home = () => {
     dispatch(getAllProducts())
   },[dispatch])
   
-  console.log(products)
+ 
 
   return (
     <div className=''>

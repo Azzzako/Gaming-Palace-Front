@@ -14,7 +14,7 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
 
     const goToTop = () => {
         window.scrollTo({
-            top: 0,
+            top: -100,
             behavior: 'smooth',
         });
     };
@@ -28,6 +28,9 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
                 <Pagination.Prev
                     onClick={() => (setCurrentPage(currentPage - 1), goToTop())}
                 />
+
+                <Pagination.Item>{currentPage}</Pagination.Item>
+
                 <Pagination.Next
                     onClick={() => (setCurrentPage(currentPage + 1), goToTop())}
                 />
