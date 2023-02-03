@@ -17,6 +17,7 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case GET_ALL_PRODUCTS:
+
     return { ...state, allProducts: action.payload
     }
       
@@ -32,19 +33,9 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           
         };  
-        case CLEAN_DETAIL : 
-            return {
-              ...state ,
-              dogDetail : {}
-            
-          };
+       
 
-          case SET_LOADING:
-			return {
-				...state,
-				loading: action.payload,
-			};
-      
+  
     default: return state;
    };
 

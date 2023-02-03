@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Pagination } from '../Pagination/Pagination.jsx';
-import Card from './Card.js';
+import { Pages } from '../Pagination/Pagination.jsx';
+import Card from './Card';
+import './Card.css'
 
 const ContainerCards = ({ products }) => {
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [postPerPage, setPostPerPage] = useState(10)
+  const [postPerPage, setPostPerPage] = useState(12)
 
   const totalProducts = products.length
   const lastPostIndex = currentPage * postPerPage
@@ -14,14 +15,15 @@ const ContainerCards = ({ products }) => {
 
   return (
     <div>
-      <div>
+      <div className='containerCards'>
       {
         productsPage?.map(p => (
           <Card
             key={p.id}
             id={p.id}
             image={p.imageurl}
-            name={p.name}
+            name={p.namedisplay}
+            price={p.price}
             description={p.description}
             fav={p.imgFav}
             cart={p.imgCart}
@@ -30,10 +32,11 @@ const ContainerCards = ({ products }) => {
       }
     </div>
 
-    <Pagination
+    <Pages
     totalPost={totalProducts}
     postPerPage={postPerPage}
     setCurrentPage={setCurrentPage}
+    currentPage={currentPage}
     />
     </div>
     
