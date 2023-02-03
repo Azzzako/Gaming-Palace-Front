@@ -1,0 +1,27 @@
+.containerCards {
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    grid-column-gap: 30px;
+    justify-content: center;
+    padding: 50px; 
+}
+
+.cards {
+    width: 100%;
+    background: linear-gradient(#4B90C4, #0A131A);
+    padding: 5px;
+    margin-block: 10px;
+    box-shadow: 2px 2px purple;
+    border-radius: 15px;
+}
+
+.cards h3 {
+    color: plum;
+    text-shadow: 2px 1px white;
+    font-size:x-large;
+}
+
+.cards img {
+    border-radius: 11px;
+    background: gray;
+}
