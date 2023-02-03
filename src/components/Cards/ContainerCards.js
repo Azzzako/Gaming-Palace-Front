@@ -10,12 +10,13 @@ const ContainerCards = ({ products }) => {
   const totalProducts = products.length
   const lastPostIndex = currentPage * postPerPage
   const firstPostIndex = lastPostIndex - postPerPage
+  const productsPage = products.slice(firstPostIndex, lastPostIndex)
 
   return (
     <div>
       <div>
       {
-        products?.map(p => (
+        productsPage?.map(p => (
           <Card
             key={p.id}
             id={p.id}
