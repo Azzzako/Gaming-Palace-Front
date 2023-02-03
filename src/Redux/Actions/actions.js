@@ -35,4 +35,13 @@ export function cleanDetail ()  {
     return {
         type : "CLEAN_DETAIL"
     }
-}
+};
+
+
+
+export const addFav = (id) => {
+	return {
+		type: "ADD_FAV",
+		payload: id
+	}
+};

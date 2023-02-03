@@ -6,6 +6,7 @@ const initialState = {
   allCategories: [],
   details: [],
   loading: false,
+  favourites: []
 
 };
 
@@ -33,6 +34,14 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           
         };  
+
+      case "ADD_FAV":
+        const all = state.allProducts
+        const favs = all.map(fav=> all.includes(fav.id===action.payload))
+        return {
+          ...state,
+          favourites: favs
+        }
        
 
   

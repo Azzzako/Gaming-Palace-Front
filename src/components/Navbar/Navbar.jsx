@@ -7,6 +7,8 @@ import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
 import "../Navbar/Navbar.css"
 
+
+
 const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
@@ -48,6 +50,12 @@ const Navbar = () => {
 
                         <div className="menu_item">
                             <div className="items"><Link to="/myprofile">About Us</Link></div>
+                        </div>
+
+                        <div className="menu_item">
+                            <div className="items">
+                            <Link to="/favourites">Favourites</Link>
+                            </div>
                         </div>
 
                         <div className="shopping_cart">
