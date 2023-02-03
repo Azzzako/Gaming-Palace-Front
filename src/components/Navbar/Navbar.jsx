@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { TfiAlignJustify } from "react-icons/tfi";
 import { FiShoppingCart } from "react-icons/fi"
