@@ -1,9 +1,16 @@
 .containerCards {
     display: grid;
-    grid-template-columns: 350px 350px 350px;
+    /* grid-template-columns: 350px 350px 350px; */
     grid-column-gap: 30px;
     justify-content: center;
     padding: 50px; 
+    width: 100%;
+
+
+    /* display: grid;
+    gap: 1rem; */
+    /* grid-auto-rows: 22rem; */
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 }
 
 .cards {
