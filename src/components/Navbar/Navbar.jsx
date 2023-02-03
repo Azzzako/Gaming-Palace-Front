@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { TfiAlignJustify } from "react-icons/tfi";
 import { FiShoppingCart } from "react-icons/fi"
@@ -31,13 +31,15 @@ const Navbar = () => {
                         <TfiAlignJustify />
                     </div>
 
-                    <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}>
+                    <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
+                    onClick={() => setShowNavbar(!showNavbar)}
+                    >
                         <div className="menu_item">
                           <div className="items"><Link to="/">Home</Link></div>
                         </div>
 
                         <div className="menu_item">
-                           <div className="items">My Profile</div>
+                           <div className="items"><Link to="/myprofile">My Profile</Link></div>
                         </div>
 
                         <div className="menu_item">

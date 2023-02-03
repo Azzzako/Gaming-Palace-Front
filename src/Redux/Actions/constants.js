@@ -1,5 +1,5 @@
-import axios from "axios";
-import { GET_ALL_PRODUCTS } from "./constants";
+import axios from "axios"
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
 
 
 export const getAllProducts = () => {
@@ -11,3 +11,4 @@ export const getAllProducts = () => {
         })
     }
 }
+
