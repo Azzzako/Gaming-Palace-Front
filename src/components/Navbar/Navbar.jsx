@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { TfiAlignJustify } from "react-icons/tfi";
 import { FiShoppingCart } from "react-icons/fi"
@@ -43,7 +43,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="menu_item">
-                            <div className="items">Settings</div>
+                            <div className="items"> <Link to="/productform">Settings</Link></div>
                         </div>
 
                         <div className="menu_item">

@@ -113,6 +113,7 @@
     justify-content: center;
     align-items: center;
     padding-left: 20px;
+    cursor: pointer;
 }
 
 .length_cart {

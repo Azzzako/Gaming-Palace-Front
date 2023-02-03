@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS } from "./constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_PRODUCT} from "./constants";
 
 
 export const getAllProducts = () => {
@@ -9,5 +9,30 @@ export const getAllProducts = () => {
             type: GET_ALL_PRODUCTS,
             payload: response.data
         })
+    }
+}
+
+export const getDetail = (id) => {
+	return async (dispatch) => {
+		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		return dispatch({
+			type: GET_DETAIL,
+			payload: response.data,
+		});
+	};
+};
+
+export const postProduct = (payload) => {
+	return async (dispatch) => {
+		const res = await axios.post('/products', payload);
+		return dispatch({
+			type: POST_PRODUCT,
+			res,
+		});
+	};
+};
+export function cleanDetail ()  {
+    return {
+        type : "CLEAN_DETAIL"
     }
 }
