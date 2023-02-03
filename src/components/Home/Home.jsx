@@ -8,7 +8,7 @@ import imagen2 from "../../image/imgCarrusel/imagen2.jpg";
 import imagen3 from "../../image/imgCarrusel/imagen3.jpg";
 import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
 import "./Home.css";
-import { getAllProducts } from '../../Redux/Actions/constants';
+import { getAllProducts } from '../../Redux/Actions/actions';
 import ContainerCards from '../Cards/ContainerCards';
 
 
@@ -48,16 +48,16 @@ const Home = () => {
       <div className='containerGeneral'>
 
         <Carousel responsive={responsive} infinite={true} className="imgCarruselContainer">
-          <div className="item">
+          <div className="itemHome">
             <img className="imagenStyle" src={imagen1} alt="Image1" />
           </div>
-          <div className="item">
+          <div className="itemHome">
             <img className="imagenStyle" src={imagen2} alt="Image2" />
           </div>
-          <div className="item">
+          <div className="itemHome">
             <img className="imagenStyle" src={imagen3} alt="Image3" />
           </div>
-          <div className="item">
+          <div className="itemHome">
             <img className="imagenStyle" src={imagen4} alt="Image4" />
           </div>
         </Carousel>
