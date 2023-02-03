@@ -39,7 +39,7 @@ const Detail = (props) => {
 				{detail && 
 					
           <div className='container align-items-center p-5 mt-5'>
-            <Link to={`/`}>
+            <Link to={"/home"}>
             <button className="button btn btn-secondary" onClick={goHome}>HOME {'> '}{detail.category} </button></Link>
 	          <div className="row detailsContainer d-flex flex-column align-items-center">
               <div className="card row detailsContainer d-flex flex-column align-items-center">
