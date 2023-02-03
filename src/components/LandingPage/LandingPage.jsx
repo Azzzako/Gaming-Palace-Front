@@ -6,7 +6,7 @@ function LandingPage() {
   return (
     <div id={styles.background}>
       <div id={styles.container}>{/* <h1>Welcome to Gaming Palace</h1> */}</div>
-      <Link to="/">
+      <Link to="/home">
         <button id={styles.button}>Start!</button>
       </Link>
     </div>
