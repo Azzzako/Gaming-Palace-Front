@@ -16,7 +16,7 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_ALL_PRODUCTS:
     return { ...state, allProducts: action.payload}
-
+    
     default: return state;
 
   };
