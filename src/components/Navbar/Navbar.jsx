@@ -43,16 +43,16 @@ const Navbar = () => {
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"> <Link to="/productform">Settings</Link></div>
+                            <div className="items"> <Link to="/myprofile">Settings</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items">About Us</div>
+                            <div className="items"><Link to="/myprofile">About Us</Link></div>
                         </div>
 
                         <div className="shopping_cart">
                             <FiShoppingCart />
-                            <span className="length_cart">{carritoLength}</span>
+                            <span className="length_cart"><Link to="/myprofile">{carritoLength}</Link></span>
                         </div>
                     </div>
                 </IconContext.Provider>
