@@ -35,7 +35,7 @@ const Navbar = () => {
                     onClick={() => setShowNavbar(!showNavbar)}
                     >
                         <div className="menu_item">
-                          <div className="items"><Link to="/">Home</Link></div>
+                          <div className="items"><Link to="/home">Home</Link></div>
                         </div>
 
                         <div className="menu_item">
