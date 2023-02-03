@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS } from "./Actions/constants";
+import { GET_ALL_PRODUCTS } from "./Actions/actions";
 
 
 const initialState = {
