@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pagination } from '../Pagination/Pagination.jsx';
+import { Pages } from '../Pagination/Pagination.jsx';
 import Card from './Card.js';
 
 const ContainerCards = ({ products }) => {
@@ -30,10 +30,11 @@ const ContainerCards = ({ products }) => {
       }
     </div>
 
-    <Pagination
+    <Pages
     totalPost={totalProducts}
     postPerPage={postPerPage}
     setCurrentPage={setCurrentPage}
+    currentPage={currentPage}
     />
     </div>
     
