@@ -21,7 +21,7 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
 
     return (
         <div className="buttons_page">
-            <Pagination>
+            <Pagination >
                 <Pagination.First
                     onClick={() => (setCurrentPage(1), goToTop())}
                 />
