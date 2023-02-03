@@ -8,7 +8,7 @@ import imagen2 from "../../image/imgCarrusel/imagen2.jpg";
 import imagen3 from "../../image/imgCarrusel/imagen3.jpg";
 import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
 import "./Home.css";
-import { getAllProducts } from '../../Redux/Actions/actions';
+import { getAllProducts } from '../../Redux/Actions/constants';
 import ContainerCards from '../Cards/ContainerCards';
 
 
