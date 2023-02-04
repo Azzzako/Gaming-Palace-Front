@@ -36,8 +36,14 @@ const rootReducer = (state = initialState, action) => {
         };  
 
       case "ADD_FAV":
-        const all = state.allProducts
-        const favs = all.map(fav=> all.includes(fav.id===action.payload))
+       
+        return {
+          ...state,
+          favourites: [...state.favourites, action.payload]
+        }
+
+      case "DELETE_FAV":
+        const favs = state.favourites.length>0 && state.favourites.filter(fav=> fav.id !== action.payload);
         return {
           ...state,
           favourites: favs

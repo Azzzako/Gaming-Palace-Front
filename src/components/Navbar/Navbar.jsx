@@ -6,6 +6,7 @@ import { DiRuby } from "react-icons/di"
 import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
 import "../Navbar/Navbar.css"
+import { useSelector } from "react-redux";
 
 
 
@@ -13,7 +14,8 @@ const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
     const carrito = ["1", "2", "3", "4", "5"]
-    const carritoLength = carrito.length
+
+    const favourites = useSelector(state=> state.favourites);
 
     return (
         <nav className="navbarContainer">
@@ -55,12 +57,15 @@ const Navbar = () => {
                         <div className="menu_item">
                             <div className="items">
                             <Link to="/favourites">Favourites</Link>
+                            {
+                                favourites.length>0 && <span>{favourites.length}</span>
+                            }
                             </div>
                         </div>
 
                         <div className="shopping_cart">
                             <FiShoppingCart />
-                            <span className="length_cart"><Link to="/myprofile">{carritoLength}</Link></span>
+                            <span className="length_cart"><Link to="/myprofile">{carrito.length}</Link></span>
                         </div>
                     </div>
                 </IconContext.Provider>

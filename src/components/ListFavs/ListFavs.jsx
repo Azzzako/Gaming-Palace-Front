@@ -1,4 +1,5 @@
 import React from 'react'
+import CardsFavs from './CardsFavs'
 
 const ListFavs = () => {
 
@@ -8,9 +9,9 @@ const ListFavs = () => {
 
   
   return (
-    <div><b>FAV LIST</b>
+    <div>
 
-    
+    <CardsFavs/>
     
     
     
@@ -20,4 +21,4 @@ const ListFavs = () => {
   )
 }
 
-export default ListFavs
+export default ListFavs;

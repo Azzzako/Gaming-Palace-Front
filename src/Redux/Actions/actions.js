@@ -40,8 +40,18 @@ export function cleanDetail ()  {
 
 
 export const addFav = (id) => {
+	return async (dispatch) => {
+		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		return dispatch({
+			type: "ADD_FAV",
+			payload: response.data,
+		});
+	};
+};
+
+export const deleteFavs = (id) => {
 	return {
-		type: "ADD_FAV",
+		type: "DELETE_FAV",
 		payload: id
 	}
 };
