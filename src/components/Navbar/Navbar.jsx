@@ -4,7 +4,7 @@ import { TfiAlignJustify } from "react-icons/tfi";
 import { FiShoppingCart } from "react-icons/fi"
 import { DiRuby } from "react-icons/di"
 import { IconContext } from "react-icons/lib";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 
 const Navbar = () => {
@@ -13,8 +13,13 @@ const Navbar = () => {
     const carrito = ["1", "2", "3", "4", "5"]
     const carritoLength = carrito.length
 
+    const location = useLocation();
+
     return (
         <nav className="navbarContainer">
+            {
+                location.pathname !== "/" &&
+            
             <div className="wrapper">
 
                 <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
@@ -57,6 +62,7 @@ const Navbar = () => {
                     </div>
                 </IconContext.Provider>
             </div>
+            }
         </nav>
     )
 }
