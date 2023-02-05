@@ -10,7 +10,7 @@ const initialState = {
 };
 
 
-console.log(initialState.details)
+
 
 const rootReducer = (state = initialState, action) => {
 

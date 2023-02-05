@@ -1,95 +1,149 @@
 import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux';
-import { getAllCategories, postNewProduct } from '../../Redux/Actions/actions';
-import "./AddProduct.css";
+import { postNewProduct } from '../../Redux/Actions/actions';
+import s from "./AddProduct.module.css";
+
+const validator = (input) => {
+	let errors = {};
+	if (!input.name) {
+		errors.name = 'Please enter a name';
+	}
+  if (input.price < 1) {
+		errors.price = 'Please enter a price';
+	}
+	if (!input.category) {
+		errors.category = 'Please select a category';
+	}
+	if (!input.description) {
+		errors.description = 'Please enter a product description';
+	}
+  if (!input.description) {
+		errors.imageurl = 'Please select a image from your computer';
+	}
+	return errors;
+};
+
 
 
 export default function AddProduct() {
 
+  
 
   const dispatch = useDispatch();
 
-  const p = useSelector((state) => state.allProducts)
-
+  const [errors, setErrors] = useState({}); //se setea el objeto vacío de errores
 
 
   const [input, setInput] = useState({
-		name: '',
-    trademark:'', 
-    price: '',
-    description:'',
-    category: [],
+		name:"",
+    trademark:"", 
+    price:0,
+    description:"",
+    category:"",
 	}); 
 
   
 
-  const handleChange = (e) => {   //////////////hadle para input text
+  const handleChange = (e) => {   //////////////handle para input text
 		setInput({
 			...input,
 			[e.target.name]: e.target.value,
 		});
-		// setErrors(
-		// 	validator({
-		// 		...input,
-		// 		[e.target.name]: e.target.value,
-		// 	})
-		// );
+		setErrors(
+			validator({
+				...input,
+				[e.target.name]: e.target.value,
+			})
+		);
+    console.log(input)
 	};
 
-  const handleCheck= (e) => {
+  const handleSelect= (e) => {
 		setInput({
 			...input,
 			category: e.target.value,
 		});
-		// setErrors(
-		// 	validator({
-		// 		...input,
-		// 		season: e.target.value,
-		// 	})
-		// );
+		setErrors(
+			validator({
+				...input,
+				season: e.target.value,
+			})
+		);
 	};
 
-	// const handleSelect = (e) => {              
-	// 	setInput({
-	// 		...input,
-	// 		allCategories: [...input.allCategories, e.target.value],
-	// 	});
-	// };
+
 
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+    console.log(input)
+
 		dispatch(postNewProduct(input));
+
 		setInput({
-      name: '',
-      trademark:'', 
-      price: '',
-      description:'',
-      category: [],
+      name:"",
+      trademark:"", 
+      price:"",
+      description:"",
+      category:"",
 		});
 		// setShowModal(true);
-	};
+  
+	 
+  };
+
+  
 
   
   return (
-    <div className="container">
+    <div className={s.container}>
 
-      <form className="form" onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-header">
-          <h1 className="form-title">Create your product</h1>
+      <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
+        <div className={s.formheader}>
+          <h1 className={s.formtitle}>Create your product</h1>
         </div>
 
-        <label className="form-label">Name</label>
-        <input type="text" id="name" className="form-input" placeholder="Name of product" onChange={(e) => handleChange(e)}></input>
+      <div>
+						{errors.name && (
+						<div className={s.error}>
+							{errors.name} 
+						</div>
+						)}
+          <label className={s.formlabel}>Name</label>
+          <input type="text" id="name" value={input.name} name= "name" className={s.forminput} placeholder="Name of product" onChange={(e) => handleChange(e)}></input>
+      </div>
 
-        <label className="form-label">Price</label>
-        <input type="number" id="price" className="form-input" placeholder="Price in US$" onChange={(e) => handleChange(e)}></input>
 
-        <label className="form-label">Brand</label>
-        <input type="text" id="brand" className="form-input" placeholder="Brand" onChange={(e) => handleChange(e)}></input>
+      <div>
+						{errors.name && (
+						<div className={s.error}>
+							{errors.price} 
+						</div>
+						)}
+        <label className={s.formlabel}>Price</label>
+        <input type="number" id="price" value={input.price} name= "price" className={s.forminput} placeholder="Price in US$" onChange={(e) => handleChange(e)}></input>
+      </div>
 
-        <label className="form-label">Category</label>
-        <select className="form-input" id="category" required onChange={(e) => handleCheck(e)}>
+
+      <div> 
+      {errors.name && (
+						<div className={s.error}>
+							{errors.trademark} 
+						</div>
+						)}     
+        <label className={s.formlabel}>Brand</label>
+        <input type="text" id="brand" value={input.trademark} name= "trademark" className={s.forminput} placeholder="Brand" onChange={(e) => handleChange(e)}></input>
+      </div>  
+
+      <div>
+      {errors.name && (
+						<div className={s.error}>
+							{errors.select} 
+						</div>
+						)}
+        <label className={s.formlabel}>Category</label>
+        <select className={s.forminput} id="category" value={input.category} name= "category" required onChange={(e) => handleSelect(e)}>
 
           <option value="select">Select category</option>
           
@@ -110,14 +164,29 @@ export default function AddProduct() {
           <option value="keyboard">keyboard</option>
           <option value="Headset">Headset</option>
         </select>
+      </div>
 
-        <label className="form-label">Description</label>
-        <textarea id="description" className="form-textarea" placeholder="Description" onChange={(e) => handleChange(e)}></textarea>
+      <div>
+      {errors.name && (
+						<div className={s.errordescription}>
+							{errors.description} 
+						</div>
+						)}
+        <label className={s.formlabel}>Description</label>
+        <textarea id="description" value={input.description} name= "description" className={s.formtextarea} placeholder="Description" onChange={(e) => handleChange(e)}></textarea>
+      </div>
 
-        <label className="form-label">Upload image</label>
-        <input type="file" id="img" className="form-input"></input>
+      <div>
+      {errors.name && (
+						<div className={s.errorimage}>
+							{errors.imageurl} 
+						</div>
+						)}
+        <label className={s.formlabel}>Upload image</label>
+        <input type="file" id="img" value={input.imageurl} name= "imageurl" className={s.forminput}></input>
+      </div>
 
-        <input type="submit" className="btn-submit" value="create"></input>
+        <input type="submit" className={s.btnsubmit} value="create"></input>
         
       </form>
     </div>
