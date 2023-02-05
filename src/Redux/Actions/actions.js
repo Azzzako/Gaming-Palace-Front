@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_PRODUCT } from "./constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_PRODUCT, GET_PRODUCT_FILTER } from "./constants";
 
 
 export const getAllProducts = () => {
@@ -11,6 +11,17 @@ export const getAllProducts = () => {
 		})
 	}
 }
+
+export const getArray = (payload) => {
+    return async function (dispatch){
+        const response = await axios.get(`http://localhost:3001/function2?word=${payload.word}&filter1=${payload.filter1}&filter2=${payload.filter2}&order=${payload.order}`)
+        return dispatch({
+            type: GET_PRODUCT_FILTER,
+            payload: response.data
+        })
+    }
+}
+
 
 export const getDetail = (id) => {
 	return async (dispatch) => {
