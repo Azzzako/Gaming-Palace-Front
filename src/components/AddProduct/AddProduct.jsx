@@ -1,32 +1,14 @@
 import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { postNewProduct } from '../../Redux/Actions/actions';
-import ModalForm from './ModalForm';
+import validator from './ValidatorForm';
 import s from "./AddProduct.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyVerticallyCenteredModal from './ModalForm';
 import Button from 'react-bootstrap/Button';
 
 
-const validator = (input) => {
-	const errors = {};
-	if (!input.name) {
-		errors.name = 'Please enter a name';
-	}
-  if (input.price < 1) {
-		errors.price = 'Please enter a price';
-	}
-	if (!input.category) {
-		errors.category = 'Please select a category';
-	}
-	if (!input.description) {
-		errors.description = 'Please enter a product description';
-	}
-  if (!input.description) {
-		errors.imageurl = 'Please select a image from your computer';
-	}
-	return errors;
-};
+
 
 
 
@@ -41,7 +23,7 @@ export default function AddProduct() {
   const [errors, setErrors] = useState({}); //se setea el objeto vacío de errores
 
   const [modalShow, setModalShow] = React.useState(false);
-  // const [modalShowError, setModalShowError] = React.useState(false);
+  
 
 
   const [input, setInput] = useState({
@@ -55,7 +37,7 @@ export default function AddProduct() {
 
   
 
-  const handleChange = (e) => {   //////////////handle para input text
+  const handleChange = (e) => {  
 		setInput({
 			...input,
 			[e.target.name]: e.target.value,
@@ -120,9 +102,7 @@ export default function AddProduct() {
   
   return (
     <div >
-      {/* {showModal && (
-						<ModalForm setShowModal={setShowModal} showModal={showModal} />
-					)} */}
+    
       <div className={s.container}>
 
         <form className={s.form} onSubmit={(e) => handleSubmit(e)}>

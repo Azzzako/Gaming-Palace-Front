@@ -39,20 +39,20 @@ const Navbar = () => {
                         </div>
 
                         <div className="menu_item">
-                           <div className="items"><Link to="/myprofile">My Profile</Link></div>
+                           <div className="items"><Link to="/productform">My Profile</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"> <Link to="/productform">Settings</Link></div>
+                            <div className="items"> <Link to="/inconstruction">Settings</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"><Link to="/myprofile">About Us</Link></div>
+                            <div className="items"><Link to="/inconstruction">About Us</Link></div>
                         </div>
 
                         <div className="shopping_cart">
                             <FiShoppingCart />
-                            <span className="length_cart"><Link to="/myprofile">{carritoLength}</Link></span>
+                            <span className="length_cart"><Link to="/inconstruction">{carritoLength}</Link></span>
                         </div>
                     </div>
                 </IconContext.Provider>
