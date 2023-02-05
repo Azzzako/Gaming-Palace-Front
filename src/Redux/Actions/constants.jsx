@@ -1,2 +1,0 @@
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";

@@ -22,6 +22,7 @@ function App() {
         <Route exact path="/myprofile" element={<InConstructionPage />} />
         <Route exact path="/detail/:id" element={<Detail />} />
         <Route exact path="/" element={<LandingPage />} />
+        
       </Routes>
 
     </div>

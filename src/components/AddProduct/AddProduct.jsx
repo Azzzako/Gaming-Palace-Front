@@ -1,67 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import { postNewProduct } from '../../Redux/Actions/actions';
+import ModalForm from './ModalForm';
+import s from "./AddProduct.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect } from 'react';
-import { getAllProducts, postProduct} from '../../Redux/Actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import MyVerticallyCenteredModal from './ModalForm';
+import Button from 'react-bootstrap/Button';
 
 
 const validator = (input) => {
-    let errors = {};
-    if (!input.name) {
-      errors.name = 'Please enter a name';
-    }
-    if (!input.difficulty) {
-      errors.difficulty = 'Please enter a difficulty level';
-    }
-    if (input.duration < 1) {
-      errors.duration = 'Please enter a duration higher';
-    }
-    if (!input.season) {
-      errors.season = 'Please select a season';
-    }
-    return errors;
-  }; 
+	const errors = {};
+	if (!input.name) {
+		errors.name = 'Please enter a name';
+	}
+  if (input.price < 1) {
+		errors.price = 'Please enter a price';
+	}
+	if (!input.category) {
+		errors.category = 'Please select a category';
+	}
+	if (!input.description) {
+		errors.description = 'Please enter a product description';
+	}
+  if (!input.description) {
+		errors.imageurl = 'Please select a image from your computer';
+	}
+	return errors;
+};
 
-const AddProduct= () => {
 
-  const dispatch= useDispatch();
 
-  const product = useSelector((e) => e.allProducts);
+
+
+export default function AddProduct() {
 
   
 
-  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
 
-  // const [showModal, setShowModal] = useState(false);
-  
+  const [errors, setErrors] = useState({}); //se setea el objeto vacío de errores
+
+  const [modalShow, setModalShow] = React.useState(false);
+  // const [modalShowError, setModalShowError] = React.useState(false);
+
+
   const [input, setInput] = useState({
-		name: '',
-		price: '',
-		description: '',
-		trademark: '',
-		products: [],
-	});
+		name:"",
+    trademark:"", 
+    price:0,
+    description:"",
+    category:"",
+    imageurl:""
+	}); 
 
-  useEffect(() => {
-		dispatch(getAllProducts());
-	
-	}, [dispatch]);
+  
 
-
-  const handleSubmit = (e) => {
-		e.preventDefault();
-		dispatch(postProduct(input));
-		setInput({
-			name: '',
-			difficulty: '',
-			duration: '',
-			season: '',
-			countries: [],
-		});
-		// setShowModal(true);
-	};
-
-  const handleChange = (e) => {
+  const handleChange = (e) => {   //////////////handle para input text
 		setInput({
 			...input,
 			[e.target.name]: e.target.value,
@@ -74,13 +68,7 @@ const AddProduct= () => {
 		);
 	};
 
-  const handleSelect = (e) => {
-		setInput({
-			...input,
-			allProducts: [...input.allProducts, e.target.value],
-		});
-	};
-	const handleCheck = (e) => {
+  const handleSelect= (e) => {
 		setInput({
 			...input,
 			category: e.target.value,
@@ -88,114 +76,157 @@ const AddProduct= () => {
 		setErrors(
 			validator({
 				...input,
-				category: e.target.value,
+				season: e.target.value,
 			})
 		);
 	};
+
+
+
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+    if(!input.name && !input.price && !input.trademark && !input.description && !input.category && !input.imageurl){ return alert("INFORMATION REQUIRED", setModalShow(false))} 
+    else{  
+    console.log(input)
+        setErrors(
+          validator({
+            ...input,
+          [e.target.name]: e.target.value
+          })
+        );
+        
+        if(Object.keys(errors).length === 0){
+          dispatch(postNewProduct(input));
+         
+  
+            setInput({
+              name:"",
+              trademark:"", 
+              price:"",
+              description:"",
+              category:"",
+              imageurl:""
+            });
+        } }  
+        
+      }
+	
+	 
+  
+
+  
+
+  
   return (
-    <div>
-    <div class="container align-items-center p-5 mt-5 bg-light">
+    <div >
+      {/* {showModal && (
+						<ModalForm setShowModal={setShowModal} showModal={showModal} />
+					)} */}
+      <div className={s.container}>
+
+        <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
+          <div className={s.formheader}>
+            <h1 className={s.formtitle}>Create your product</h1>
+          </div>
+
+        <div>
+              {errors.name && (
+              <div className={s.error}>
+                {errors.name} 
+              </div>
+              )}
+            <label className={s.formlabel}>Name</label>
+            <input type="text" id="name" value={input.name} name= "name" className={s.forminput} placeholder="Name of product" onChange={(e) => handleChange(e)}></input>
+        </div>
+
+
+        <div>
+              {errors.name && (
+              <div className={s.error}>
+                {errors.price} 
+              </div>
+              )}
+          <label className={s.formlabel}>Price</label>
+          <input type="number" id="price" value={input.price} name= "price" className={s.forminput} placeholder="Price in US$" onChange={(e) => handleChange(e)}></input>
+        </div>
+
+
+        <div> 
+        {errors.name && (
+              <div className={s.error}>
+                {errors.trademark} 
+              </div>
+              )}     
+          <label className={s.formlabel}>Brand</label>
+          <input type="text" id="brand" value={input.trademark} name= "trademark" className={s.forminput} placeholder="Brand" onChange={(e) => handleChange(e)}></input>
+        </div>  
+
+        <div>
+        {errors.name && (
+              <div className={s.error}>
+                {errors.select} 
+              </div>
+              )}
+          <label className={s.formlabel}>Category</label>
+          <select className={s.forminput} id="category" value={input.category} name= "category" required onChange={(e) => handleSelect(e)}>
+
+            <option value="select">Select category</option>
+            
+            <option value="Powerbank">Powerbank</option>
+            <option value="wireless network card">wireless network card</option>
+            <option value="videocard">videocard</option>
+            <option value="Harddrive">Harddrive</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Mouse pad">Mouse pad</option>
+            <option value="coolers">coolers</option>
+            <option value="processors">processors</option>
+            <option value="mouse">mouse</option>
+            <option value="motherboard">motherboard</option>
+            <option value="memory RAM">memory RAM</option>
+            <option value="Tower">Tower</option>
+            <option value="SSD">SSD</option>
+            <option value="GAMING CHAIR">GAMING CHAIR</option>
+            <option value="keyboard">keyboard</option>
+            <option value="Headset">Headset</option>
+          </select>
+        </div>
+
+        <div>
+        {errors.name && (
+              <div className={s.errordescription}>
+                {errors.description} 
+              </div>
+              )}
+          <label className={s.formlabel}>Description</label>
+          <textarea id="description" value={input.description} name= "description" className={s.formtextarea} placeholder="Description" onChange={(e) => handleChange(e)}></textarea>
+        </div>
+
+        <div>
+        {errors.name && (
+              <div className={s.errorimage}>
+                {errors.imageurl} 
+              </div>
+              )}
+          <label className={s.formlabel}>Url image</label>
+          <input type="url" id="imageurl" value={input.imageurl} name= "imageurl" className={s.forminput} onChange={(e) => handleChange(e)}></input>
+        </div>
+
           
-    <section class="panel panel-default">
-          <div class="panel-heading "> 
-            <h3 class="panel-title text-dark">Product Creation Panel</h3> 
-          </div> 
+          
+          <Button  type="submit" id="create" name= "create" className={s.btnsubmit} value="create" onClick={() => setModalShow(true)}>CREATE</Button>
 
-          <hr class="text-dark"></hr>
-
-          <div class="panel-body">
-
-            <form onSubmit={(e) => handleSubmit(e)}>
-            <div>
-                {errors.name && (
-                <div>
-                  {errors.name} 
-                </div>
-						)}
+          <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+      />
 
 
+        </form>
 
-                <div class="form-group text-dark"> 
-                        
-                  <label for="name" class="col-sm-3 control-label my-2">Insert name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="product name"></input>
-                  </div>
-                </div> 
-                </div> 
-
-
-
-                <div class="form-group my-3 text-dark">
-                  <label for="tech" class="col-sm-3 control-label my-2">Category</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" name="qty" id="qty" placeholder="category" onChange={(e) => handleChange(e)}>
-                    <option value="Select">Select a category</option>
-                    
-                    {/* {product.map((i) => (
-							      <option value={i.id}>{i.name}</option>
-							      ))} */}
-
-                    </input>
-
-                  </div>
-                </div> 
-
-
-
-                <div class="form-group my-3">
-                  <label for="qty" class="col-sm-3 control-label my-2 text-dark">Insert brand</label>
-                  <div class="col-sm-3">
-                <input type="text" class="form-control" name="qty" id="qty" placeholder="brand" onChange={(e) => handleChange(e)}></input>
-                  </div>
-                </div>
-
-
-
-                <div class="form-group my-3">
-                  <label for="name" class="col-sm-3 control-label my-2 text-dark">Price</label>
-                  <div class="col-sm-9">
-                    <input type="number" class="form-control" name="price" id="price" placeholder="US$" onChange={(e) => handleChange(e)}></input>
-                  </div>
-                </div>
-
-
-
-                <div class="form-group my-3">
-                  <label for="about" class="col-sm-3 control-label my-2 text-dark">Description</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" id="description" placeholder="Insert a product description" onChange={(e) => handleChange(e)}></textarea>
-                  </div>
-
-                </div> 
-
-
-
-
-                <div class="form-group my-3">
-                  <label for="name" class="col-sm-3 control-label my-2 text-dark">Insert Image</label>
-                  <div class="col-sm-3">
-                  <label class="control-label small text-dark" for="file_img">Product image (jpg/png):</label> 
-                    <input type="file" name="file_img" class="my-2 text-dark"></input>
-                  </div>
-                </div> 
-               
-
-
-
-                <hr class="text-dark"></hr>
-                <div class="d-flex form-group flex-row-reverse my-3">
-                  <div class="d-flex col-sm-offset-3 col-sm-9 flex-row-reverse">
-                    <button type="submit" class="button btn btn-secondary" style={{width: '20rem'}}>Create</button>
-                  </div>
-                </div> 
-            </form>
-    
-           </div>
-      </section>
-    </div> 
+      </div>
     </div>
+    
   )
-};
 
-export default AddProduct
+      }

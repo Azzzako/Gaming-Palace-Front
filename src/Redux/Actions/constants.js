@@ -1,38 +1,4 @@
-import {
-  GET_ALL_PRODUCTS,
-  GET_DETAIL,
-  POST_NEW_PRODUCT,
-  GET_ALL_CATEGORIES,
-} from "./Actions/constants";
-
-const initialState = {
-  allProducts: [],
-  allCategories: [],
-  details: [],
-};
-
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_ALL_PRODUCTS:
-      return { ...state, allProducts: action.payload };
-
-    case GET_ALL_CATEGORIES:
-      return { ...state, allCategories: action.payload };
-
-    case GET_DETAIL:
-      return {
-        ...state,
-        details: action.payload,
-      };
-
-    case POST_NEW_PRODUCT:
-      return {
-        ...state,
-      };
-
-    default:
-      return state;
-  }
-};
-
-export default rootReducer;
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";
+export const GET_DETAIL = "GET_DETAIL";
+export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
