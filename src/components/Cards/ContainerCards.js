@@ -3,6 +3,8 @@ import { Pages } from '../Pagination/Pagination.jsx';
 import Card from './Card';
 import './Card.css'
 
+
+
 const ContainerCards = ({ products }) => {
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -25,8 +27,6 @@ const ContainerCards = ({ products }) => {
             name={p.namedisplay}
             price={p.price}
             description={p.description}
-            fav={p.imgFav}
-            cart={p.imgCart}
           />
         ))
       }
