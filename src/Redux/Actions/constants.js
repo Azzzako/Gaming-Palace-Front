@@ -1,24 +1,38 @@
-import axios from "axios";
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const POST_NEW_PRODUCT = "POST_NEW_PRODUCT";
+import {
+  GET_ALL_PRODUCTS,
+  GET_DETAIL,
+  POST_NEW_PRODUCT,
+  GET_ALL_CATEGORIES,
+} from "./Actions/constants";
 
-export const getAllProducts = () => {
-  return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/products`);
-    return dispatch({
-      type: GET_ALL_PRODUCTS,
-      payload: response.data,
-    });
-  };
+const initialState = {
+  allProducts: [],
+  allCategories: [],
+  details: [],
 };
 
-export const postNewProduct = () => {
-  return async function () {
-    try {
-      const newProduct = await axios.post(`http://localhost:3001/products`);
-      return newProduct;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_ALL_PRODUCTS:
+      return { ...state, allProducts: action.payload };
+
+    case GET_ALL_CATEGORIES:
+      return { ...state, allCategories: action.payload };
+
+    case GET_DETAIL:
+      return {
+        ...state,
+        details: action.payload,
+      };
+
+    case POST_NEW_PRODUCT:
+      return {
+        ...state,
+      };
+
+    default:
+      return state;
+  }
 };
+
+export default rootReducer;
