@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {getDetail} from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
-
-
+import { BsHeartFill } from 'react-icons/bs';
+import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
+import s from './Detail.modules.css'
 const Detail = (props) => {
 
 
 	const detail = useSelector((i) => i.details);
 
-
-  console.log(detail, "este es")
 
 	const dispatch = useDispatch();
   const { id } = useParams();
@@ -25,7 +24,15 @@ const Detail = (props) => {
 		dispatch(getDetail(id));
 	},[]);
 
-  console.log()
+  
+  const favourites = useSelector(state=> state.favourites)
+  const existFavs = favourites.map(fav => fav.id)
+
+  const handleFav = (id) => {
+    !existFavs.includes(id) ?
+    dispatch(addFav(id)) :
+    dispatch(deleteFavs(id))
+  };
 	return (
 
 		<div className='bkg'>
@@ -64,10 +71,14 @@ const Detail = (props) => {
                           <h3 className='my-3'>US${detail.price} </h3>
                           <div className='d-flex gap-2 my-3'>
                             <input type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} />
-                            <Link to={`/myprofile`}> 
-                              <button class="button btn btn-secondary like">♥</button>
-                            </Link>
-                          </div>
+
+                          <div className={s.icons}>
+                        {
+                          existFavs.includes(id) ? <BsHeartFill color='red' className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
+                          : <BsHeartFill className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
+                        }     
+                      </div> 
+                      </div>
                       </div>
 
 
