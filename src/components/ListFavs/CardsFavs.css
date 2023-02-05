@@ -1,0 +1,46 @@
+.list-favs {
+    min-height: 100vh;
+}
+
+.list-favs h1 {
+    color: plum;
+    text-shadow: 1px 1px white;
+    text-align: center;
+}
+
+.cards-favs-cont {
+    background: linear-gradient(#332B47, #14111C);
+    padding: 25px;
+    width: 90%;
+    margin: auto;
+}
+
+.cards-favs {
+    margin-block: 10px;
+    padding: 15px;
+    border: 1px solid black;
+    background: linear-gradient(#4B90C4, #0A131A);
+    box-shadow: 2px 2px purple;
+    border-radius: 15px;
+}
+
+.cards-favs img {
+    background: grey;
+    border-radius: 11px;
+}
+
+.cards-favs h3 {
+    color: plum;
+    text-shadow: 1px 1px white;
+    font-size:x-large;
+}
+
+.btn-del-fav {  
+    background-color: rgb(194, 191, 191);
+    border-radius: 20px;
+}
+.btn-del-fav:hover {
+  background: #5c5d5e;
+  border-color: red;
+  color: red;
+}

@@ -1,0 +1,5 @@
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_DETAIL = "GET_DETAIL";
+export const POST_PRODUCT = "POST_PRODUCT";
+export const GET_PRODUCT_FILTER = "GET_PRODUCT_FILTER"
+
