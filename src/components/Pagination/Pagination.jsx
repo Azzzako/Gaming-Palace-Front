@@ -33,7 +33,7 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
                     onClick={() => (setCurrentPage(currentPage - 1), goToTop())}>{currentPage - 1 == 0 ? "..." : currentPage - 1}</Pagination.Item>
                 <Pagination.Item active>{currentPage}</Pagination.Item>
                 <Pagination.Item
-                onClick={() => (setCurrentPage(currentPage + 1), goToTop())}>{currentPage + 1}</Pagination.Item>
+                onClick={() => (setCurrentPage(currentPage + 1), goToTop())}>{currentPage + 1 > pages.length ? "..." : currentPage + 1}</Pagination.Item>
 
                 <Pagination.Next
                     onClick={() => (setCurrentPage(currentPage + 1), goToTop())}
