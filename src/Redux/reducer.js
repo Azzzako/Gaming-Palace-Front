@@ -34,7 +34,9 @@ const rootReducer = (state = initialState, action) => {
 
 
       case POST_NEW_PRODUCT:
-        return { ...state };
+        return { 
+          ...state 
+        };
   
       default:
         return state;
