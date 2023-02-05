@@ -47,7 +47,7 @@ const Card = ({image, price, name, description, id}) => {
 
       <h3>{name}</h3>
 
-      <h3>US${price}</h3>
+      <h3>US$ {price}</h3>
 
       {/* <h3>{description}</h3> */}
 

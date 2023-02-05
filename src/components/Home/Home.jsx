@@ -10,6 +10,7 @@ import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
 import "./Home.css";
 import { getAllProducts } from '../../Redux/Actions/actions';
 import ContainerCards from '../Cards/ContainerCards';
+import { Searchbar } from '../Searchbar/Searchbar';
 
 
 const Home = () => {
@@ -63,6 +64,10 @@ const Home = () => {
         </Carousel>
       </div>
       
+      <div>
+    <Searchbar/>
+      </div>
+
       <ContainerCards 
       products={products}/>
     </div>

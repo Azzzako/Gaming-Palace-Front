@@ -1,0 +1,8 @@
+.search__container{
+    background-color: black;
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}

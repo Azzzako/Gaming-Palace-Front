@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_PRODUCT, CLEAN_DETAIL, SET_LOADING} from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_PRODUCT, CLEAN_DETAIL, SET_LOADING, GET_PRODUCT_FILTER} from "./Actions/constants";
 
 
 const initialState = {
@@ -27,6 +27,9 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state, details: action.payload,
 			};
+
+      case GET_PRODUCT_FILTER:
+      return { ...state, allProducts: action.payload }
 
 
       case POST_PRODUCT:
