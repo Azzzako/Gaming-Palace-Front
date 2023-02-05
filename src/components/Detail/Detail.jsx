@@ -68,14 +68,14 @@ const Detail = (props) => {
 
                       {/* HACER RESPONSIVES BOTONES */}
                       <div class=" form-outline item col-10 mx-auto " >
-                          <h3 className='my-3'>US${detail.price} </h3>
+                          <h3 className='my-3'>US$ {detail.price} </h3>
                           <div className='d-flex gap-2 my-3'>
                             <input type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} />
 
-                          <div className={s.icons}>
+                          <div className='icons'>
                         {
                           existFavs.includes(id) ? <BsHeartFill color='red' className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
-                          : <BsHeartFill className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
+                          : <BsHeartFill color='lightslategray' className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
                         }     
                       </div> 
                       </div>
