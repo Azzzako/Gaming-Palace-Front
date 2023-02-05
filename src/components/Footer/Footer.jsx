@@ -1,28 +1,42 @@
-import React from "react";
-import { Navbar } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+
+
 import './Footer.css';
-import { Link } from "react-router-dom";
-
-
-export default function Footer() {
-  const navigate = useNavigate();
+const Footer = () => {
   return (
-  
-    <Navbar className="footer" bg="dark" variant="dark">
-      <Navbar.Text className='Light-Font'>© GamingPalace E-Commerce, 2023. All rights reserved.</Navbar.Text>
-      <Navbar.Text >
-        <Link to='/myprofile'>
-          <button className="btn btn-danger text-decoration-none">About us</button>
-        </Link>
-      </Navbar.Text >
-      <Navbar.Text>
-        <Link to='/myprofile'>
-          <button className="btn btn-danger text-decoration-none">Contact us</button>
-        </Link>
-      </Navbar.Text>
-      <Navbar.Text>
-      </Navbar.Text>
-    </Navbar>
+    <div>
+      <footer className="text-center footer-style">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4 footer-col">
+              <h3>Dirección</h3>
+              {/* <p>Argentina <br /> carrasco 400</p> */}
+            </div>
+            <div className="col-md-4 footer-col">
+              <h3>Networks</h3>
+              <div className="list-inline container">
+                <div className='row justify-content-center'>
+                  <li className='d-flex col-sm-2'>
+                    <a target="_blank" href="#" className="col-xl-4"><i className="bi bi-facebook"></i></a>
+                  </li>
+                  <li className='d-flex col-sm-2'>
+                    <a target="_blank" href="#" className="col-xl-4 "><i className="bi bi-instagram"></i></a>
+                  </li>
+                  <li className='d-flex col-sm-2'>
+                    <a target="_blank" href="#" className="col-xl-4 "><i className="bi bi-github"></i></a>
+                  </li>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 footer-col">
+              <h3>Us</h3>
+              {/* <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias ad laboriosam tempore quaerat dolorum, porro consequatur praesentium rem.</p> */}
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   )
 }
+
+export default Footer
