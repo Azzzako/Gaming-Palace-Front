@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, POST_NEW_PRODUCT,  GET_DETAIL } from "./constants";
+import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV } from "./constants";
 
 
 export const getAllProducts = () => {
@@ -42,5 +42,22 @@ export const getDetail = (id) => {
 			payload: response.data,
 		});
 	};
+};
+
+export const addFav = (id) => {
+	return async (dispatch) => {
+		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		return dispatch({
+			type: ADD_FAV,
+			payload: response.data,
+		});
+	};
+};
+
+export const deleteFavs = (id) => {
+	return {
+		type: DELETE_FAV,
+		payload: id
+	}
 };
 
