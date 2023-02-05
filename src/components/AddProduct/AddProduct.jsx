@@ -1,100 +1,58 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import { useDispatch, useSelector } from "react-redux";
+// import { postNewProduct, getCategories } from ''
+import "./AddProduct.css";
 
 
-const AddProduct= () => {
-
-	
+export default function AddProduct() {
+  
   return (
-    <div>
-    <div class="container align-items-center p-5 mt-5 bg-light">
-          
-    <section class="panel panel-default">
-          <div class="panel-heading "> 
-            <h3 class="panel-title text-dark">Product Creation Panel</h3> 
-          </div> 
+    <div className="container">
+      <form className="form">
+        <div className="form-header">
+          <h1 className="form-title">Create your product</h1>
+        </div>
 
-          <hr class="text-dark"></hr>
+        <label className="form-label">Name</label>
+        <input type="text" id="name" className="form-input" placeholder="Name of product"></input>
 
-          <div class="panel-body">
+        <label className="form-label">Price</label>
+        <input type="number" id="price" className="form-input" placeholder="Price"></input>
 
-            <form >
-            <div>
-               
+        <label className="form-label">Brand</label>
+        <input type="text" id="brand" className="form-input" placeholder="Brand"></input>
 
-                <div class="form-group text-dark"> 
-                        
-                  <label for="name" class="col-sm-3 control-label my-2">Insert name</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="product name"></input>
-                  </div>
-                </div> 
-                </div> 
+        <label className="form-label">Category</label>
+        <select className="form-input" id="category">
+          <option value="select">Select category</option>
+          <option value="Powerbank">Powerbank</option>
+          <option value="wireless network card">wireless network card</option>
+          <option value="videocard">videocard</option>
+          <option value="Harddrive">Harddrive</option>
+          <option value="Monitor">Monitor</option>
+          <option value="Mouse pad">Mouse pad</option>
+          <option value="coolers">coolers</option>
+          <option value="processors">processors</option>
+          <option value="mouse">mouse</option>
+          <option value="motherboard">motherboard</option>
+          <option value="memory RAM">memory RAM</option>
+          <option value="Tower">Tower</option>
+          <option value="SSD">SSD</option>
+          <option value="GAMING CHAIR">GAMING CHAIR</option>
+          <option value="keyboard">keyboard</option>
+          <option value="Headset">Headset</option>
+        </select>
 
+        <label className="form-label">Description</label>
+        <textarea id="description" className="form-textarea" placeholder="Description"></textarea>
 
-                <div class="form-group my-3 text-dark">
-                  <label for="tech" class="col-sm-3 control-label my-2">Category</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" name="qty" id="qty" placeholder="category" >
-                    <option value="Select">Select a category</option>
-                    
-                   
+        <label className="form-label">Upload image</label>
+        <input type="file" id="img" className="form-input"></input>
 
-                    </input>
-
-                  </div>
-                </div> 
-
-
-                <div class="form-group my-3">
-                  <label for="qty" class="col-sm-3 control-label my-2 text-dark">Insert brand</label>
-                  <div class="col-sm-3">
-                <input type="text" class="form-control" name="qty" id="qty" placeholder="brand"></input>
-                  </div>
-                </div>
-
-
-                <div class="form-group my-3">
-                  <label for="name" class="col-sm-3 control-label my-2 text-dark">Price</label>
-                  <div class="col-sm-9">
-                    <input type="number" class="form-control" name="price" id="price" placeholder="US$"></input>
-                  </div>
-                </div>
-
-
-                <div class="form-group my-3">
-                  <label for="about" class="col-sm-3 control-label my-2 text-dark">Description</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" id="description" placeholder="Insert a product description"></textarea>
-                  </div>
-
-                </div> 
-
-
-                <div class="form-group my-3">
-                  <label for="name" class="col-sm-3 control-label my-2 text-dark">Insert Image</label>
-                  <div class="col-sm-3">
-                  <label class="control-label small text-dark" for="file_img">Product image (jpg/png):</label> 
-                    <input type="file" name="file_img" class="my-2 text-dark"></input>
-                  </div>
-                </div> 
-               
-
-
-
-                <hr class="text-dark"></hr>
-                <div class="d-flex form-group flex-row-reverse my-3">
-                  <div class="d-flex col-sm-offset-3 col-sm-9 flex-row-reverse">
-                    <button type="submit" class="button btn btn-secondary" style={{width: '20rem'}}>Create</button>
-                  </div>
-                </div> 
-            </form>
-    
-           </div>
-      </section>
-    </div> 
+        <input type="submit" className="btn-submit" value="create"></input>
+        
+      </form>
     </div>
+    
   )
-};
-
-export default AddProduct
+}
