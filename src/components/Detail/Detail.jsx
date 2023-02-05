@@ -1,31 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {getDetail} from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
+<<<<<<< HEAD
 import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
 import s from './Detail.modules.css'
+=======
+import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
+import s from './Detail.module.css'
+
+
+
+>>>>>>> form-valen
 const Detail = (props) => {
 
 
 	const detail = useSelector((i) => i.details);
+<<<<<<< HEAD
 
 
 	const dispatch = useDispatch();
+=======
+>>>>>>> form-valen
   const { id } = useParams();
 	const { history } = props; 
-
-	const goHome = () => {
-		history.goHome();
-	};
 
 	useEffect(() => {
 		dispatch(getDetail(id));
 	},[]);
 
+<<<<<<< HEAD
   
   const favourites = useSelector(state=> state.favourites)
+=======
+
+  const favourites = useSelector(state=> state.favourites)
+  const dispatch = useDispatch();
+>>>>>>> form-valen
   const existFavs = favourites.map(fav => fav.id)
 
   const handleFav = (id) => {
@@ -33,14 +46,22 @@ const Detail = (props) => {
     dispatch(addFav(id)) :
     dispatch(deleteFavs(id))
   };
+<<<<<<< HEAD
+=======
+
+
+	const goHome = () => {
+		history.goHome();
+	};
+
+
+>>>>>>> form-valen
 	return (
 
 		<div className='bkg'>
 			
 		<div>
 		
-    
-
 
 			<div >
 				{detail && 
@@ -52,7 +73,7 @@ const Detail = (props) => {
               <div className="card row detailsContainer d-flex flex-column align-items-center">
               <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
                 <div className="d-flex img-fluid justify-content-center">
-                      <img src={detail.imageurl}  className="img-fluid" alt="img" />
+                      <img src={detail.imageurl}  className={s.imgfluid} alt="img" />
                 </div>
 
                 <div className="container-title">
@@ -72,6 +93,7 @@ const Detail = (props) => {
                           <div className='d-flex gap-2 my-3'>
                             <input type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} />
 
+<<<<<<< HEAD
                           <div className='icons'>
                         {
                           existFavs.includes(id) ? <BsHeartFill color='red' className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
@@ -79,6 +101,18 @@ const Detail = (props) => {
                         }     
                       </div> 
                       </div>
+=======
+
+                            <div className='icons'>
+                              {
+                                existFavs.includes(id) ? <BsHeartFill color='red' className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
+                                : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
+                              }     
+                           </div>
+
+
+                          </div>
+>>>>>>> form-valen
                       </div>
 
 

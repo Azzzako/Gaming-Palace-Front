@@ -48,15 +48,15 @@ const Navbar = () => {
                         </div>
 
                         <div className="menu_item">
-                           <div className="items"><Link to="/myprofile">My Profile</Link></div>
+                           <div className="items"><Link to="/productform">My Profile</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"> <Link to="/myprofile">Settings</Link></div>
+                            <div className="items"> <Link to="/inconstruction">Settings</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"><Link to="/myprofile">About Us</Link></div>
+                            <div className="items"><Link to="/inconstruction">About Us</Link></div>
                         </div>
 
                         <div className="menu_item">
@@ -70,7 +70,11 @@ const Navbar = () => {
 
                         <div className="shopping_cart">
                             <FiShoppingCart />
+<<<<<<< HEAD
                             <span className="length_cart"><Link to="/myprofile">{carrito.length}</Link></span>
+=======
+                            <span className="length_cart"><Link to="/inconstruction">{carritoLength}</Link></span>
+>>>>>>> form-valen
                         </div>
                     </div>
                 </IconContext.Provider>
