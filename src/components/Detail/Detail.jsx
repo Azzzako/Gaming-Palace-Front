@@ -78,11 +78,12 @@ const Detail = (props) => {
 
 
                             <div className='icons'>
-                            {
-                              existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
-                              : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
-                            }     
-                          </div>
+
+                              {
+                                existFavs.includes(detail.id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
+                                : <BsHeartFill color='lightslategray' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
+                              }     
+                           </div>
 
 
                           </div>
