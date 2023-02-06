@@ -124,7 +124,7 @@ export const Searchbar = () => {
             </select>
 
             <input type="submit"
-                value="Aply filters"
+                value="Apply filters"
                 className="search_text"
             />
 

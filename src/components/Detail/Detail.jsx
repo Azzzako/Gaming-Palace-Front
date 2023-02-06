@@ -93,12 +93,12 @@ const Detail = (props) => {
 
                       
                     <div className='d-grid gap-2 col-10 mx-auto'>
-                    <Link to={`/myprofile`}>
-                        <button type="button" class="btn btn-outline-secondary my-2" style={{width: '20rem'}}>Shop Now</button>
+                    <Link to={"/inconstruction"}>
+                        <button type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button>
                     </Link>
 
-                    <Link to={`/myprofile`}>
-                        <button type="submit" className="button btn btn-secondary my-2" style={{width: '20rem'}}>Add to cart</button>
+                    <Link to={"/inconstruction"}>
+                        <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}}>Add to cart</button>
                     </Link>
                     </div>
                       
