@@ -18,28 +18,28 @@ const ContainerCards = ({ products }) => {
   return (
     <div>
       <div className='containerCards'>
-      {
-        productsPage?.map(p => (
-          <Card
-            key={p.id}
-            id={p.id}
-            image={p.imageurl}
-            name={p.namedisplay}
-            price={p.price}
-            description={p.description}
-          />
-        ))
-      }
+        {
+          productsPage?.map(p => (
+            <Card
+              key={p.id}
+              id={p.id}
+              image={p.imageurl}
+              name={p.namedisplay}
+              price={p.price}
+              description={p.description}
+            />
+          ))
+        }
+      </div>
+
+      <Pages
+        totalPost={totalProducts}
+        postPerPage={postPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
 
-    <Pages
-    totalPost={totalProducts}
-    postPerPage={postPerPage}
-    setCurrentPage={setCurrentPage}
-    currentPage={currentPage}
-    />
-    </div>
-    
   )
 };
 

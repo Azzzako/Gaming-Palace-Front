@@ -1,13 +1,19 @@
 #background {
   background-image: url("https://i.ibb.co/nwRsHth/Fondo-de-Pantalla-Escritorio-PC-Abstracto-Moderno-Degradado-Negro.png");
-  background-size: 100% 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 100vw;
-  height: 87vh;
+  height: 100vh;
   background-attachment: fixed;
   overflow: auto;
   margin: 0%;
+}
+
+/*dejo listo el media para el responsive detallado del landing page !!!*/
+@media (max-width: 500px) {
+  #background{
+     width: 100auto;
+  }
 }
 
 #container {
