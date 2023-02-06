@@ -70,11 +70,8 @@ const Navbar = () => {
 
                         <div className="shopping_cart">
                             <FiShoppingCart />
-<<<<<<< HEAD
-                            <span className="length_cart"><Link to="/myprofile">{carrito.length}</Link></span>
-=======
-                            <span className="length_cart"><Link to="/inconstruction">{carritoLength}</Link></span>
->>>>>>> form-valen
+
+                            <span className="length_cart"><Link to="/inconstruction">{carrito.length}</Link></span>
                         </div>
                     </div>
                 </IconContext.Provider>
