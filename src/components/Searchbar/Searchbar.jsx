@@ -37,11 +37,11 @@ export const Searchbar = () => {
 
 
     return (
+        <div className="contain_search">
         <form className="search__container"
             onSubmit={handleSearch}
         >
-            <label className="label_search">Search Product</label>
-            <input type="text" placeholder="Search..."
+            <input type="text" placeholder="Search..." className="search_text"
                 onChange={(e) => setWord(e.target.value)}
                 value={word}
             />
@@ -51,6 +51,7 @@ export const Searchbar = () => {
                 onChange={(e) => setFilter1(e.target.value)}
                 option="first"
                 selected="true"
+                className="select_text"
             >
                 <option selected value="empty">Trademark</option>
                 <option value="Gigabyte">Gigabyte</option>
@@ -91,7 +92,9 @@ export const Searchbar = () => {
 
             </select>
 
-            <select onChange={(e) => setFilter2(e.target.value)}>
+            <select onChange={(e) => setFilter2(e.target.value)}
+            className="select_text"
+            >
                 <option selected value="">Categories</option>
                 <option value="Powerbank">Powerbank</option>
                 <option value="wireless network card">Wireless Network Cards</option>
@@ -110,7 +113,9 @@ export const Searchbar = () => {
                 <option value="Headset">Headset</option>
             </select>
 
-            <select onChange={(e) => setOrder(e.target.value)}>
+            <select onChange={(e) => setOrder(e.target.value)}
+            className="select_text"
+            >
                 <option value="">Sort</option>
                 <option value="nameup">↕A - Z↕</option>
                 <option value="namedown">↕Z - A↕</option>
@@ -120,14 +125,17 @@ export const Searchbar = () => {
 
             <input type="submit"
                 value="Aply filters"
+                className="search_text"
             />
 
             <button
                 onClick={() => resetFilters()}
+                className="search_text reset_filter"
             >
                 Reset filters
             </button>
 
         </form>
+        </div>
     )
 }

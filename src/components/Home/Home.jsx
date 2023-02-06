@@ -64,12 +64,17 @@ const Home = () => {
         </Carousel>
       </div>
       
-      <div>
+
+    <div className='container_all'>
+
+      <div className='container_search'>
     <Searchbar/>
       </div>
 
       <ContainerCards 
       products={products}/>
+    </div>
+
     </div>
   )
 }
