@@ -53,15 +53,15 @@ const Navbar = () => {
                         </div>
 
                         <div className="menu_item">
-                           <div className="items"><Link to="/myprofile" style={linkStyle}>My Profile</Link></div>
+                           <div className="items"><Link to="/productform" style={linkStyle}>Create Product</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"> <Link to="/myprofile" style={linkStyle}>Settings</Link></div>
+                            <div className="items"> <Link to="/inconstruction" style={linkStyle}>Settings</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"><Link to="/myprofile" style={linkStyle}>About Us</Link></div>
+                            <div className="items"><Link to="/inconstruction" style={linkStyle}>About Us</Link></div>
                         </div>
 
                         <div className="menu_item">
@@ -74,7 +74,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="shopping_cart">
-                           <Link to="/myprofile" style={linkStyle}><FiShoppingCart /></Link> 
+                           <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link> 
                             <span className="length_cart">{carrito.length}</span>
                         </div>
                     </div>
