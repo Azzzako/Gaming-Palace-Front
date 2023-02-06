@@ -16,71 +16,71 @@ const Navbar = () => {
     const [showNavbar, setShowNavbar] = useState(false)
     const carrito = ["1", "2", "3", "4", "5"]
 
-    const favourites = useSelector(state=> state.favourites);
+    const favourites = useSelector(state => state.favourites);
 
     const location = useLocation();
 
     const linkStyle = {
         "text-decoration": "none",
         "color": "#fff"
-      };
+    };
 
     return (
         <nav className="navbarContainer">
             {
                 location.pathname !== "/" &&
-            
-            <div className="wrapper">
 
-                <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
-                    <div className="logo_container">
-                        <DiRuby />
-                        <p>
-                            Gaming Palace
-                        </p>
-                    </div>
+                <div className="wrapper">
 
-                    <div className="mobile_icon"
-                        onClick={() => setShowNavbar(!showNavbar)}
-                    >
-                        <TfiAlignJustify />
-                    </div>
-
-                    <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
-                    onClick={() => setShowNavbar(!showNavbar)}
-                    >
-                        <div className="menu_item">
-                          <div className="items"><Link to="/home" style={linkStyle}>Home</Link></div>
+                    <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
+                        <div className="logo_container">
+                            <DiRuby />
+                            <p>
+                                Gaming Palace
+                            </p>
                         </div>
 
-                        <div className="menu_item">
-                           <div className="items"><Link to="/productform" style={linkStyle}>Create Product</Link></div>
+                        <div className="mobile_icon"
+                            onClick={() => setShowNavbar(!showNavbar)}
+                        >
+                            <TfiAlignJustify />
                         </div>
 
-                        <div className="menu_item">
-                            <div className="items"> <Link to="/inconstruction" style={linkStyle}>Settings</Link></div>
-                        </div>
+                        <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
+                            onClick={() => setShowNavbar(!showNavbar)}
+                        >
+                            <div className="menu_item">
+                                <Link to="/home" style={linkStyle}> <div className="items">Home</div></Link>
+                            </div>
 
-                        <div className="menu_item">
-                            <div className="items"><Link to="/inconstruction" style={linkStyle}>About Us</Link></div>
-                        </div>
+                            <div className="menu_item">
+                                <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
+                            </div>
 
-                        <div className="menu_item">
-                            <div className="items">
-                            <Link to="/favourites" style={linkStyle}>{<BsHeartFill/>}</Link>
-                            {
-                                favourites.length>0 && <span className="length_cart">{favourites.length}</span>
-                            }
+                            <div className="menu_item">
+                                <Link to="/inconstruction" style={linkStyle}><div className="items">Settings</div></Link>
+                            </div>
+
+                            <div className="menu_item">
+                                <Link to="/inconstruction" style={linkStyle}> <div className="items">About Us</div></Link>
+                            </div>
+
+                            <div className="menu_item">
+                                <Link to="/favourites" style={linkStyle}><div className="items">
+                                    {<BsHeartFill />}
+                                    {
+                                        favourites.length > 0 && <span className="length_cart">{favourites.length}</span>
+                                    }
+                                </div></Link>
+                            </div>
+
+                            <div className="shopping_cart">
+                                <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
+                                <span className="length_cart">{carrito.length}</span>
                             </div>
                         </div>
-
-                        <div className="shopping_cart">
-                           <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link> 
-                            <span className="length_cart">{carrito.length}</span>
-                        </div>
-                    </div>
-                </IconContext.Provider>
-            </div>
+                    </IconContext.Provider>
+                </div>
             }
         </nav>
     )
