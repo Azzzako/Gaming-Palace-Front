@@ -48,7 +48,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="menu_item">
-                           <div className="items"><Link to="/productform">My Profile</Link></div>
+                           <div className="items"><Link to="/productform">New Product</Link></div>
                         </div>
 
                         <div className="menu_item">

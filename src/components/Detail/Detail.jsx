@@ -1,11 +1,13 @@
 import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {getDetail} from '../../Redux/Actions/actions'
+import { getDetail } from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
-import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
-import s from './Detail.module.css'
+import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
+
+import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -53,7 +55,7 @@ const Detail = (props) => {
               <div className="card row detailsContainer d-flex flex-column align-items-center">
               <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
                 <div className="d-flex img-fluid justify-content-center">
-                      <img src={detail.imageurl}  className={s.imgfluid} alt="img" />
+                <img src={detail.imageurl}  className="img-fluid" alt="img" />
                 </div>
 
                 <div className="container-title">
@@ -76,11 +78,11 @@ const Detail = (props) => {
 
 
                             <div className='icons'>
-                              {
-                                existFavs.includes(id) ? <BsHeartFill color='red' className={s.iconsfav} onClick={()=>{handleFav(id)}}/>
-                                : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
-                              }     
-                           </div>
+                            {
+                              existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
+                              : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
+                            }     
+                          </div>
 
 
                           </div>
@@ -93,6 +95,7 @@ const Detail = (props) => {
                     <Link to={`/myprofile`}>
                         <button type="button" class="btn btn-outline-secondary my-2" style={{width: '20rem'}}>Shop Now</button>
                     </Link>
+
                     <Link to={`/myprofile`}>
                         <button type="submit" className="button btn btn-secondary my-2" style={{width: '20rem'}}>Add to cart</button>
                     </Link>
