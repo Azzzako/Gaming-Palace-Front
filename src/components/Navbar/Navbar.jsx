@@ -7,6 +7,7 @@ import { IconContext } from "react-icons/lib";
 import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
+import { BsHeartFill } from "react-icons/bs";
 
 
 
@@ -66,7 +67,7 @@ const Navbar = () => {
 
                         <div className="menu_item">
                             <div className="items">
-                            <Link to="/favourites" style={linkStyle}>Favourites</Link>
+                            <Link to="/favourites" style={linkStyle}>{<BsHeartFill/>}</Link>
                             {
                                 favourites.length>0 && <span className="length_cart">{favourites.length}</span>
                             }
