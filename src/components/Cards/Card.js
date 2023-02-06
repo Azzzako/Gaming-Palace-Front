@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import './Card.css'
-
 import { BsCartFill, BsHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
@@ -47,7 +46,7 @@ const Card = ({image, price, name, description, id}) => {
 
       <h3>{name}</h3>
 
-      <h3>US${price}</h3>
+      <h3>US$ {price}</h3>
 
       {/* <h3>{description}</h3> */}
 

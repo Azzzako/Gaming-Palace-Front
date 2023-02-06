@@ -1,3 +1,13 @@
+.list-favs {
+    min-height: 100vh;
+}
+
+.list-favs h1 {
+    color: plum;
+    text-shadow: 1px 1px white;
+    text-align: center;
+}
+
 .cards-favs-cont {
     background: linear-gradient(#332B47, #14111C);
     padding: 25px;

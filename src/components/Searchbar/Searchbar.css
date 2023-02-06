@@ -1,0 +1,26 @@
+
+
+.search__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    right: 30px;
+    gap: 20px;
+    top: 100px;
+}
+
+.search_text{
+    text-align: center;
+    border-radius: 8px;
+}
+
+.select_text{
+    text-align: center;
+    border-radius: 8px;
+}
+
+.reset_filter:hover{
+    background-color: red;
+    transition: 0.5s all ease;
+}

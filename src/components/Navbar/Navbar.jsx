@@ -19,6 +19,11 @@ const Navbar = () => {
 
     const location = useLocation();
 
+    const linkStyle = {
+        "text-decoration": "none",
+        "color": "#fff"
+      };
+
     return (
         <nav className="navbarContainer">
             {
@@ -44,33 +49,33 @@ const Navbar = () => {
                     onClick={() => setShowNavbar(!showNavbar)}
                     >
                         <div className="menu_item">
-                          <div className="items"><Link to="/home">Home</Link></div>
+                          <div className="items"><Link to="/home" style={linkStyle}>Home</Link></div>
                         </div>
 
                         <div className="menu_item">
-                           <div className="items"><Link to="/myprofile">My Profile</Link></div>
+                           <div className="items"><Link to="/myprofile" style={linkStyle}>My Profile</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"> <Link to="/productform">Settings</Link></div>
+                            <div className="items"> <Link to="/myprofile" style={linkStyle}>Settings</Link></div>
                         </div>
 
                         <div className="menu_item">
-                            <div className="items"><Link to="/myprofile">About Us</Link></div>
+                            <div className="items"><Link to="/myprofile" style={linkStyle}>About Us</Link></div>
                         </div>
 
                         <div className="menu_item">
                             <div className="items">
-                            <Link to="/favourites">Favourites</Link>
+                            <Link to="/favourites" style={linkStyle}>Favourites</Link>
                             {
-                                favourites.length>0 && <span>{favourites.length}</span>
+                                favourites.length>0 && <span className="length_cart">{favourites.length}</span>
                             }
                             </div>
                         </div>
 
                         <div className="shopping_cart">
-                            <FiShoppingCart />
-                            <span className="length_cart"><Link to="/myprofile">{carrito.length}</Link></span>
+                           <Link to="/myprofile" style={linkStyle}><FiShoppingCart /></Link> 
+                            <span className="length_cart">{carrito.length}</span>
                         </div>
                     </div>
                 </IconContext.Provider>
