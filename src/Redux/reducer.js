@@ -9,6 +9,7 @@ const initialState = {
   allProducts: [],
   allCategories: [],
   details: [],
+  loading: false,
 };
 
 const rootReducer = (state = initialState, action) => {

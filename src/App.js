@@ -7,7 +7,7 @@ import InConstructionPage from './components/InconstructionPage/InConstructionPa
 import "./App.css"
 import { Route, Routes } from 'react-router-dom';
 import AddProduct from './components/AddProduct/AddProduct';
-
+import ListFavs from './components/ListFavs/ListFavs';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 
       <Navbar />
       <Routes>
-      
+        <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/productform' element={<AddProduct/>}/>
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/myprofile" element={<InConstructionPage />} />
