@@ -68,7 +68,9 @@ export default function AddProduct() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-    if(!input.name && !input.price && !input.trademark && !input.description && !input.category && !input.imageurl){ return alert("INFORMATION REQUIRED", setModalShow(false))} 
+    if(!input.name || !input.price || !input.trademark || !input.description || !input.category || !input.imageurl){ return alert("INFORMATION REQUIRED, PLEASE COMPLETE ALL FIELDS", setModalShow(false))} 
+    // if (!input.name){ return alert("INFORMATION REQUIRED", setModalShow(false))} 
+    // if
     else{  
     console.log(input)
         setErrors(
