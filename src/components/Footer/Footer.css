@@ -41,3 +41,7 @@
     display: flex;
     gap: 1em;
 }
+
+.footer_buttons{
+    gap: 10px;
+}

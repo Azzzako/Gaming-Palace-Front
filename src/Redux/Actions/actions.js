@@ -1,16 +1,6 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_PRODUCT, GET_PRODUCT_FILTER } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV } from "./constants";
 
-
-export const getAllProducts = () => {
-	return async function (dispatch) {
-		const response = await axios.get(`http://localhost:3001/products`)
-		return dispatch({
-			type: GET_ALL_PRODUCTS,
-			payload: response.data
-		})
-	}
-}
 
 export const getArray = (payload) => {
     return async function (dispatch){
@@ -18,9 +8,42 @@ export const getArray = (payload) => {
         return dispatch({
             type: GET_PRODUCT_FILTER,
             payload: response.data
-        })
+        });
+	};
+};
+
+export const getAllProducts = () => {
+  return async function (dispatch) {
+    const response = await axios.get(`http://localhost:3001/products`);
+    return dispatch({
+      type: GET_ALL_PRODUCTS,
+      payload: response.data,
+    });
+  };
+};
+
+export const getAllCategories = () => {
+	return async function (dispatch) {
+	  const response = await axios.get(`http://localhost:3001/categories`);
+	  return dispatch({
+		type: GET_ALL_CATEGORIES,
+		payload: response.data,
+	  });
+	};
+  };
+
+export const postNewProduct = (data) => {
+    try {
+       return async function () {
+        const newProduct = await axios.post(`http://localhost:3001/products`, data);
+      return newProduct
+
     }
-}
+      } catch (error) {
+      console.log(error)
+  };
+};
+
 
 
 export const getDetail = (id) => {
@@ -33,28 +56,11 @@ export const getDetail = (id) => {
 	};
 };
 
-export const postProduct = (payload) => {
-	return async (dispatch) => {
-		const res = await axios.post('/products', payload);
-		return dispatch({
-			type: POST_PRODUCT,
-			res,
-		});
-	};
-};
-export function cleanDetail() {
-	return {
-		type: "CLEAN_DETAIL"
-	}
-};
-
-
-
 export const addFav = (id) => {
 	return async (dispatch) => {
 		const response = await axios.get(`http://localhost:3001/products/${id}`);
 		return dispatch({
-			type: "ADD_FAV",
+			type: ADD_FAV,
 			payload: response.data,
 		});
 	};
@@ -62,7 +68,8 @@ export const addFav = (id) => {
 
 export const deleteFavs = (id) => {
 	return {
-		type: "DELETE_FAV",
+		type: DELETE_FAV,
 		payload: id
 	}
 };
+

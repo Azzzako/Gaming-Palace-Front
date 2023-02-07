@@ -11,6 +11,7 @@ import "./Home.css";
 import { getAllProducts } from '../../Redux/Actions/actions';
 import ContainerCards from '../Cards/ContainerCards';
 import { Searchbar } from '../Searchbar/Searchbar';
+// import { log } from 'console';
 
 
 const Home = () => {
@@ -41,8 +42,6 @@ const Home = () => {
     dispatch(getAllProducts())
   },[dispatch])
   
- 
-
   return (
     <div className=''>
       {/* primer carrusel del home */}
@@ -64,12 +63,17 @@ const Home = () => {
         </Carousel>
       </div>
       
-      <div>
+
+    <div className='container_all'>
+
+      <div className='container_search'>
     <Searchbar/>
       </div>
 
       <ContainerCards 
       products={products}/>
+    </div>
+
     </div>
   )
 }

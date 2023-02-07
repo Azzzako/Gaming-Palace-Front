@@ -10,7 +10,12 @@
     height: auto;
 }
 
-.iconsfav {
+.img-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons-fav {
   display: flex;
   margin-top: 15px;
   margin-right: 15px;

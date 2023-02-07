@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import './Card.css'
-
 import { BsCartFill, BsHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
