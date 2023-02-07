@@ -68,7 +68,9 @@ export default function AddProduct() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-    if(!input.name && !input.price && !input.trademark && !input.description && !input.category && !input.imageurl){ return alert("INFORMATION REQUIRED", setModalShow(false))} 
+    if(!input.name || !input.price || !input.trademark || !input.description || !input.category || !input.imageurl){ return alert("INFORMATION REQUIRED, PLEASE COMPLETE ALL FIELDS", setModalShow(false))} 
+    // if (!input.name){ return alert("INFORMATION REQUIRED", setModalShow(false))} 
+    // if
     else{  
     console.log(input)
         setErrors(
@@ -122,7 +124,7 @@ export default function AddProduct() {
 
 
         <div>
-              {errors.name && (
+              {errors.price && (
               <div className={s.error}>
                 {errors.price} 
               </div>
@@ -133,7 +135,7 @@ export default function AddProduct() {
 
 
         <div> 
-        {errors.name && (
+        {errors.trademark && (
               <div className={s.error}>
                 {errors.trademark} 
               </div>
@@ -143,7 +145,7 @@ export default function AddProduct() {
         </div>  
 
         <div>
-        {errors.name && (
+        {errors.category && (
               <div className={s.error}>
                 {errors.select} 
               </div>
@@ -173,7 +175,7 @@ export default function AddProduct() {
         </div>
 
         <div>
-        {errors.name && (
+        {errors.description && (
               <div className={s.errordescription}>
                 {errors.description} 
               </div>
@@ -183,7 +185,7 @@ export default function AddProduct() {
         </div>
 
         <div>
-        {errors.name && (
+        {errors.imageurl && (
               <div className={s.errorimage}>
                 {errors.imageurl} 
               </div>
