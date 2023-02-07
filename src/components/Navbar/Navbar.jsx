@@ -78,6 +78,7 @@ const Navbar = () => {
                                 <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
                                 <span className="length_cart">{carrito.length}</span>
                             </div>
+
                         </div>
                     </IconContext.Provider>
                 </div>
