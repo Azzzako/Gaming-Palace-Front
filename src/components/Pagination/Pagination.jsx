@@ -38,11 +38,10 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
     return (
         <div className="buttons_page">
             <ThemeProvider theme={theme}>
-                <Stack spacing={5}>
+                <Stack spacing={2}>
                     <Pagination count={pages.length}
                         page={currentPage}
                         onChange={handleChange}
-                        showFirstButton showLastButton
                         color="primary"
                         variant="outlined"
                     />

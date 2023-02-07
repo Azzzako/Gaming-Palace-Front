@@ -16,7 +16,7 @@ const ContainerCards = ({ products }) => {
   const productsPage = products.slice(firstPostIndex, lastPostIndex)
 
   return (
-    <div>
+    <div className='container_all2'>
 
       <Pages
         totalPost={totalProducts}

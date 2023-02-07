@@ -8,3 +8,12 @@
     border-radius: 8px;
     background-color: #fff;
 }
+
+@media (max-width: 960px){
+    .buttons_page{
+       width: 100%;
+       background-color: transparent;
+       margin: 0;
+       padding: 20px;
+    }
+}

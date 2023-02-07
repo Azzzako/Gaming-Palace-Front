@@ -3,18 +3,29 @@
     grid-template-columns: repeat(4, 350px);
     grid-gap: 30px;
     place-items: center;
-    padding-bottom: 70px;
-    /* background-color: #fff; */
-    padding: 100px 50px 100px;
+    padding: 60px 50px 100px;
     box-sizing: border-box;
     background-color:#95c827 ;
     border-radius: 60% 50% ;
     width: 100%;
 }
 
+@media (max-width: 960px){
+    .containerCards{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        width: 100%;
+        border-radius: 0;
+        background-color: transparent;
+    }
+
+}
+
 .cards:hover{
-    box-shadow: 2px 2px 30px -5px black;
-    transform: translate(-.5rem, -.5rem);
+    box-shadow: 2px 2px 30px 5px black;
+    transform: translate(0rem, -0.5rem);
     transition: 0.5s all ease;
 
 }
@@ -26,6 +37,8 @@
     align-items: center;
     text-align: center;
     padding: 10px;
+    font-family: var(--font-family-test);
+    font-weight: 600;
 }
 
 .cards {
@@ -62,3 +75,6 @@
     padding: 15px;
     color: black;
 }
+
+
+
