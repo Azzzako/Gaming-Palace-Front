@@ -161,12 +161,12 @@ se puede generear espacio entre las imagenes*/
 }
 
 
-.container_all{
+.container_all {
    width: 100%;
    display: flex;
    justify-content: center;
-   gap: 40px;
+   gap: 20px;
    padding: 0;
    margin: 0;
-   background-color: #332B47;
+   background: #3e2f62;
 }

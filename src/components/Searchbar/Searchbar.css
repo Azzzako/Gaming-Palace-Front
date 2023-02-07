@@ -4,8 +4,8 @@
     justify-content: center;
     position: relative;
     padding: 40px;
-    top: 200px;
-    background-color: #262831;
+    top: 300px;
+    background-color: #fff;
     gap: 20px;
     border-radius: 8px;
     width: 100%;
@@ -39,3 +39,5 @@ label{
     background-color: #95c827;
     transition: 0.3s all ease;
 }
+
+
