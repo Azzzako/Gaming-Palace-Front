@@ -3,7 +3,7 @@
     grid-template-columns: 350px 350px 350px;
     grid-column-gap: 30px;
     justify-content: center;
-    padding: 50px; 
+    padding: 60px; 
 }
 
 .cards {
@@ -19,6 +19,7 @@
     color: plum;
     text-shadow: 1px 1px white;
     font-size:x-large;
+    text-align: center;
 }
 
 .cards img {
