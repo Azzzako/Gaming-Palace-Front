@@ -124,7 +124,7 @@ export default function AddProduct() {
 
 
         <div>
-              {errors.name && (
+              {errors.price && (
               <div className={s.error}>
                 {errors.price} 
               </div>
@@ -135,7 +135,7 @@ export default function AddProduct() {
 
 
         <div> 
-        {errors.name && (
+        {errors.trademark && (
               <div className={s.error}>
                 {errors.trademark} 
               </div>
@@ -145,7 +145,7 @@ export default function AddProduct() {
         </div>  
 
         <div>
-        {errors.name && (
+        {errors.category && (
               <div className={s.error}>
                 {errors.select} 
               </div>
@@ -175,7 +175,7 @@ export default function AddProduct() {
         </div>
 
         <div>
-        {errors.name && (
+        {errors.description && (
               <div className={s.errordescription}>
                 {errors.description} 
               </div>
@@ -185,7 +185,7 @@ export default function AddProduct() {
         </div>
 
         <div>
-        {errors.name && (
+        {errors.imageurl && (
               <div className={s.errorimage}>
                 {errors.imageurl} 
               </div>
