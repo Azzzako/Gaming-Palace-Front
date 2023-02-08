@@ -79,6 +79,14 @@ const Navbar = () => {
                                 <span className="length_cart">{carrito.length}</span>
                             </div>
 
+                            <div className="login_item">
+                                <Link to="/login" style={linkStyle}> <div className="items">Login</div></Link>
+                            </div>
+
+                            <div className="register_item">
+                                <Link to="/register" style={linkStyle}> <div className="items">Register</div></Link>
+                            </div>
+
                         </div>
                     </IconContext.Provider>
                 </div>

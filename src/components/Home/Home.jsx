@@ -13,6 +13,10 @@ import ContainerCards from '../Cards/ContainerCards';
 import { Searchbar } from '../Searchbar/Searchbar';
 // import { log } from 'console';
 
+// import auth
+import { useAuth } from '../../context/authContext';
+
+
 
 const Home = () => {
   const responsive = {
@@ -41,6 +45,16 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllProducts())
   },[dispatch])
+
+  // funciones de auth
+ // const authContext = useContext(context)
+ const {user,logout} = useAuth()
+ 
+ 
+ const handleLogout = async () => {
+  await logout()
+ }
+
   
   return (
     <div className=''>
@@ -62,8 +76,14 @@ const Home = () => {
           </div>
         </Carousel>
       </div>
-      
+      <div className="welcome">
+      <p>Welcome {user.email}</p>
+      <button onClick={handleLogout} className="logout">
+        LOGOUT
+      </button>
+      </div>
 
+   
     <div className='container_all'>
 
       <div className='container_search'>
