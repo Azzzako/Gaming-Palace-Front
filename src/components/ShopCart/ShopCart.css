@@ -1,0 +1,6 @@
+.shop {
+    display: flex;
+    justify-content: center;
+    color: antiquewhite;
+    min-height: 100vh;
+}

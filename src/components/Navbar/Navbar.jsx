@@ -14,7 +14,7 @@ import { BsHeartFill } from "react-icons/bs";
 const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
-    const carrito = ["1", "2", "3", "4", "5"]
+    const shopCart = useSelector(state => state.shopCart)
 
     const favourites = useSelector(state => state.favourites);
 
@@ -75,8 +75,10 @@ const Navbar = () => {
                             </div>
 
                             <div className="shopping_cart">
-                                <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
-                                <span className="length_cart">{carrito.length}</span>
+                                <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
+                                {
+                                  shopCart.length > 0 && <span className="length_cart">{shopCart.length}</span>
+                                }
                             </div>
 
                         </div>

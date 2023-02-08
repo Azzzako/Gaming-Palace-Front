@@ -3,20 +3,28 @@ import { Link } from "react-router-dom";
 import './Card.css'
 import { BsCartFill, BsHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
+import { addCart, addFav, deleteCart, deleteFavs } from '../../Redux/Actions/actions.js';
 
 
 
 const Card = ({image, price, name, description, id}) => {
 
   const favourites = useSelector(state=> state.favourites)
+  const productsCart = useSelector(state=> state.shopCart)
   const disptach = useDispatch();
   const existFavs = favourites.map(fav => fav.id)
+  const existProductsCart = productsCart.map(prod => prod.id)
 
   const handleFav = (id) => {
     !existFavs.includes(id) ?
     disptach(addFav(id)) :
     disptach(deleteFavs(id))
+  };
+
+  const handleCart = (id) => {
+    !existProductsCart.includes(id) ?
+    disptach(addCart(id)) :
+    disptach(deleteCart(id))
   };
 
   return (
@@ -35,11 +43,12 @@ const Card = ({image, price, name, description, id}) => {
           }     
         </div>
 
-          <Link to="/myprofile">
         <div className='icons'>
-          <BsCartFill className='icons-cart'/>
+          {
+            existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
+            <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
+          }          
         </div>
-          </Link>
           
       </div>
       

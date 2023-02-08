@@ -1,5 +1,6 @@
+/* eslint-disable no-unreachable */
 import axios from "axios";
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART } from "./constants";
 
 
 export const getArray = (payload) => {
@@ -73,3 +74,19 @@ export const deleteFavs = (id) => {
 	}
 };
 
+export const addCart = (id) => {
+	return async (dispatch) => {
+		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		return dispatch({
+			type: ADD_CART,
+			payload: response.data,
+		});
+	};
+};
+
+export const deleteCart = (id) => {
+	return {
+		type: DELETE_CART,
+		payload: id
+	}
+};

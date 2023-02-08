@@ -1,11 +1,12 @@
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT,ADD_FAV, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER } from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT,ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART } from "./Actions/constants";
 
 
 const initialState = {
   allProducts: [],
   allCategories: [],
   details: [],
-  favourites: []
+  favourites: [],
+  shopCart: []
 
 };
 
@@ -45,11 +46,24 @@ const rootReducer = (state = initialState, action) => {
           favourites: [...state.favourites, action.payload]
         }
 
+      case ADD_CART:
+        return {
+          ...state,
+          shopCart: [...state.shopCart, action.payload]
+        }
+
       case DELETE_FAV:
         const favs = state.favourites.length>0 && state.favourites.filter(fav=> fav.id !== action.payload);
         return {
           ...state,
           favourites: favs
+        }
+      
+      case DELETE_CART:
+        const prodsCart = state.shopCart.length>0 && state.shopCart.filter(prod=> prod.id !== action.payload)
+        return {
+          ...state,
+          shopCart: prodsCart
         }
   
       default:

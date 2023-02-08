@@ -11,6 +11,7 @@ import AddProduct from './components/AddProduct/AddProduct';
 import Footer from '../src/components/Footer/Footer'
 
 import ListFavs from './components/ListFavs/ListFavs';
+import ShopCart from './components/ShopCart/ShopCart';
 
 
 
@@ -20,6 +21,8 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
+
+        <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/productform' element={<AddProduct/>} />
         <Route exact path="/home" element={<Home/>} />
