@@ -79,7 +79,7 @@ const Navbar = () => {
                                 </div>
 
                                 <div className="shopping_cart">
-                                    <Link to="/inconstruction" style={linkStyle}><MdAccountCircle /></Link>
+                                    <Link to="/dashboard" style={linkStyle}><MdAccountCircle /></Link>
                                 </div>
                             </div>
 
