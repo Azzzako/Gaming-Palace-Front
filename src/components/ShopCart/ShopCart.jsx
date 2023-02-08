@@ -24,7 +24,10 @@ const ShopCart = () => {
       Shop Cart, baby<BsEmojiSmileFill/>
       <div>Total buy: {totalBuyOk}
       <button onClick={()=>restoreTotal()}>Restore</button>
-      <Link to="/form-adress"><button>Go to pay</button></Link>
+      {
+        totalBuyOk>0 && <Link to="/form-adress"><button>Go to pay</button></Link>
+      }
+      
       </div>
       {
         productsCart.length>0 && productsCart.map(prod => {

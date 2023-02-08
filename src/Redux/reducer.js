@@ -75,7 +75,7 @@ const rootReducer = (state = initialState, action) => {
       case RESTORE_TOTAL_BUY:
         return {
           ...state,
-          totalBuy: 0
+          totalBuy: [0]
         }
   
       default:

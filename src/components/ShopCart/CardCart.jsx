@@ -19,6 +19,11 @@ const handleInput = (e) => {
   setInput(e.target.value)
 }
 
+const handleBuy = (total) => {
+  dispatch(totalBuy(total));
+  setInput("")
+}
+
 
   return (
     <div>
@@ -34,7 +39,7 @@ const handleInput = (e) => {
         <span>{stock}</span>
         </div>
 
-        <button onClick={()=>dispatch(totalBuy(total))}>Add buy</button><span>Total: {total}</span>
+        <button onClick={()=>handleBuy(total)}>Add buy</button><span>Total: {total}</span>
     </div>
   )
 }
