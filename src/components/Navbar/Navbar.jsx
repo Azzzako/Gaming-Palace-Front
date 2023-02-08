@@ -7,7 +7,8 @@ import { IconContext } from "react-icons/lib";
 import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
-import { BsHeartFill } from "react-icons/bs";
+import { TfiHeart } from "react-icons/tfi";
+import { MdAccountCircle } from "react-icons/md";
 
 
 
@@ -54,30 +55,38 @@ const Navbar = () => {
                             </div>
 
                             <div className="menu_item">
-                                <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
+                                <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
                             <div className="menu_item">
-                                <Link to="/inconstruction" style={linkStyle}><div className="items">Settings</div></Link>
+                                <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
                             </div>
 
                             <div className="menu_item">
                                 <Link to="/inconstruction" style={linkStyle}> <div className="items">About Us</div></Link>
                             </div>
 
-                            <div className="menu_item">
-                                <Link to="/favourites" style={linkStyle}><div className="items">
-                                    {<BsHeartFill />}
-                                    {
-                                        favourites.length > 0 && <span className="length_cart">{favourites.length}</span>
-                                    }
-                                </div></Link>
+                            <div className="container_icons">
+
+                                <div className="shopping_cart">
+                                    <Link to="/favourites" style={linkStyle}><div className="">
+                                        <TfiHeart />
+                                        {
+                                            favourites.length > 0 && <span className="length_cart">{favourites.length}</span>
+                                        }
+                                    </div></Link>
+                                </div>
+
+                                <div className="shopping_cart">
+                                    <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
+                                    <span className="length_cart">{carrito.length}</span>
+                                </div>
+
+                                <div className="shopping_cart">
+                                    <Link to="/inconstruction" style={linkStyle}><MdAccountCircle /></Link>
+                                </div>
                             </div>
 
-                            <div className="shopping_cart">
-                                <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
-                                <span className="length_cart">{carrito.length}</span>
-                            </div>
 
                         </div>
                     </IconContext.Provider>

@@ -40,6 +40,7 @@
     height: 100%;
     display: flex;
     justify-content: space-around;
+    z-index: 1;
 }
 
 @media(max-width: 960px) {
@@ -92,6 +93,7 @@
     cursor: pointer;
     transition: 0.5s all ease;
     text-decoration: none!important;
+    font-family: var(--font-family-test);
 }
 
 .items:hover {
@@ -169,3 +171,8 @@ link{
 }
 
 
+.container_icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
