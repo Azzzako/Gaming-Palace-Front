@@ -62,10 +62,6 @@ const Navbar = () => {
                                 <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
                             </div>
 
-                            <div className="menu_item">
-                                <Link to="/inconstruction" style={linkStyle}> <div className="items">About Us</div></Link>
-                            </div>
-
                             <div className="container_icons">
 
                                 <div className="shopping_cart">

@@ -5,13 +5,13 @@
 
 @keyframes background {
     100% {
-       background-size: 7000px 2000px;
+       background-size: 7000px 1000px;
     }
  }
 
 .containerGeneral{
     padding: 0;
-    background-image: url("../../assets/Stacked\ Wave.svg");
+    background-image: url("../../assets/Stacked\ Wave (3).svg");
     display: grid;
     grid-template-columns: 1fr;
     gap: 200px;
@@ -29,7 +29,7 @@
 
 .carousel_1 {
     width: 100%;
-    padding-top: 90px;
+    padding-top: 30px;
 }
 
 

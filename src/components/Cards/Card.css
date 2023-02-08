@@ -25,13 +25,11 @@
 
 @media (max-width: 960px) {
     .containerCards {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
+        place-items: center;
         margin: 0;
-        padding: 10px;
         width: 100%;
-        border-radius: 0;
-        background-color: transparent;
     }
 
 }
@@ -40,7 +38,7 @@
 
 
 .cards:hover {
-    box-shadow: 2px 2px 30px 10px #95c827;
+    box-shadow: 2px 2px 30px 10px #2c0b7c;
     transform: translate(0rem, -0.5rem);
     transition: 0.5s all ease;
 
