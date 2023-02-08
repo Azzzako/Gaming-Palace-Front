@@ -87,7 +87,7 @@ const [error, setError] = useState({});
       </Form.Group> */}
 
       {/* <Link to="inconstruction"></Link> */}
-      <Button variant="primary"  onClick={()=>handleSubmit()}>Submit</Button>
+      <Button variant="primary"  onClick={()=>handleSubmit()}>Confirm</Button>
         
     </Form>
   )
