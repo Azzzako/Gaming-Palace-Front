@@ -20,12 +20,13 @@ const ProductList = () => {
   
   return (
     <div className='background'>   
+            <h1 className='name_prod'>Products</h1>
 
     <div className='container_all'>
 
-      <div className='contain_search'>
+      
     <Searchbar/>
-      </div>
+      
 
       <ContainerCards 
       products={products}/>

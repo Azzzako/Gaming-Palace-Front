@@ -2,8 +2,10 @@ import imagen1 from "../../image/imgCarrusel/razer-productos.png";
 import imagen2 from "../../image/imgCarrusel/EVGA-1.png";
 import imagen3 from "../../image/imgCarrusel/TRITON-WHITE-03-1.png";
 import logitech from "../../image/imgCarrusel/pngegg.png"
+import nvidia from "../../image/imgCarrusel/nvidia.png"
 import asus from "../../image/imgCarrusel/asus.png"
 import razer from "../../image/imgCarrusel/razer.png"
+import hyper from "../../image/imgCarrusel/hyper.png"
 import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
 import React from "react";
@@ -13,7 +15,6 @@ export const Home = () => {
     return (
 
         <div className="containerGeneral">
-
             <div className="carousel_1">
                 <Carousel variant="dark"
                     className="carousel_indicators"
@@ -86,6 +87,20 @@ export const Home = () => {
                             <img
                                 className="d-block2 w-100"
                                 src={razer}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100"
+                                src={nvidia}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100"
+                                src={hyper}
                                 alt="Third slide"
                             />
                         </Carousel.Item>
