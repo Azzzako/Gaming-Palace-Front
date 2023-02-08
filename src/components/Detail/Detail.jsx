@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
 import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
 
-import Button from 'react-bootstrap/Button';
 
 
 
@@ -26,7 +25,7 @@ const Detail = (props) => {
   const existFavs = favourites.map(fav => fav.id)
 	useEffect(() => {
 		dispatch(getDetail(id));
-	},[]);
+	},[dispatch, id]);
 
   const handleFav = (id) => {
     !existFavs.includes(id) ?
