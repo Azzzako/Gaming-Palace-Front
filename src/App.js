@@ -35,7 +35,7 @@ function App() {
       </AuthProvider>
       <Footer />
     </div>
-  );
+  )
 }
 
 export default App;
