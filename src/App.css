@@ -1,5 +1,4 @@
-.App{
-    background-color: #101117;
+.App{    
     /* background: linear-gradient(#332B47, #14111C); */
-    width: 100vw;
+    min-height: 100vh;
 }

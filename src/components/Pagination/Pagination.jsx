@@ -11,8 +11,19 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
     const theme = createTheme({
         palette: {
             primary: {
-                main: "#95c827"
+                main: "#95c827",
+                text: "#fff",
+                common: "#fff",
+            },
+
+            secondary: {
+                main: "#fff",
+            },
+
+            text: {
+                primary: "#fff"
             }
+
         }
     })
 
@@ -38,12 +49,15 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
     return (
         <div className="buttons_page">
             <ThemeProvider theme={theme}>
-                <Stack spacing={2}>
-                    <Pagination count={pages.length}
+                <Stack spacing={4}>
+                    <Pagination
+
+                        size="small"
+                        count={pages.length}
                         page={currentPage}
                         onChange={handleChange}
                         color="primary"
-                        variant="outlined"
+
                     />
                 </Stack>
             </ThemeProvider>

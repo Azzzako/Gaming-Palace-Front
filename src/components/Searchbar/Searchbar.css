@@ -8,11 +8,18 @@
     justify-content: center;
     position: relative;
     padding: 40px;
-    top: 300px;
+    top: 50px;
     background-color: #fff;
     gap: 20px;
     border-radius: 8px;
     width: 100%;
+}
+
+
+@media (max-width:1280px) {
+    .search__container{
+        display: none;
+    }
 }
 
 @media (max-width: 960px){
