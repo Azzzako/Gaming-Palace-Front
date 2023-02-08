@@ -1,6 +1,6 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY } from "./constants";
 
 
 export const getArray = (payload) => {
@@ -90,3 +90,17 @@ export const deleteCart = (id) => {
 		payload: id
 	}
 };
+
+
+export const totalBuy = (payload) => {
+	return {
+		type: TOTAL_BUY,
+		payload
+	}
+};
+
+export const restoreTotalBuy = () => {
+	return {
+		type: RESTORE_TOTAL_BUY,
+	}
+}

@@ -12,6 +12,7 @@ import Footer from '../src/components/Footer/Footer'
 
 import ListFavs from './components/ListFavs/ListFavs';
 import ShopCart from './components/ShopCart/ShopCart';
+import FormAdress from './components/ShopCart/FormAdress';
 
 
 
@@ -22,6 +23,7 @@ function App() {
       <Navbar />
       <Routes>
 
+        <Route exact path="/form-adress" element={<FormAdress/>}/>
         <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/productform' element={<AddProduct/>} />

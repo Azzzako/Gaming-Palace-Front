@@ -1,6 +1,14 @@
 .shop {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     color: antiquewhite;
     min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.cards-cart {
+    padding: 25px;
+    margin-top: 10px;
 }
