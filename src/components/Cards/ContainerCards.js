@@ -16,7 +16,15 @@ const ContainerCards = ({ products }) => {
   const productsPage = products.slice(firstPostIndex, lastPostIndex)
 
   return (
-    <div>
+    <div className='container_all2'>
+
+      <Pages
+        totalPost={totalProducts}
+        postPerPage={postPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
+
       <div className='containerCards'>
         {
           productsPage?.map(p => (
@@ -32,12 +40,7 @@ const ContainerCards = ({ products }) => {
         }
       </div>
 
-      <Pages
-        totalPost={totalProducts}
-        postPerPage={postPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+
     </div>
 
   )
