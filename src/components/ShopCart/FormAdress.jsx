@@ -91,6 +91,6 @@ const [error, setError] = useState({});
         
     </Form>
   )
-}
+};
 
 export default FormAdress;
