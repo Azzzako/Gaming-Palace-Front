@@ -28,7 +28,7 @@ const handleDeleteFav = (id) => {
               
               <h3>{fav.namedisplay}</h3>
           
-              <h3><b>US${fav.price}</b></h3>
+              <h3><b>US$ {fav.price}</b></h3>
           
               <h3>{fav.description}</h3>
             </div>

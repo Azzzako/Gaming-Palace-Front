@@ -7,6 +7,8 @@ import { IconContext } from "react-icons/lib";
 import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
+import { TfiHeart } from "react-icons/tfi";
+import { MdAccountCircle } from "react-icons/md";
 
 
 
@@ -15,66 +17,84 @@ const Navbar = () => {
     const [showNavbar, setShowNavbar] = useState(false)
     const carrito = ["1", "2", "3", "4", "5"]
 
-    const favourites = useSelector(state=> state.favourites);
+    const favourites = useSelector(state => state.favourites);
 
     const location = useLocation();
+
+    const linkStyle = {
+        "text-decoration": "none",
+        "color": "#fff"
+    };
 
     return (
         <nav className="navbarContainer">
             {
                 location.pathname !== "/" &&
-            
-            <div className="wrapper">
 
-                <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
-                    <div className="logo_container">
-                        <DiRuby />
-                        <p>
-                            Gaming Palace
-                        </p>
-                    </div>
+                <div className="wrapper">
 
-                    <div className="mobile_icon"
-                        onClick={() => setShowNavbar(!showNavbar)}
-                    >
-                        <TfiAlignJustify />
-                    </div>
-
-                    <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
-                    onClick={() => setShowNavbar(!showNavbar)}
-                    >
-                        <div className="menu_item">
-                          <div className="items"><Link to="/home">Home</Link></div>
+                    <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
+                        <div className="logo_container">
+                            <DiRuby />
+                            <p>
+                                Gaming Palace
+                            </p>
                         </div>
 
-                        <div className="menu_item">
-                           <div className="items"><Link to="/myprofile">My Profile</Link></div>
+                        <div className="mobile_icon"
+                            onClick={() => setShowNavbar(!showNavbar)}
+                        >
+                            <TfiAlignJustify />
                         </div>
 
-                        <div className="menu_item">
-                            <div className="items"> <Link to="/myprofile">Settings</Link></div>
-                        </div>
-
-                        <div className="menu_item">
-                            <div className="items"><Link to="/myprofile">About Us</Link></div>
-                        </div>
-
-                        <div className="menu_item">
-                            <div className="items">
-                            <Link to="/favourites">Favourites</Link>
-                            {
-                                favourites.length>0 && <span>{favourites.length}</span>
-                            }
+                        <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
+                            onClick={() => setShowNavbar(!showNavbar)}
+                        >
+                            <div className="menu_item">
+                                <Link to="/home" style={linkStyle}> <div className="items">Home</div></Link>
                             </div>
-                        </div>
 
-                        <div className="shopping_cart">
-                            <FiShoppingCart />
-                            <span className="length_cart"><Link to="/myprofile">{carrito.length}</Link></span>
+                            <div className="menu_item">
+                                <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
+                            </div>
+
+                            <div className="menu_item">
+                                <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
+                            </div>
+
+                            <div className="container_icons">
+
+                                <div className="shopping_cart">
+                                    <Link to="/favourites" style={linkStyle}><div className="">
+                                        <TfiHeart />
+                                        {
+                                            favourites.length > 0 && <span className="length_cart">{favourites.length}</span>
+                                        }
+                                    </div></Link>
+                                </div>
+
+                                <div className="shopping_cart">
+                                    <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
+                                    <span className="length_cart">{carrito.length}</span>
+                                </div>
+
+                                <div className="shopping_cart">
+                                    <Link to="/inconstruction" style={linkStyle}><MdAccountCircle /></Link>
+                                </div>
+                            </div>
+
+
+                            <div className="login_item">
+                                <Link to="/login" style={linkStyle}> <div className="items">Login</div></Link>
+                            </div>
+
+                            <div className="register_item">
+                                <Link to="/register" style={linkStyle}> <div className="items">Register</div></Link>
+                            </div>
+
                         </div>
-                    </div>
-                </IconContext.Provider>
-            </div>
+                    </IconContext.Provider>
+                </div>
             }
         </nav>
     )

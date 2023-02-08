@@ -2,6 +2,7 @@
     width: 100%;
     height: 80px;
     background-color: #262831;
+    z-index: 0;
 }
 
 .wrapper {
@@ -12,6 +13,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin: auto;
+    text-decoration: none;
 }
 
 .logo_container {
@@ -20,17 +22,25 @@
     align-items: center;
     font-size: 1.2rem;
     font-family: sans-serif;
+    justify-content: center;
 }
 
 .logo_container>p:nth-child(2) {
     font-size: 1.3rem;
     color: #95c827;
     font-weight: 500;
-    padding-top: 10%;
+    padding-top: 5%;
+    font-family: var(--font-family-brands);
+}
+
+@media(max-width: 960px){
+    .logo_container>p:nth-child(2){
+        display: none;
+    }
 }
 
 .logo_container>svg:nth-child(1) {
-    fill: #4b526e;
+    fill: #ffff;
     margin-right: 0.5rem;
 }
 
@@ -38,7 +48,6 @@
     height: 100%;
     display: flex;
     justify-content: space-around;
-    list-style: none;
     z-index: 1;
 }
 
@@ -48,7 +57,7 @@
         background-color: #262831;
         position: absolute;
         top: 70px;
-        /* left: 0; */
+        left: 0;
         width: 100%;
         height: 100vh;
         justify-content: center;
@@ -63,6 +72,7 @@
 
 .menu_item {
     height: 100%;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 960px) {
@@ -85,23 +95,26 @@
     height: 100%;
     width: 100%;
     padding: 0rem 2.5rem;
-    color: #64b2ff;
+    color: #fff;
     font-family: sans-serif;
     font-size: 300;
     cursor: pointer;
     transition: 0.5s all ease;
-    text-decoration: none;
+    text-decoration: none!important;
+    font-family: var(--font-family-test);
 }
 
 .items:hover {
-    color: #fff;
     background-color: #95c827;
     transition: 0.5s all ease;
+    text-decoration: none!important;
 }
 
 @media screen and (max-width:960px) {
     .items {
         width: 100%;
+    text-decoration: none!important;
+
     }
 }
 
@@ -112,20 +125,24 @@
     font-family: sans-serif;
     justify-content: center;
     align-items: center;
-    padding-left: 20px;
     cursor: pointer;
 }
+
+
 
 .length_cart {
     color: #fff;
     position: relative;
-    right: 12px;
-    top: 5px;
     font-weight: 600;
+    color: #95c827;
+    font-family: var(--font-family-test);
+    font-size: small;
+    margin: 5px;
 }
 
-.shopping_cart>svg {
+.shopping_cart svg:hover {
     color: #95c827;
+    transition: 0.3s all ease;
 }
 
 
@@ -154,5 +171,19 @@
         justify-content: center;
         align-items: center;
         padding-left: 0;
+        color: red;
     }
+}
+
+
+
+link{
+    text-decoration: none;
+}
+
+
+.container_icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
