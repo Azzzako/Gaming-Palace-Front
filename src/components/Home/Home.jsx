@@ -13,7 +13,7 @@ import ContainerCards from '../Cards/ContainerCards';
 import { Searchbar } from '../Searchbar/Searchbar';
 // import { log } from 'console';
 
-
+ 
 export const Home = () => {
   const responsive = {
     superLargeDesktop: {
@@ -41,7 +41,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getAllProducts())
   },[dispatch])
-  
+    
   return (
     <div className=''>
       {/* primer carrusel del home */}
