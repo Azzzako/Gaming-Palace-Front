@@ -13,24 +13,32 @@ import React from "react";
 //impport auth
 
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+
 
 
 export const Home = () => {
 
 
-    const { user, logout} = useAuth()
-    console.log(user)
-
-    const navigate = useNavigate()
+    const { user, logout, loading} = useAuth()
+    let userData = {
+        userName: user.displayName,
+        email: user.email,
+        verifiedGoogle: user.emailVerified,
+        phoneNumber: user.phoneNumber,
+        photoUrl: user.photoURL,
+        creationTime: user.metadata.creationTime,
+        lastSignInTime: user.metadata.lastSignInTime 
+    }
+    console.log(userData)
 
     const handleLogout = async () => {
         await logout()
-        navigate('/login')
+
     }
 
     
 
+    if(loading) return <h1>Loading</h1>
 
     return (
 
