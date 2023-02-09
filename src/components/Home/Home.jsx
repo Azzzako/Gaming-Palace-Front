@@ -5,7 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 // import icono1 from "../../image/imgCarrusel/logo1.png";
 import imagen1 from "../../image/imgCarrusel/imagen1.jpg";
 import imagen2 from "../../image/imgCarrusel/imagen2.jpg";
-import imagen3 from "../../image/imgCarrusel/imagen3.jpg";
+import imagen3 from "../../image/imgCarrusel/imagen3.jpg"
 import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
 import "./Home.css";
 import { getAllProducts } from '../../Redux/Actions/actions';
