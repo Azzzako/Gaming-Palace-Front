@@ -1,8 +1,31 @@
 import React from "react";
-import Pagination from 'react-bootstrap/Pagination'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import Pagination from '@mui/material/Pagination';
 import './Pagination.css'
 
+
 export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) => {
+
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: "#95c827",
+                text: "#fff",
+                common: "#fff",
+            },
+
+            secondary: {
+                main: "#fff",
+            },
+
+            text: {
+                primary: "#fff"
+            }
+
+        }
+    })
 
     let pages = []
     for (let i = 1; i <= Math.ceil(totalPost / postPerPage); i++) {
@@ -12,36 +35,32 @@ export const Pages = ({ totalPost, postPerPage, currentPage, setCurrentPage }) =
     if (currentPage <= 0) setCurrentPage(1)
     if (currentPage > pages.length) setCurrentPage(pages.length)
 
-    const goToTop = () => {
-        window.scrollTo({
-            top: -100,
-            behavior: 'smooth',
-        });
+    const handleChange = (event, value) => {
+        setCurrentPage(value);
     };
+
+    // const goToTop = () => {
+    //     window.scrollTo({
+    //         top: 40,
+    //         behavior: 'smooth',
+    //     });
+    // };
 
     return (
         <div className="buttons_page">
-            <Pagination >
-                <Pagination.First
-                    onClick={() => (setCurrentPage(1), goToTop())}
-                />
-                <Pagination.Prev
-                    onClick={() => (setCurrentPage(currentPage - 1), goToTop())}
-                />
+            <ThemeProvider theme={theme}>
+                <Stack spacing={4}>
+                    <Pagination
 
-                <Pagination.Item
-                    onClick={() => (setCurrentPage(currentPage - 1), goToTop())}>{currentPage - 1 == 0 ? "..." : currentPage - 1}</Pagination.Item>
-                <Pagination.Item active>{currentPage}</Pagination.Item>
-                <Pagination.Item
-                onClick={() => (setCurrentPage(currentPage + 1), goToTop())}>{currentPage + 1 > pages.length ? "..." : currentPage + 1}</Pagination.Item>
+                        size="small"
+                        count={pages.length}
+                        page={currentPage}
+                        onChange={handleChange}
+                        color="primary"
 
-                <Pagination.Next
-                    onClick={() => (setCurrentPage(currentPage + 1), goToTop())}
-                />
-                <Pagination.Last
-                    onClick={() => (setCurrentPage(pages.length), goToTop())}
-                />
-            </Pagination>
+                    />
+                </Stack>
+            </ThemeProvider>
         </div>
     )
 

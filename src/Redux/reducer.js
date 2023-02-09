@@ -1,4 +1,5 @@
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT,ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY } from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY } from "./Actions/constants";
+
 
 
 const initialState = {
@@ -17,21 +18,23 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_ALL_PRODUCTS:
 
-    return { ...state, allProducts: action.payload
-    }
-    
+      return {
+        ...state, allProducts: action.payload
+      }
+
     case GET_ALL_CATEGORIES:
 
-    return { ...state, allCategories: action.payload
-    }
+      return {
+        ...state, allCategories: action.payload
+      }
 
 
     case GET_DETAIL:
-			return {
-				...state, details: action.payload,
-			};
+      return {
+        ...state, details: action.payload,
+      };
 
-      case GET_PRODUCT_FILTER:
+    case GET_PRODUCT_FILTER:
       return { ...state, allProducts: action.payload }
 
 
@@ -82,5 +85,6 @@ const rootReducer = (state = initialState, action) => {
         return state;
     }
   };
+
 
 export default rootReducer;

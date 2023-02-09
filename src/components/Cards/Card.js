@@ -7,18 +7,19 @@ import { addCart, addFav, deleteCart, deleteFavs } from '../../Redux/Actions/act
 
 
 
-const Card = ({image, price, name, description, id}) => {
+const Card = ({ image, price, name, description, id }) => {
 
   const favourites = useSelector(state=> state.favourites)
   const productsCart = useSelector(state=> state.shopCart)
+
   const disptach = useDispatch();
   const existFavs = favourites.map(fav => fav.id)
   const existProductsCart = productsCart.map(prod => prod.id)
 
   const handleFav = (id) => {
     !existFavs.includes(id) ?
-    disptach(addFav(id)) :
-    disptach(deleteFavs(id))
+      disptach(addFav(id)) :
+      disptach(deleteFavs(id))
   };
 
   const handleCart = (id) => {
@@ -30,11 +31,12 @@ const Card = ({image, price, name, description, id}) => {
   return (
     <div className='cards'>
 
-      <div className='img-icons'>
 
-      <Link to={`/detail/${id}`}>
-      <img src={image} alt='*' width='150px' height='100px'/>
-      </Link>
+      <div className='img-icons'>
+        <Link to={`/detail/${id}`}>
+          <img src={image} alt='*' />
+        </Link>
+      </div>
 
         <div className='icons'>
           {
@@ -49,13 +51,18 @@ const Card = ({image, price, name, description, id}) => {
             <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
           }          
         </div>
-          
+
       </div>
+
       
 
-      <h3>{name}</h3>
 
-      <h3>US$ {price}</h3>
+      <div className='info'>
+        <span>{name}</span>
+        <h4>US$ {price}</h4>
+      </div>
+
+
 
       {/* <h3>{description}</h3> */}
 
