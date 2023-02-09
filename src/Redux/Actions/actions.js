@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV } from "./constants";
+import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV, NEW_PRODUCT} from "./constants";
 
 
 export const getAllProducts = () => {
@@ -27,6 +27,18 @@ export const postNewProduct = (data) => {
        return async function () {
         const newProduct = await axios.post(`http://localhost:3001/products`, data);
       return newProduct
+    }
+      } catch (error) {
+      console.log(error)
+  };
+};
+
+export const newReview = (data) => {
+    try {
+       return async function () {
+        const newReview = await axios.post(`http://localhost:3001/review`, data);
+      return newReview
+
     }
       } catch (error) {
       console.log(error)
