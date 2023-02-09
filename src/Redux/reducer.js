@@ -1,12 +1,14 @@
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER } from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY } from "./Actions/constants";
+
 
 
 const initialState = {
   allProducts: [],
   allCategories: [],
   details: [],
-  favourites: []
-
+  favourites: [],
+  shopCart: [],
+  totalBuy: [0],
 };
 
 
@@ -36,27 +38,53 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, allProducts: action.payload }
 
 
-    case POST_NEW_PRODUCT:
-      return {
-        ...state
-      };
+      case POST_NEW_PRODUCT:
+        return { 
+          ...state 
+        };
 
-    case ADD_FAV:
+      case ADD_FAV:
+        return {
+          ...state,
+          favourites: [...state.favourites, action.payload]
+        }
+
+      case ADD_CART:
+        return {
+          ...state,
+          shopCart: [...state.shopCart, action.payload]
+        }
+
+      case DELETE_FAV:
+        const favs = state.favourites.length>0 && state.favourites.filter(fav=> fav.id !== action.payload);
+        return {
+          ...state,
+          favourites: favs
+        }
+      
+      case DELETE_CART:
+        const prodsCart = state.shopCart.length>0 && state.shopCart.filter(prod=> prod.id !== action.payload);
+        return {
+          ...state,
+          shopCart: prodsCart
+        }
+
+      case TOTAL_BUY:
       return {
         ...state,
-        favourites: [...state.favourites, action.payload]
+        totalBuy: [...state.totalBuy, action.payload]
       }
 
-    case DELETE_FAV:
-      const favs = state.favourites.length > 0 && state.favourites.filter(fav => fav.id !== action.payload);
-      return {
-        ...state,
-        favourites: favs
-      }
+      case RESTORE_TOTAL_BUY:
+        return {
+          ...state,
+          totalBuy: [0]
+        }
+  
+      default:
+        return state;
+    }
+  };
 
-    default:
-      return state;
-  }
-};
 
 export default rootReducer;

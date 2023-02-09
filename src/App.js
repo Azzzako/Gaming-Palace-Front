@@ -10,7 +10,12 @@ import { Route, Routes } from 'react-router-dom';
 import AddProduct from './components/AddProduct/AddProduct';
 import Footer from '../src/components/Footer/Footer'
 import ListFavs from './components/ListFavs/ListFavs';
+
 import { Dashboard } from './components/Dashboard/Dashboard';
+
+import ShopCart from './components/ShopCart/ShopCart';
+import FormAdress from './components/ShopCart/FormAdress';
+
 
 
 
@@ -20,6 +25,9 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
+
+        <Route exact path="/form-adress" element={<FormAdress/>}/>
+        <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/products' element={<ProductList/>} />
         <Route exact path='/productform' element={<AddProduct/>} />
@@ -31,7 +39,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
-  )
+  );
 }
 
 export default App;

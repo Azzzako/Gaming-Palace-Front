@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getDetail } from '../../Redux/Actions/actions'
+import { addCart, getDetail } from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
 import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
@@ -14,6 +14,10 @@ const Detail = (props) => {
 
 
 	const detail = useSelector((i) => i.details);
+  const productsCart = useSelector(state=> state.shopCart);
+  const existProductsCart = productsCart.map(prod => prod.id)
+
+
 
 	const dispatch = useDispatch();
 
@@ -36,6 +40,12 @@ const Detail = (props) => {
 	const goHome = () => {
 		history.goHome();
 	};
+
+  const handleCart = (id) => {
+    !existProductsCart.includes(id) &&
+    dispatch(addCart(id)) 
+    // disptach(deleteCart(id))
+  };
 
 	return (
 
@@ -96,9 +106,7 @@ const Detail = (props) => {
                         <button type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button>
                     </Link>
 
-                    <Link to={"/inconstruction"}>
-                        <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}}>Add to cart</button>
-                    </Link>
+                        <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}} onClick={()=>{handleCart(detail.id)}}>Add to cart</button>
                     </div>
                       
 
