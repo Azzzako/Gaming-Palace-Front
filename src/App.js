@@ -10,11 +10,6 @@ import { Route, Routes } from 'react-router-dom';
 import AddProduct from './components/AddProduct/AddProduct';
 import Footer from '../src/components/Footer/Footer'
 import ListFavs from './components/ListFavs/ListFavs';
-import { Login } from './components/Login/Login';
-import { Register } from './components/Register/Register';
-
-import { AuthProvider  } from "./context/authContext";
-import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 
 
 
@@ -28,6 +23,7 @@ function App() {
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/productform' element={<AddProduct/>} />
         <Route exact path="/home" element={<Home/>} />
+        <Route exact path="/dashboard" element={<Dashboard/>} />
         <Route exact path="/inconstruction" element={<InConstructionPage/>} />
         <Route exact path="/detail/:id" element={<Detail/>} />
         <Route exact path="/" element={<LandingPage/>} />
