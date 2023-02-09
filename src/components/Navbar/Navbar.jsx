@@ -58,26 +58,20 @@ const Navbar = () => {
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
-                            <div className="menu_item">
-                                <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
-                            </div>
-
                             <div className="container_icons">
 
                                 <div className="shopping_cart">
                                     <Link to="/favourites" style={linkStyle}><div className="">
                                         <TfiHeart />
-                                        {
-                                            favourites.length > 0 && <span className="length_cart">{favourites.length}</span>
-                                        }
+                                        
+                                           <span className="length_cart">{favourites.length}</span>
+                                        
                                     </div></Link>
                                 </div>
 
                                  <div className="shopping_cart">
                                 <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
-                                {
-                                  shopCart.length > 0 && <span className="length_cart">{shopCart.length}</span>
-                                }
+                                <span className="length_cart">{shopCart.length}</span>
                             </div>
 
                                 <div className="shopping_cart">
