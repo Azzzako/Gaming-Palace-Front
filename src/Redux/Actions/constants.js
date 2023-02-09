@@ -5,4 +5,7 @@ export const GET_PRODUCT_FILTER = "GET_PRODUCT_FILTER"
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const ADD_FAV = "ADD_FAV";
 export const DELETE_FAV = "DELETE_FAV";
-
+export const ADD_CART= "ADD_CART";
+export const DELETE_CART = "DELETE_CART";
+export const TOTAL_BUY = "TOTAL_BUY";
+export const RESTORE_TOTAL_BUY = "RESTORE_TOTAL_BUY";
