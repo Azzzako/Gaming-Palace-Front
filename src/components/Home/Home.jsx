@@ -13,11 +13,13 @@ import React from "react";
 //impport auth
 
 import { useAuth } from "../../context/authContext";
-
+import { useDispatch } from "react-redux";
+import { postNewUser } from "../../Redux/Actions/actions";
 
 
 export const Home = () => {
 
+    const dispatch = useDispatch()
 
     const { user, logout, loading} = useAuth()
     let userData = {
@@ -30,6 +32,10 @@ export const Home = () => {
         lastSignInTime: user.metadata.lastSignInTime 
     }
     console.log(userData)
+
+    if(userData){
+        dispatch(postNewUser(userData))
+    }
 
     const handleLogout = async () => {
         await logout()

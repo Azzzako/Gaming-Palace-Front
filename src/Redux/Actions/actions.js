@@ -104,3 +104,14 @@ export const restoreTotalBuy = () => {
 		type: RESTORE_TOTAL_BUY,
 	}
 }
+
+export const postNewUser = (data) =>{
+	try {
+		return async function(){
+			const newUser = await axios.post(`http://localhost:3001/users`, data);
+      		return newUser
+		}
+	} catch (error) {
+		console.log(error);
+	}
+}
