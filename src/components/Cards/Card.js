@@ -52,8 +52,6 @@ const Card = ({ image, price, name, description, id }) => {
 
       
 
-      
-
 
       <div className='info'>
         <span>{name}</span>

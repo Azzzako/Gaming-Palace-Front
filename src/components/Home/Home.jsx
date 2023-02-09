@@ -10,11 +10,38 @@ import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
 import React from "react";
 
+//impport auth
+
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
+
+
 export const Home = () => {
+
+
+    const { user, logout} = useAuth()
+    console.log(user)
+
+    const navigate = useNavigate()
+
+    const handleLogout = async () => {
+        await logout()
+        navigate('/login')
+    }
+
+    
+
 
     return (
 
+        
+
         <div className="containerGeneral">
+
+            <div>
+                <button onClick={handleLogout}>Logout</button>
+            </div>
+
             <div className="carousel_1">
                 <Carousel variant="dark"
                     className="carousel_indicators"
