@@ -15,7 +15,7 @@ import { MdAccountCircle } from "react-icons/md";
 const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
-    const carrito = ["1", "2", "3", "4", "5"]
+    const shopCart = useSelector(state => state.shopCart)
 
     const favourites = useSelector(state => state.favourites);
 
@@ -73,15 +73,18 @@ const Navbar = () => {
                                     </div></Link>
                                 </div>
 
-                                <div className="shopping_cart">
-                                    <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link>
-                                    <span className="length_cart">{carrito.length}</span>
-                                </div>
+                                 <div className="shopping_cart">
+                                <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
+                                {
+                                  shopCart.length > 0 && <span className="length_cart">{shopCart.length}</span>
+                                }
+                            </div>
 
                                 <div className="shopping_cart">
                                     <Link to="/dashboard" style={linkStyle}><MdAccountCircle /></Link>
                                 </div>
                             </div>
+
 
 
                         </div>
