@@ -5,7 +5,7 @@ const validator = (input) => {
 	if (!input.name) {
 		errors.name = 'Please enter a name';
 	}
-  if (input.price < 1) {
+ 	 if (input.price < 1) {
 		errors.price = 'Please enter a price';
 	}
 	if (!input.category) {
@@ -14,8 +14,8 @@ const validator = (input) => {
 	if (!input.description) {
 		errors.description = 'Please enter a product description';
 	}
-  if (!input.description) {
-		errors.imageurl = 'Please select a image from your computer';
+  if (!input.imageurl) {
+		errors.imageurl = 'Please enter a url image';
 	}
 	return errors;
 };

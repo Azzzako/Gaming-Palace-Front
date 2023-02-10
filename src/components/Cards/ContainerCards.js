@@ -3,6 +3,8 @@ import { Pages } from '../Pagination/Pagination.jsx';
 import Card from './Card';
 import './Card.css'
 
+
+
 const ContainerCards = ({ products }) => {
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -14,32 +16,33 @@ const ContainerCards = ({ products }) => {
   const productsPage = products.slice(firstPostIndex, lastPostIndex)
 
   return (
-    <div>
+    <div className='container_all2'>
+
+      <Pages
+        totalPost={totalProducts}
+        postPerPage={postPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
+
       <div className='containerCards'>
-      {
-        productsPage?.map(p => (
-          <Card
-            key={p.id}
-            id={p.id}
-            image={p.imageurl}
-            name={p.namedisplay}
-            price={p.price}
-            description={p.description}
-            fav={p.imgFav}
-            cart={p.imgCart}
-          />
-        ))
-      }
+        {
+          productsPage?.map(p => (
+            <Card
+              key={p.id}
+              id={p.id}
+              image={p.imageurl}
+              name={p.namedisplay}
+              price={p.price}
+              description={p.description}
+            />
+          ))
+        }
+      </div>
+
+
     </div>
 
-    <Pages
-    totalPost={totalProducts}
-    postPerPage={postPerPage}
-    setCurrentPage={setCurrentPage}
-    currentPage={currentPage}
-    />
-    </div>
-    
   )
 };
 

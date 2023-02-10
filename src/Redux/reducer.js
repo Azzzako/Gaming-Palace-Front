@@ -1,4 +1,7 @@
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT,ADD_FAV, GET_ALL_CATEGORIES,DELETE_FAV, NEW_REVIEW, SET_LOADING} from "./Actions/constants";
+
+
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING} from "./Actions/constants";
+
 
 
 const initialState = {
@@ -6,11 +9,10 @@ const initialState = {
   allCategories: [],
   details: [],
   favourites: [],
-  
+  shopCart: [],
+  totalBuy: [0],
 
 };
-
-
 
 
 const rootReducer = (state = initialState, action) => {
@@ -19,19 +21,24 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_ALL_PRODUCTS:
 
-    return { ...state, allProducts: action.payload
-    }
-    
+      return {
+        ...state, allProducts: action.payload
+      }
+
     case GET_ALL_CATEGORIES:
 
-    return { ...state, allCategories: action.payload
-    }
+      return {
+        ...state, allCategories: action.payload
+      }
 
 
     case GET_DETAIL:
-			return {
-				...state, details: action.payload,
-			};
+      return {
+        ...state, details: action.payload,
+      };
+
+    case GET_PRODUCT_FILTER:
+      return { ...state, allProducts: action.payload }
 
 
       case POST_NEW_PRODUCT:
@@ -50,12 +57,18 @@ const rootReducer = (state = initialState, action) => {
           favourites: [...state.favourites, action.payload]
         };
 
-        
+      case ADD_CART:
+        return {
+          ...state,
+          shopCart: [...state.shopCart, action.payload]
+        }
+
       case DELETE_FAV:
         const favs = state.favourites.length>0 && state.favourites.filter(fav=> fav.id !== action.payload);
         return {
           ...state,
           favourites: favs
+
         };
       
         case SET_LOADING:
@@ -63,10 +76,33 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				loading: action.payload,
 			};
+
+        }
+      
+      case DELETE_CART:
+        const prodsCart = state.shopCart.length>0 && state.shopCart.filter(prod=> prod.id !== action.payload);
+        return {
+          ...state,
+          shopCart: prodsCart
+        }
+
+      case TOTAL_BUY:
+      return {
+        ...state,
+        totalBuy: [...state.totalBuy, action.payload]
+      }
+
+      case RESTORE_TOTAL_BUY:
+        return {
+          ...state,
+          totalBuy: [0]
+        }
+
   
       default:
         return state;
     }
   };
+
 
 export default rootReducer;
