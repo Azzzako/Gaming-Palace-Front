@@ -5,7 +5,8 @@ const initialState = {
   allProducts: [],
   allCategories: [],
   details: [],
-  favourites: []
+  favourites: [],
+  
 
 };
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV, NEW_PRODUCT} from "./constants";
+import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV, NEW_REVIEW} from "./constants";
 
 
 export const getAllProducts = () => {
@@ -41,7 +41,7 @@ export const newReview = (data) => {
 
     }
       } catch (error) {
-      console.log(error)
+      console.log(error, "no data")
   };
 };
 
