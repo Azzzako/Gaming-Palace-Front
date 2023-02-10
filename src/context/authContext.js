@@ -16,7 +16,11 @@ export function AuthProvider({children}){
 
     const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password)
 
+<<<<<<< HEAD
     const login = async (email, password, displayName) =>  signInWithEmailAndPassword(auth, email, password, displayName)
+=======
+    const login = async (email, password) =>  signInWithEmailAndPassword(auth, email, password)
+>>>>>>> 032af9d77d2b18def0b5f122e75fc57b22e2c061
 
     const logout = () => signOut(auth)
 
@@ -28,7 +32,11 @@ export function AuthProvider({children}){
     useEffect(()=>{
        onAuthStateChanged(auth, currentUser => {
         setUser(currentUser)
+<<<<<<< HEAD
 
+=======
+        console.log(currentUser)
+>>>>>>> 032af9d77d2b18def0b5f122e75fc57b22e2c061
        })
     }, [])
        
@@ -38,4 +46,8 @@ export function AuthProvider({children}){
             {children}
         </authContext.Provider>
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 032af9d77d2b18def0b5f122e75fc57b22e2c061

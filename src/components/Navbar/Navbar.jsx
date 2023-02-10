@@ -80,6 +80,20 @@ const Navbar = () => {
                                     <span className="log_in" onClick={() => loginWithPopup()}>Log In</span>
                                 </div>
                             </div>
+<<<<<<< HEAD
+=======
+
+
+                            <div className="login_item">
+                                <Link to="/login" style={linkStyle}> <div className="items">Login</div></Link>
+                            </div>
+
+                            <div className="register_item">
+                                <Link to="/register" style={linkStyle}> <div className="items">Register</div></Link>
+                            </div>
+
+
+>>>>>>> 032af9d77d2b18def0b5f122e75fc57b22e2c061
                         </div>
                     </IconContext.Provider>
                 </div>
