@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getDetail, newReview } from '../../Redux/Actions/actions';
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { TbUserCircle} from "react-icons/tb"
+import { Link } from 'react-router-dom';
 import './Review.css'
 
 
@@ -16,6 +17,11 @@ const Review = () => {
 
 const [number, setNumber] = useState(0);
 const [hoverStar, setHoverStar] = useState(undefined);
+
+function handleClick (e) {
+  window.location.reload(false);
+}
+
 
 const handleText = () => {
   switch (number || hoverStar) {
@@ -106,6 +112,7 @@ useEffect(() => {
 
 
 
+
 console.log(number)
 
   return (
@@ -164,7 +171,7 @@ console.log(number)
           </div>
 
           <div>
-            <button type="submit" id="createreview" name= "createreview" value="createreview">Submit</button>
+            <button type="submit" id="createreview" name= "createreview" value="createreview" onClick={e =>{handleClick(e)}}>Submit</button>
           </div>
           </div>
         </div>
@@ -173,8 +180,8 @@ console.log(number)
 
 
     <div className='popuptwo'>
-      <div>
-        <div className='containerRevs'>
+      
+        <div className="containerRevs">
           {detail.Reviews?.map(review =>(
                           <div className='containerNewRev'>
                             <div className='authorNstars'>
@@ -191,7 +198,7 @@ console.log(number)
                       )) }
                       
         </div>
-      </div> 
+       
     </div>  
 
        

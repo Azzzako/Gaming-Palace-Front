@@ -5,3 +5,4 @@ export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const ADD_FAV = "ADD_FAV";
 export const DELETE_FAV = "DELETE_FAV";
 export const NEW_REVIEW = "NEW_REVIEW";
+export const SET_LOADING ="SET_LOADING"

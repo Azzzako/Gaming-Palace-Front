@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV, NEW_REVIEW} from "./constants";
+import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, ADD_FAV,  GET_DETAIL, DELETE_FAV, NEW_REVIEW, SET_LOADING} from "./constants";
 
 
 export const getAllProducts = () => {
@@ -71,5 +71,11 @@ export const deleteFavs = (id) => {
 		type: DELETE_FAV,
 		payload: id
 	}
+};
+
+export function setLoading(payload) {
+	return { 
+			type: SET_LOADING, 
+			payload };
 };
 

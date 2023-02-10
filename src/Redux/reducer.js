@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT,ADD_FAV, GET_ALL_CATEGORIES,DELETE_FAV, NEW_REVIEW} from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT,ADD_FAV, GET_ALL_CATEGORIES,DELETE_FAV, NEW_REVIEW, SET_LOADING} from "./Actions/constants";
 
 
 const initialState = {
@@ -57,6 +57,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           favourites: favs
         };
+      
+        case SET_LOADING:
+			  return {
+				...state,
+				loading: action.payload,
+			};
   
       default:
         return state;
