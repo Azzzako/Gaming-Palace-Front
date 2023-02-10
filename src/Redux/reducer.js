@@ -12,12 +12,22 @@ const initialState = {
   shopCart: [],
   totalBuy: [0],
 
+  totalToPay: [],
+
+
+
 };
 
 
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
+    case "TOTAL_TO_PAY":
+      return {
+        ...state,
+        totalToPay: [...state.totalToPay, action.payload]
+      }
 
     case GET_ALL_PRODUCTS:
 
@@ -95,7 +105,8 @@ const rootReducer = (state = initialState, action) => {
       case RESTORE_TOTAL_BUY:
         return {
           ...state,
-          totalBuy: [0]
+          totalBuy: [0],
+          totalToPay: []
         }
 
   
