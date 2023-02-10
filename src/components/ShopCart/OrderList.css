@@ -1,0 +1,39 @@
+.order-list {
+    min-height: 100vh;
+}
+
+/* .order {
+    min-width: 75%;
+    display: flex;
+    justify-content: center;
+} */
+
+.order-table {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin-top: 20px;
+}
+
+.order-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.order-actions p {
+    padding: 15px;
+}
+
+.order-actions p:hover {
+    cursor: pointer;
+}
+
+.direccion-envio {
+    display: flex;
+    justify-content: center;
+}
+
+.order-shipping {
+    display:flex;
+    text-align: center;
+}

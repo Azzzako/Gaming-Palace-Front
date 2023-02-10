@@ -25,7 +25,7 @@ const ShopCart = () => {
       <div id='total-buy'>Total buy: {totalBuyOk}
       <button onClick={()=>restoreTotal()}>Restore</button>
       {
-        totalBuyOk>0 && <Link to="/form-adress"><button>Go to pay</button></Link>
+        totalBuyOk>0 && <Link to="/showorder"><button>Go to pay</button></Link>
       }      
       </div>
       <div className='prods-cart'>
