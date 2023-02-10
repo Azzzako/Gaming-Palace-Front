@@ -5,9 +5,9 @@ import { addCart, getDetail } from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
 import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
-import s from './Detail.module.css'
+
 import Review from '../Review/Review';
-import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
+
 
 
 

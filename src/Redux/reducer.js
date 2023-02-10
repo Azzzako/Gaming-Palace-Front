@@ -77,7 +77,7 @@ const rootReducer = (state = initialState, action) => {
 				loading: action.payload,
 			};
 
-        }
+        
       
       case DELETE_CART:
         const prodsCart = state.shopCart.length>0 && state.shopCart.filter(prod=> prod.id !== action.payload);
