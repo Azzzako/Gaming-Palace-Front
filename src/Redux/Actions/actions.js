@@ -145,6 +145,6 @@ export const totalPayment =(prods) => {
 		.then(res => window.location.href = res.data.response.body.init_point)
 	}
 }
-}
+
 
 
