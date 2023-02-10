@@ -21,14 +21,14 @@ const ShopCart = () => {
 
   return (
     <div className='shop'>
-      Shop Cart, baby<BsEmojiSmileFill/>
-      <div>Total buy: {totalBuyOk}
+      <b>Shop Cart</b><BsEmojiSmileFill color='green'/>
+      <div id='total-buy'>Total buy: {totalBuyOk}
       <button onClick={()=>restoreTotal()}>Restore</button>
       {
         totalBuyOk>0 && <Link to="/form-adress"><button>Go to pay</button></Link>
-      }
-      
+      }      
       </div>
+      <div className='prods-cart'>
       {
         productsCart.length>0 && productsCart.map(prod => {
           return (
@@ -44,7 +44,7 @@ const ShopCart = () => {
           )
         }) 
       }
-        
+      </div>  
     </div>
   )
 }

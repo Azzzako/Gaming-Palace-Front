@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { totalPayment } from '../../Redux/Actions/actions';
 
 function validateForm(input){
     const error = {};
@@ -14,6 +16,8 @@ function validateForm(input){
 
 const FormAdress = () => {
 
+  const dispatch = useDispatch();
+  const prodsToPay = useSelector(state=> state.totalToPay)
     const [input, setInput] = useState({
         adress: '',
         city: '',
@@ -38,7 +42,7 @@ const [error, setError] = useState({});
 
     function handleSubmit(){
       // e.preventDefault();
-      if(!input.adress.length>0 && !input.city && !input.postalCode){
+      if(!input.adress.length>0 || !input.city || !input.postalCode){
         return alert('Complete all fields');
         // setInput({
         //   adress: '',
@@ -46,10 +50,10 @@ const [error, setError] = useState({});
         //   postalCode: '',
         // });
       }
-      else window.location.pathname = "/inconstruction"
+      else dispatch(totalPayment(prodsToPay))
     };
 
-
+console.log(prodsToPay, "payyyyy")
 
   return (
     // <div style={{minHeight:"100vh", display:"flex", justifyContent: "center", color:"white"}}>FormAdress</div>

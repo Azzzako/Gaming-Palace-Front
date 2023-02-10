@@ -103,4 +103,21 @@ export const restoreTotalBuy = () => {
 	return {
 		type: RESTORE_TOTAL_BUY,
 	}
+};
+
+
+export const totalToPay = (item) => {
+	return {
+		type: "TOTAL_TO_PAY",
+		payload: item
+	}
+};
+
+
+
+export const totalPayment =(prods) => {
+	return async () => {
+		await axios.post("http://localhost:3001/payment", prods)
+		.then(res => window.location.href = res.data.response.body.init_point)
+	}
 }

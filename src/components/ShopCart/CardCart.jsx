@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux'
-import { deleteCart, totalBuy } from '../../Redux/Actions/actions';
+import { deleteCart, totalBuy, totalToPay } from '../../Redux/Actions/actions';
 
 const CardCart = ({image, name, price, stock, id}) => {
 
@@ -16,14 +16,14 @@ const total = input * price;
 
 const handleInput = (e) => {
   e.preventDefault();
-  setInput(e.target.value)
+  setInput(Number(e.target.value))
 }
 
-const handleBuy = (total) => {
+const handleBuy = () => {
   dispatch(totalBuy(total));
+  dispatch(totalToPay({name: name, price: price, quantity: input}));
   setInput("")
 }
-
 
   return (
     <div>
@@ -39,7 +39,7 @@ const handleBuy = (total) => {
         <span>{stock}</span>
         </div>
 
-        <button onClick={()=>handleBuy(total)}>Add buy</button><span>Total: {total}</span>
+        <button onClick={()=>handleBuy()}>Add buy</button><span>Total: {total}</span>
     </div>
   )
 }
