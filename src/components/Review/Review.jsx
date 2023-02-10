@@ -12,9 +12,6 @@ import './Review.css'
 const Review = () => {
 
 
-//////////////////////RATING
-
-
 const [number, setNumber] = useState(0);
 const [hoverStar, setHoverStar] = useState(undefined);
 
