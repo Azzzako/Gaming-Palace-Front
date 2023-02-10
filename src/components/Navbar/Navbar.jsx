@@ -8,16 +8,18 @@ import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
 import { TfiHeart } from "react-icons/tfi";
-import { MdAccountCircle } from "react-icons/md";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 
 const Navbar = () => {
 
+
     const [showNavbar, setShowNavbar] = useState(false)
     const shopCart = useSelector(state => state.shopCart)
-
     const favourites = useSelector(state => state.favourites);
+    const { loginWithPopup } = useAuth0()
 
     const location = useLocation();
 
@@ -63,31 +65,21 @@ const Navbar = () => {
                                 <div className="shopping_cart">
                                     <Link to="/favourites" style={linkStyle}><div className="">
                                         <TfiHeart />
-                                        
-                                           <span className="length_cart">{favourites.length}</span>
-                                        
+
+                                        <span className="length_cart">{favourites.length}</span>
+
                                     </div></Link>
                                 </div>
 
-                                 <div className="shopping_cart">
-                                <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
-                                <span className="length_cart">{shopCart.length}</span>
-                            </div>
+                                <div className="shopping_cart">
+                                    <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
+                                    <span className="length_cart">{shopCart.length}</span>
+                                </div>
 
                                 <div className="shopping_cart">
-                                    <Link to="/dashboard" style={linkStyle}><MdAccountCircle /></Link>
+                                    <span className="log_in" onClick={() => loginWithPopup()}>Log In</span>
                                 </div>
                             </div>
-
-                            <div className="login_item">
-                                <Link to="/login" style={linkStyle}> <div className="items">Login</div></Link>
-                            </div>
-
-                            <div className="register_item">
-                                <Link to="/register" style={linkStyle}> <div className="items">Register</div></Link>
-                            </div>
-
-
                         </div>
                     </IconContext.Provider>
                 </div>

@@ -19,28 +19,13 @@ import { useNavigate } from "react-router-dom";
 export const Home = () => {
 
 
-    const { user, logout} = useAuth()
-    console.log(user)
-
-    const navigate = useNavigate()
-
-    const handleLogout = async () => {
-        await logout()
-        navigate('/login')
-    }
-
-    
 
 
     return (
 
-        
+
 
         <div className="containerGeneral">
-
-            <div>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
 
             <div className="carousel_1">
                 <Carousel variant="dark"

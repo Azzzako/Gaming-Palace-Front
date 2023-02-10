@@ -119,7 +119,7 @@
 }
 
 .shopping_cart {
-    margin-left: 0.5rem;
+    padding-left: 0.5rem;
     display: flex;
     align-items: center;
     font-family: sans-serif;
@@ -127,6 +127,7 @@
     align-items: center;
     cursor: pointer;
     transition: 0.3s all ease;
+    margin: 0;
 }
 
 
@@ -187,4 +188,10 @@ link{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+
+.log_in{
+    font-family: var(--font-family-test);
+    color: #fff;
 }
