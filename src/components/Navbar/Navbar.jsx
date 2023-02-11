@@ -22,7 +22,7 @@ const Navbar = () => {
     const location = useLocation();
 
     const linkStyle = {
-        "text-decoration": "none",
+        "textDecoration": "none",
         "color": "#fff"
     };
 

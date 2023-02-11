@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { totalPayment } from '../../Redux/Actions/actions';
+import './OrderList.css'
 
 function validateForm(input){
     const error = {};
-    if(!input.adress.length) error.adress = <span style={{color:"red"}}>Adress is required</span>;
+    if(!input.adress.length) error.adress = <span style={{color:"red"}}>Address is required</span>;
     if(!input.city.length) error.city = <span style={{color:"red"}}>City is required</span>;
     if(!input.postalCode.length) error.postalCode = <span style={{color:"red"}}>Postal code is required</span>;
     
@@ -17,7 +18,9 @@ function validateForm(input){
 const FormAdress = () => {
 
   const dispatch = useDispatch();
-  const prodsToPay = useSelector(state=> state.totalToPay)
+  const prodsToPay = useSelector(state=> state.totalToPay);
+  const [orderOK, setOrderOK] = useState(false);
+
     const [input, setInput] = useState({
         adress: '',
         city: '',
@@ -27,7 +30,7 @@ const FormAdress = () => {
 const [error, setError] = useState({});
 
 
-    function handleInputChange(e){
+    const handleInputChange = (e) => {
         setInput({
             ...input,
             [e.target.name]: e.target.value
@@ -40,24 +43,24 @@ const [error, setError] = useState({});
         )
     };
 
-    function handleSubmit(){
-      // e.preventDefault();
-      if(!input.adress.length>0 || !input.city || !input.postalCode){
-        return alert('Complete all fields');
-        // setInput({
-        //   adress: '',
-        //   city: '',
-        //   postalCode: '',
-        // });
-      }
-      else dispatch(totalPayment(prodsToPay))
+    const payMP = () => {
+      dispatch(totalPayment(prodsToPay))
+      setTimeout(()=>{setOrderOK(false)}, 5000)
+    }
+
+    const handleConfirm = () => {
+      if(!prodsToPay.length>0) return setTimeout((alert("Add products to pay")), window.location = "/products", 2000) ;
+      if(!input.adress.length>0 || !input.city || !input.postalCode) return alert('Complete all fields');    
+      return setOrderOK(true);
     };
 
-console.log(prodsToPay, "payyyyy")
-
+    console.log(prodsToPay, "payyyyy")
+    console.log(orderOK, "orderrrrr")
+    
   return (
     // <div style={{minHeight:"100vh", display:"flex", justifyContent: "center", color:"white"}}>FormAdress</div>
-    <Form style={{minHeight:"100vh", color:"white", margin:"auto", width:"10%"}}>
+    <div >
+    <Form className='form-address'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Address</Form.Label>
         <Form.Control name="adress" value={input.adress} type="text" placeholder="" onChange={(e)=>handleInputChange(e)}/>
@@ -75,10 +78,7 @@ console.log(prodsToPay, "payyyyy")
           error.city && <div><span>{error.city}</span></div>
         }
       </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
-
+     
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Postal code</Form.Label>
         <Form.Control name="postalCode" value={input.postalCode} type="text" placeholder="" onChange={(e)=>handleInputChange(e)}/>
@@ -86,14 +86,20 @@ console.log(prodsToPay, "payyyyy")
           error.postalCode && <div><span>{error.postalCode}</span></div>
         }
       </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
 
-      {/* <Link to="inconstruction"></Link> */}
-      <Button variant="primary"  onClick={()=>handleSubmit()}>Confirm</Button>
-        
     </Form>
+
+        {
+          orderOK ? 
+          <button className="button-MP" variant="primary"  onClick={()=>payMP()}>Pay MercadoPago</button>
+           :
+           <div className="order-actions"><Link to="/shopcart"><p> <BsChevronDoubleLeft/> Backdown </p></Link>
+            <p onClick={()=>{handleConfirm()}}>Confirm <BsChevronDoubleRight/></p>
+          </div>
+        }
+            
+      
+    </div>
   )
 };
 

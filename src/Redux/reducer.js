@@ -24,6 +24,14 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case "TOTAL_TO_PAY":
+         for(let i=0; i<state.totalToPay.length; i++){
+          if(state.totalToPay[i].name===action.payload.name){
+            state.totalToPay[i].quantity+=action.payload.quantity
+            return {
+            ...state
+          }
+          }
+        }
       return {
         ...state,
         totalToPay: [...state.totalToPay, action.payload]
@@ -97,6 +105,7 @@ const rootReducer = (state = initialState, action) => {
         }
 
       case TOTAL_BUY:
+        
       return {
         ...state,
         totalBuy: [...state.totalBuy, action.payload]
