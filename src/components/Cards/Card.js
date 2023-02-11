@@ -43,9 +43,7 @@ const Card = ({ image, price, name, description, id }) => {
             existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
             : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
           }     
-        </div>
-
-        <div className='icons'>
+       
           {
             existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
             <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
@@ -60,11 +58,12 @@ const Card = ({ image, price, name, description, id }) => {
         <span>{name}</span>
         <h4>US$ {price}</h4>
       </div>
+      
 
 
 
       {/* <h3>{description}</h3> */}
-
+          
     </div>
   )
 };

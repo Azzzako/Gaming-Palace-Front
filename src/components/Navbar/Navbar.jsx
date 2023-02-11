@@ -67,17 +67,15 @@ const Navbar = () => {
                                 <div className="shopping_cart">
                                     <Link to="/favourites" style={linkStyle}><div className="">
                                         <TfiHeart />
-                                        {
-                                            favourites.length > 0 && <span className="length_cart">{favourites.length}</span>
-                                        }
+                                        
+                                           <span className="length_cart">{favourites.length}</span>
+                                        
                                     </div></Link>
                                 </div>
 
                                  <div className="shopping_cart">
                                 <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
-                                {
-                                  shopCart.length > 0 && <span className="length_cart">{shopCart.length}</span>
-                                }
+                                <span className="length_cart">{shopCart.length}</span>
                             </div>
 
                                 <div className="shopping_cart">

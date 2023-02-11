@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom';
 import { addCart, getDetail } from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
-import { addFav, deleteFavs } from '../../Redux/Actions/actions.js';
+import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
+
+import Review from '../Review/Review';
+
 
 
 
@@ -121,6 +124,7 @@ const Detail = (props) => {
 				}
 			
 		</div>
+    <Review/>
 		</div>
     </div>
   )
