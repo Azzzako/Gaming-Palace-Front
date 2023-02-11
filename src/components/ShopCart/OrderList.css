@@ -43,3 +43,12 @@
     display:flex;
     text-align: center;
 }
+
+.form-address {
+    display: flex;
+    justify-content: center;
+    color:"white"; 
+    margin:"auto"; 
+    width:"10%";
+    border-bottom: 1px solid black;
+}

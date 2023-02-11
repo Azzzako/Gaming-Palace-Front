@@ -32,6 +32,7 @@ console.log(prodsPay, "payyyy")
 
         <div>
           <table className="order-table">
+            <tbody>
             <tr>
               <th>Detail</th>
               <th>Quantity</th>
@@ -39,13 +40,14 @@ console.log(prodsPay, "payyyy")
             </tr>
             {
               prodsPay?.map(prod=>{
-                return <tr>
+                return <tr key={prod.name}>
                 <td>{prod.name}</td>
                 <td>{prod.quantity}</td>
                 <td>{prod.price}</td>
               </tr>
               })
             }
+            </tbody>
           </table>
         </div>
 
