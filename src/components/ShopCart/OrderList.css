@@ -2,11 +2,17 @@
     min-height: 100vh;
 }
 
-/* .order {
-    min-width: 75%;
+.page-nav {
     display: flex;
     justify-content: center;
-} */
+    align-items: center;
+}
+
+.in-cart {
+    display: flex;
+    justify-content: end;
+    margin-right: 50px;
+}
 
 .order-table {
     width: 100%;

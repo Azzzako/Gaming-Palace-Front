@@ -1,8 +1,6 @@
 import React from 'react'
-import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { totalPayment } from '../../Redux/Actions/actions'
+import { useSelector } from 'react-redux'
+import FormAdress from './FormAdress'
 import './OrderList.css'
 
 
@@ -10,16 +8,17 @@ import './OrderList.css'
 
 const OrderList = () => {
 
+  const totalBuy = useSelector(state => state.totalBuy);
+  const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
     const prodsPay = useSelector(state=> state.totalToPay);
-    const dispatch = useDispatch();
-
+console.log(prodsPay, "payyyy")
   return (
     <div className='order-list'>
 
-      {/* <div className="page-nav">
-        <h1>Mi tienda</h1>
-        <button className="button-checkout" onclick="showOrder()">Carrito</button>
-      </div> */}
+      <div >
+        <h1 className="page-nav">MY ORDER</h1>
+        <p className='in-cart'>In cart: US$ {totalBuyOk}</p>
+      </div>
 
       {/* <div className="page-content"> */}
         
@@ -27,83 +26,83 @@ const OrderList = () => {
 
         {/* <div className="order">
           <h1>Orden</h1>
-          <h2 id="order-total">Total: $150</h2>
+          <h2 >Total: $150</h2>
         </div> */}
 
         <div>
           <table className="order-table">
             <tr>
-              <th>Detalle</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
+              <th>Detail</th>
+              <th>Quantity</th>
+              <th>Unit price</th>
             </tr>
-            <tr>
-              <td>Pesas</td>
-              <td>2</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>Banco ajustable</td>
-              <td>1</td>
-              <td>100</td>
-            </tr>
+            {
+              prodsPay?.map(prod=>{
+                return <tr>
+                <td>{prod.name}</td>
+                <td>{prod.quantity}</td>
+                <td>{prod.price}</td>
+              </tr>
+              })
+            }
           </table>
         </div>
 
-        <h1 className='direccion-envio'>Dirección de envío:</h1>
-
-          <div className="order-shipping">
+        <h1 className='direccion-envio'>Shipping Address:</h1>
+          
+          <FormAdress/>
+          {/* <div className="order-shipping">
 
             <div className="form-group">
               <label for="name">Nombre completo:</label>
-              <input type="text" name="name" id="name"/>
+              <input type="text" name="name" value="name"/>
             </div>
 
             <div className="form-group">
               <label for="email">Email:</label>
-              <input type="email" name="email" id="email"/>
+              <input type="email" name="email" value="email"/>
             </div>
 
             <div className="form-group">
               <label for="phone">Teléfono:</label>
-              <input type="text" name="phone" id="phone"/>
+              <input type="text" name="phone" value="phone"/>
             </div>
 
             <div className="form-group">
               <label for="addressLine1">Dirección Linea 1:</label>
-              <input type="text" name="addressLine1" id="addressLine1"/>
+              <input type="text" name="addressLine1" value="addressLine1"/>
             </div>
 
             <div className="form-group">
               <label for="addressLine2">Dirección Linea 2:</label>
-              <input type="text" name="addressLine2" id="addressLine2"/>
+              <input type="text" name="addressLine2" value="addressLine2"/>
             </div>
 
             <div className="form-group">
               <label for="city">Ciudad:</label>
-              <input type="text" name="city" id="city"/>
+              <input type="text" name="city" value="city"/>
             </div>
 
             <div className="form-group">
               <label for="postalCode">Código postal:</label>
-                <input type="text" name="postalCode" id="postalCode"/>
+                <input type="text" name="postalCode" value="postalCode"/>
             </div>
 
             <div className="form-group">
               <label for="state">Provincia:</label>
-              <input type="text" name="state" id="state"/>
+              <input type="text" name="state" value="state"/>
             </div>
 
             <div className="form-group">
               <label for="country">País:</label>
-              <input type="text" name="country" id="country"/>
+              <input type="text" name="country" value="country"/>
             </div>
-          </div>
+          </div> */}
 
-          <div className="order-actions">
-            <Link to="/shopcart"><p> <BsChevronDoubleLeft/> Volver </p></Link>
-            <p onClick={()=>{dispatch(totalPayment(prodsPay))}}>Confirmar <BsChevronDoubleRight/></p>
-          </div>
+          {/* <div className="order-actions">
+            <Link to="/shopcart"><p> <BsChevronDoubleLeft/> Backdown </p></Link> */}
+            {/* <p onClick={()=>{dispatch(totalPayment(prodsPay))}}>Confirmar <BsChevronDoubleRight/></p> */}
+          {/* </div> */}
     </div>
   )
 }

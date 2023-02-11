@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { totalPayment } from '../../Redux/Actions/actions';
+import './OrderList.css'
 
 function validateForm(input){
     const error = {};
-    if(!input.adress.length) error.adress = <span style={{color:"red"}}>Adress is required</span>;
+    if(!input.adress.length) error.adress = <span style={{color:"red"}}>Address is required</span>;
     if(!input.city.length) error.city = <span style={{color:"red"}}>City is required</span>;
     if(!input.postalCode.length) error.postalCode = <span style={{color:"red"}}>Postal code is required</span>;
     
@@ -57,7 +58,8 @@ console.log(prodsToPay, "payyyyy")
 
   return (
     // <div style={{minHeight:"100vh", display:"flex", justifyContent: "center", color:"white"}}>FormAdress</div>
-    <Form style={{minHeight:"100vh", color:"white", margin:"auto", width:"10%"}}>
+    <div>
+    <Form style={{ color:"white", margin:"auto", width:"10%"}}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Address</Form.Label>
         <Form.Control name="adress" value={input.adress} type="text" placeholder="" onChange={(e)=>handleInputChange(e)}/>
@@ -75,10 +77,7 @@ console.log(prodsToPay, "payyyyy")
           error.city && <div><span>{error.city}</span></div>
         }
       </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
-
+     
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Postal code</Form.Label>
         <Form.Control name="postalCode" value={input.postalCode} type="text" placeholder="" onChange={(e)=>handleInputChange(e)}/>
@@ -86,14 +85,14 @@ console.log(prodsToPay, "payyyyy")
           error.postalCode && <div><span>{error.postalCode}</span></div>
         }
       </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
 
-      {/* <Link to="inconstruction"></Link> */}
-      <Button variant="primary"  onClick={()=>handleSubmit()}>Confirm</Button>
-        
     </Form>
+      <div className="order-actions">
+            <Link to="/shopcart"><p> <BsChevronDoubleLeft/> Backdown </p></Link>
+            <p onClick={()=>{handleSubmit()}}>Confirm <BsChevronDoubleRight/></p>
+      {/* <Button variant="primary"  onClick={()=>handleSubmit()}>Confirm</Button> */}
+      </div> 
+    </div>
   )
 };
 
