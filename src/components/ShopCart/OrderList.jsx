@@ -1,4 +1,5 @@
 import React from 'react'
+import { BsCashCoin } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
 import FormAdress from './FormAdress'
 import './OrderList.css'
@@ -17,7 +18,7 @@ console.log(prodsPay, "payyyy")
 
       <div >
         <h1 className="page-nav">MY ORDER</h1>
-        <p className='in-cart'>In cart: US$ {totalBuyOk}</p>
+        <p className='in-cart'>In cart: US$ {totalBuyOk}<BsCashCoin color='green'/></p>
       </div>
 
       {/* <div className="page-content"> */}
