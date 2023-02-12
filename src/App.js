@@ -17,6 +17,7 @@ import FormAdress from './components/ShopCart/FormAdress';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import OrderList from './components/ShopCart/OrderList';
 
+import { ConfirmData } from './components/ConfirmData/ConfirmData';
 
 
 
@@ -44,12 +45,9 @@ function App() {
         <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/products' element={<ProductList/>} />
-        <Route exact path='/productform' element={<AddProduct/>} />
-        <Route exact path="/home" element={<Home/>} />
         <Route exact path="/dashboard" element={<Dashboard/>} />
-        <Route exact path="/inconstruction" element={<InConstructionPage/>} />
-        <Route exact path="/detail/:id" element={<Detail/>} />
-        <Route exact path="/" element={<LandingPage/>} />
+
+        {/* <Route path='/login/savedata' element={<ConfirmData/>}/> */}
       </Routes>
       <Footer />
     </div>

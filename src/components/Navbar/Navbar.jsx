@@ -8,7 +8,9 @@ import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
 import { TfiHeart } from "react-icons/tfi";
-import { MdAccountCircle } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi"
+import { useAuth0 } from "@auth0/auth0-react";
+import { Avatar } from "@mui/material";
 
 
 
@@ -16,9 +18,10 @@ const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
     const shopCart = useSelector(state => state.shopCart)
-
     const favourites = useSelector(state => state.favourites);
-
+    const { loginWithRedirect, logout } = useAuth0()
+    const { user, isAuthenticated } = useAuth0()
+    const picture = user?.picture
     const location = useLocation();
 
     const linkStyle = {
@@ -26,21 +29,30 @@ const Navbar = () => {
         "color": "#fff"
     };
 
+    const linkLogo = {
+        "text-decoration": "none",
+        "color": "#95c827"
+    }
+
+
+
     return (
         <nav className="navbarContainer">
             {
                 location.pathname !== "/" &&
 
                 <div className="wrapper">
-
+                    
                     <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
                         <div className="logo_container">
                             <DiRuby />
                             <p>
+                        <Link to="/home" style={linkLogo}>
                                 Gaming Palace
+                            </Link>
                             </p>
                         </div>
-
+                        
                         <div className="mobile_icon"
                             onClick={() => setShowNavbar(!showNavbar)}
                         >
@@ -58,29 +70,38 @@ const Navbar = () => {
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
+<<<<<<< HEAD
                             <div className="menu_item">
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
                             </div>
 
+=======
+>>>>>>> authzero
                             <div className="container_icons">
 
-                                <div className="shopping_cart">
+                                {!isAuthenticated ? <div></div> :   <div className="shopping_cart">
                                     <Link to="/favourites" style={linkStyle}><div className="">
                                         <TfiHeart />
-                                        
-                                           <span className="length_cart">{favourites.length}</span>
-                                        
+                                        <span className="length_cart">{favourites.length}</span>
                                     </div></Link>
-                                </div>
+                                </div>}
 
-                                 <div className="shopping_cart">
-                                <Link to="/shopcart" style={linkStyle}><FiShoppingCart /></Link>
-                                <span className="length_cart">{shopCart.length}</span>
-                            </div>
+                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                    <Link to="/shopcart" style={linkStyle} ><FiShoppingCart /></Link>
+                                    <span className="length_cart">{shopCart.length}</span>
+                                </div>}
 
                                 <div className="shopping_cart">
-                                    <Link to="/dashboard" style={linkStyle}><MdAccountCircle /></Link>
-                                </div>
+
+                                    {isAuthenticated ? <Link to="/dashboard" style={linkStyle}><span style={linkStyle}> <Avatar src={picture}>GP</Avatar></span></Link> :
+                                        <span className="login" style={linkStyle} onClick={() => loginWithRedirect()}>Log In</span  >
+                                    }</div>
+
+
+
+                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                    <span style={linkStyle} onClick={() => logout()}><BiLogOut /></span>
+                                </div>}
                             </div>
 
 
