@@ -1,6 +1,6 @@
 
 
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING} from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS } from "./Actions/constants";
 
 
 
@@ -11,7 +11,7 @@ const initialState = {
   favourites: [],
   shopCart: [],
   totalBuy: [0],
-
+  users: []
 };
 
 
@@ -41,68 +41,69 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, allProducts: action.payload }
 
 
-      case POST_NEW_PRODUCT:
-        return { 
-          ...state 
-        };
+    case POST_NEW_PRODUCT:
+      return {
+        ...state
+      };
 
-      case NEW_REVIEW:
-        return{
-          ...state
-        };
+    case NEW_REVIEW:
+      return {
+        ...state
+      };
 
-      case ADD_FAV:
-        return {
-          ...state,
-          favourites: [...state.favourites, action.payload]
-        };
+    case ADD_FAV:
+      return {
+        ...state,
+        favourites: [...state.favourites, action.payload]
+      };
 
-      case ADD_CART:
-        return {
-          ...state,
-          shopCart: [...state.shopCart, action.payload]
-        }
+    case ADD_CART:
+      return {
+        ...state,
+        shopCart: [...state.shopCart, action.payload]
+      }
 
-      case DELETE_FAV:
-        const favs = state.favourites.length>0 && state.favourites.filter(fav=> fav.id !== action.payload);
-        return {
-          ...state,
-          favourites: favs
+    case DELETE_FAV:
+      const favs = state.favourites.length > 0 && state.favourites.filter(fav => fav.id !== action.payload);
+      return {
+        ...state,
+        favourites: favs
 
-        };
-      
-        case SET_LOADING:
-			  return {
-				...state,
-				loading: action.payload,
-			};
+      };
 
-        
-      
-      case DELETE_CART:
-        const prodsCart = state.shopCart.length>0 && state.shopCart.filter(prod=> prod.id !== action.payload);
-        return {
-          ...state,
-          shopCart: prodsCart
-        }
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
 
-      case TOTAL_BUY:
+
+
+    case DELETE_CART:
+      const prodsCart = state.shopCart.length > 0 && state.shopCart.filter(prod => prod.id !== action.payload);
+      return {
+        ...state,
+        shopCart: prodsCart
+      }
+
+    case TOTAL_BUY:
       return {
         ...state,
         totalBuy: [...state.totalBuy, action.payload]
       }
 
-      case RESTORE_TOTAL_BUY:
-        return {
-          ...state,
-          totalBuy: [0]
-        }
+    case RESTORE_TOTAL_BUY:
+      return {
+        ...state,
+        totalBuy: [0]
+      }
 
-  
-      default:
-        return state;
-    }
-  };
+    case GET_USERS:
+      return { ...state, users: action.payload }
+    default:
+      return state;
+  }
+};
 
 
 export default rootReducer;
