@@ -34,8 +34,8 @@ function AdminDashboard() {
     <div class="main_content">
       <div className="info">
         <div className="images">
-          <img src={image} alt="Girl in a jacket" width="1000" height="280"></img>
-          <img src={image2} alt="Girl in a jacket" width="1000" height="280"></img>
+          <img src={image} alt="Girl in a jacket" width="1010" height="280"></img>
+          <img src={image2} alt="Girl in a jacket" width="1010" height="280"></img>
         </div>
       </div>
     </div>

@@ -59,7 +59,7 @@ const Navbar = () => {
                             </div>
 
                             <div className="menu_item">
-                                <Link to="/productform" style={linkStyle}><div className="items">Create Product</div></Link>
+                                <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
                             </div>
 
                             <div className="container_icons">

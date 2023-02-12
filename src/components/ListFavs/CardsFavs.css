@@ -1,45 +1,64 @@
 .list-favs {
-    min-height: 100vh;
+    height: 800px;
 }
 
 .list-favs h1 {
-    color: plum;
-    text-shadow: 1px 1px white;
+    color: black;
     text-align: center;
 }
 
 .cards-favs-cont {
-    background: linear-gradient(#332B47, #14111C);
+    background: rgb(40, 43, 58);
     padding: 25px;
-    width: 90%;
+    width: 80%;
     margin: auto;
+    height: 100%;
+    
 }
 
 .cards-favs {
     margin-block: 10px;
     padding: 15px;
-    border: 1px solid black;
-    background: linear-gradient(#4B90C4, #0A131A);
-    box-shadow: 2px 2px purple;
+    border: 1px solid rgb(126, 126, 126);
+    background: rgb(235, 234, 234);
+    box-shadow: 5px 5px rgb(126, 126, 126);
     border-radius: 15px;
+    position: row;
+    display: flex;
+    flex-direction:row;
+    gap: 20px;
+    width: 600px;
 }
 
 .cards-favs img {
-    background: grey;
     border-radius: 11px;
 }
 
-.cards-favs h3 {
-    color: plum;
+.cards-favs h5 {
+    color: rgb(0, 0, 0);
     text-shadow: 1px 1px white;
     font-size:x-large;
+    
+   
 }
 
-.btn-del-fav {  
+.cards-favs h4 {
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 170px;
+    line-height: 20px;
+}
+.fav-btn {  
+    position: absolute;
     background-color: rgb(194, 191, 191);
     border-radius: 20px;
+    margin-top: 70px;
+    width: 50px;
+    height: 30px;
+    line-height: 10px;
+    margin-left: 520px;
 }
-.btn-del-fav:hover {
+.fav-btn:hover {
   background: #5c5d5e;
   border-color: red;
   color: red;
