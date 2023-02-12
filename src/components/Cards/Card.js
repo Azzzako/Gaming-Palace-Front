@@ -50,7 +50,6 @@ const Card = ({ image, price, name, description, id }) => {
           }          
         </div>
 
-      
 
       
 
