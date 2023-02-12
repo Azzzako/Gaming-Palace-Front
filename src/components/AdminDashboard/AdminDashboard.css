@@ -32,11 +32,12 @@ body{
 }
 
 .wrapper .sidebar h2{
-  color: rgb(114, 214, 20);
+  color: #95c827;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 30px;
-  font-size: 15px
+  font-size: 15px;
+  font-family: var(--font-family-test)
 }
 
 .wrapper .sidebar ul li{
@@ -49,6 +50,7 @@ body{
 .wrapper .sidebar ul li a{
   color: #ffffff;
   display: block;
+  font-family: var(--font-family-test)
 }
 
 .wrapper .sidebar ul li a .fas{
@@ -56,7 +58,7 @@ body{
 }
 
 .wrapper .sidebar ul li:hover{
-  background-color: #58d120;
+  background-color: #95c827;
 }
     
 .wrapper .sidebar ul li:hover a{
