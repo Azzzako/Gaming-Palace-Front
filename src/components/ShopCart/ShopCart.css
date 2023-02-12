@@ -9,11 +9,11 @@
 }
 
 #total-buy {
-    color: black;
+    color: rgb(18, 181, 29);
 }
 
 .shop b {
-    color:black;
+    color:rgb(23, 226, 57);
 }
 
 .cards-cart {
@@ -22,7 +22,7 @@
 }
 
 .prods-cart {
-    color: black;
+    color: rgb(25, 229, 28);
     display: flex;
     flex-wrap: wrap;
 }
