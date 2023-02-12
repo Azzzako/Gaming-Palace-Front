@@ -15,6 +15,8 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 import ShopCart from './components/ShopCart/ShopCart';
 import FormAdress from './components/ShopCart/FormAdress';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import OrderList from './components/ShopCart/OrderList';
+
 
 
 
@@ -26,6 +28,7 @@ function App() {
       <Navbar />
       <Routes>
 
+        <Route exact path="/showorder" element={<OrderList/>}/>
       
         <Route exact path='/productform' element={<AddProduct/>}/>
         <Route exact path="/home" element={<Home />} />
@@ -34,10 +37,10 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/review" element={<Review />} />
         
-
         <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>
         
         <Route exact path="/form-adress" element={<FormAdress/>}/>
+
         <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/products' element={<ProductList/>} />

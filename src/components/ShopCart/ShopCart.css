@@ -8,7 +8,21 @@
     margin-top: 5px;
 }
 
+#total-buy {
+    color: black;
+}
+
+.shop b {
+    color:black;
+}
+
 .cards-cart {
     padding: 25px;
     margin-top: 10px;
+}
+
+.prods-cart {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
 }
