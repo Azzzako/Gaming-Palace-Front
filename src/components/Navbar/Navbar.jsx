@@ -70,13 +70,10 @@ const Navbar = () => {
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
-<<<<<<< HEAD
                             <div className="menu_item">
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
                             </div>
 
-=======
->>>>>>> authzero
                             <div className="container_icons">
 
                                 {!isAuthenticated ? <div></div> :   <div className="shopping_cart">
