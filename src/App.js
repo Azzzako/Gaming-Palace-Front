@@ -14,7 +14,9 @@ import ListFavs from './components/ListFavs/ListFavs';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import ShopCart from './components/ShopCart/ShopCart';
 import FormAdress from './components/ShopCart/FormAdress';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import OrderList from './components/ShopCart/OrderList';
+
 
 
 
@@ -35,8 +37,9 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/review" element={<Review />} />
         
-      
-
+        <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>
+        
+        <Route exact path="/form-adress" element={<FormAdress/>}/>
 
         <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
