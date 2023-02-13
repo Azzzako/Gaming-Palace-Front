@@ -57,7 +57,7 @@ export const ConfirmData = () => {
         e.preventDefault()
         dispatch(newUser(userInfo))
         setOpen(!open)
-        // dispatch(postByMail(email))
+        dispatch(postByMail(email))
         // dispatch(getUser())
         // dispatch(getUser())
     }
