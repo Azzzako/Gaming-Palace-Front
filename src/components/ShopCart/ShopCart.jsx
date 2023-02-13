@@ -21,9 +21,10 @@ const ShopCart = () => {
 
   return (
     <div className='shop'>
-      <b>Shop Cart</b><BsEmojiSmileFill color='green'/>
-      <div id='total-buy'>Total buy: {totalBuyOk}
-      <button onClick={()=>restoreTotal()}>Restore</button>
+      <button className='restore-btn' onClick={()=>restoreTotal()}>Restore</button>
+      {/* <b>Shop Cart</b><BsEmojiSmileFill color='green'/> */}
+      <div className='total-buy' id='total-buy'>Total buy: US$ {totalBuyOk}
+      
       {
         totalBuyOk>0 && <Link to="/showorder"><button>Go to pay</button></Link>
       }      

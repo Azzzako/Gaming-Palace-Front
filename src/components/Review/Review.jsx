@@ -103,7 +103,9 @@ const handleSubmit = (e) => {
 };
 
 useEffect(() => {
+  
     dispatch(getDetail);
+    
 },[]);
 
 
