@@ -17,7 +17,7 @@ function AdminDashboard() {
         <h2>ADMIN DASHBOARD</h2>
         <ul> 
           <Link to= "/inconstruction"><li><a><TbReportMoney/><i></i> Sales</a></li></Link>
-          <Link to= "/productform"><li><a><TbTruckLoading/><i></i> Investment</a></li></Link>
+          <Link to= "/productform"><li><a><TbTruckLoading/><i></i> Create Product</a></li></Link>
           <Link to= "/inconstruction"><li><a><TbUsers/><i></i> Users</a></li></Link>
           <Link to= "/inconstruction"><li><a><TbTimeline/><i></i> Stadistics</a></li></Link>
           <Link to= "/inconstruction"><li><a><TbReportSearch/><i></i> Reporting</a></li></Link>
