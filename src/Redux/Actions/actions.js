@@ -91,7 +91,7 @@ export const postByMail = (email) => {
 		fetch(`http://localhost:3001/getuserbymail`, {
 			body: JSON.stringify({email: email}),
 			method: "POST",
-			headers: {"Content-type": "application/json;charset=UTF-8"}
+			headers: {"Content-type": "application/json"}
 		})
 		.then(response => response.json())
 		.then(data => dispatch({
