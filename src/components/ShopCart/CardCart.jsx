@@ -35,13 +35,14 @@ const handleBuy = () => {
         <h4>{name}</h4>
         <h2>US$ {price}</h2>
 
-        <div>
-        <input name="qty" value={input} type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} 
+        <div className='input-cart'>
+        <input  name="qty" value={input} type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} 
         onChange={(e)=>{handleInput(e)}}/>
         <span>{stock}</span>
+        
         </div>
-
-        <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button><span>Total: {total}</span>
+<span>Total: {total}</span>
+        <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button>
       </div>
     </div>
   )

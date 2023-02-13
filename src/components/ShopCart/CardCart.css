@@ -3,7 +3,7 @@
     padding: 25px;
     width: 80%;
     margin: auto;
-    height: 100%;
+    
     
 }
 
@@ -20,14 +20,24 @@
     gap: 20px;
     width: 800px;
 }
+.card-cart .input-cart{
+    position: absolute;
+    margin-left: 550px;
+    
+}
 
 .card-cart h2{
-    font-size: 20x;
+    position: absolute;
+    margin-left: 170px;
+    margin-top: 50px;
+    font-size: 25px;
     font-weight: 600;
 }
 
 .card-cart h4{
-    font-size: 40x;
+    
+    font-size: 20px;
+    width: 470px;
 }
 
 .cart-btn {  
