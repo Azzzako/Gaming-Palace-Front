@@ -15,7 +15,6 @@ export const Dashboard = () => {
 
     const { user } = useAuth0()
     const pictureURL = user?.picture
-    console.log(user)
 
     const handleForm = (e) => {
         e.preventDefault()

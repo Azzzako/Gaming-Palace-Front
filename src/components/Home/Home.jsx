@@ -10,18 +10,25 @@ import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
 import React, { useEffect } from "react";
 import { ConfirmData } from "../ConfirmData/ConfirmData";
-import { useDispatch, useSelector } from "react-redux";
+import { postByMail } from "../../Redux/Actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUser } from "../../Redux/Actions/actions";
+import { useDispatch } from "react-redux";
 
 export const Home = () => {
+
+    const dispatch = useDispatch()
+    const { user } = useAuth0()
+
+    useEffect(() => {
+        dispatch(postByMail(user?.email))
+    })
 
     return (
 
         <div className="containerGeneral">
-            
-                <ConfirmData />
-            
+
+            <ConfirmData />
+
             <div className="carousel_1">
                 <Carousel variant="dark"
                     className="carousel_indicators"
