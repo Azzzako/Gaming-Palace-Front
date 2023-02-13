@@ -16,12 +16,12 @@ import { useDispatch } from "react-redux";
 
 export const Home = () => {
 
-    // const dispatch = useDispatch()
-    // const { user } = useAuth0()
+    const dispatch = useDispatch()
+    const { user } = useAuth0()
 
-    // useEffect(() => {
-    //     dispatch(postByMail(user?.email))
-    // })
+    useEffect(() => {
+        dispatch(postByMail(user?.email))
+    })
 
     return (
 
