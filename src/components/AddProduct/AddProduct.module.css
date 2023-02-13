@@ -13,15 +13,18 @@
   .container .form .formheader .formtitle {
     font-weight: normal;
     font-family: sans-serif;
-    color: #473bf8;
+    color: #535352;
     text-align: center;
     padding: 14px 0;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-family: var(--font-family-test)
   }
   
   
   
   .container .form{
-    background: rgba(0,0,0,.6);
+    background: #1c1e24;
     width: 90%;
     max-width: 650px;
     margin: auto;
@@ -29,32 +32,33 @@
     margin-top: 30px;
     padding-bottom: 30px;
     border-radius: 10px;
-    border: 2px solid floralwhite;
+    border: 10px solid rgb(48, 48, 49);
     border-radius: 5px;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.3)
+    box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+    margin-bottom: 100px;
   }
   
   
   .container .form .formlabel{
     display: block;
-    color: #473bf8;
+    color: #747479;
     font-size: 16px;
-    font-family: Roboto;
+    font-family: var(--font-family-test);
     position: relative;
   }
   
   .container .form .forminput, .formtextarea{
-    background: rgba(0,0,0,.7);
+    background: #22252c;
     border: none;
     outline: none;
-    border-bottom: 2px solid #473bf8;
+    border-bottom: 2px solid #63d81f;
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border-radius: 2px;
+    border-radius: 10px;
     font-size: 14px;
     color: #fff;
-    font-family: Roboto;
+    font-family: var(--font-family-test);
   }
   
   .container .form .formtextarea{
@@ -65,9 +69,9 @@
   
   .container .form .btnsubmit{
     width: 100%;
-    font-family: Roboto;
+    font-family: var(--font-family-test);
     outline: none;
-    background: #473bf8;
+    background: rgb(48, 48, 49);
     font-size: 16px;
     border: none;
     border-radius: 15px;

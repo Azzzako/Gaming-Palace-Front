@@ -20,17 +20,17 @@ const handleDeleteFav = (id) => {
         {
             favourites.length>0 && favourites.map(fav=>{
             return <div className='cards-favs'>
-              <Link to={`/detail/${fav.id}`}>
-              <img src={fav.imageurl} alt='*' width='150px' height='100px'/>
-              </Link>
-
-              <button className='btn-del-fav' onClick={()=>handleDeleteFav(fav.id)}>{<BsTrashFill/>}</button>
               
-              <h3>{fav.namedisplay}</h3>
+             <Link to={`/detail/${fav.id}`}> <img src={fav.imageurl} alt='*' width='150px' height='100px'/></Link>
+              
+
+              
+              
+              <h5>{fav.namedisplay}</h5>
           
-              <h3><b>US$ {fav.price}</b></h3>
-          
-              <h3>{fav.description}</h3>
+              <h4><b>US$ {fav.price}</b></h4>
+              <button className='fav-btn' onClick={()=>handleDeleteFav(fav.id)}>{<BsTrashFill/>}</button>
+              
             </div>
 
             })

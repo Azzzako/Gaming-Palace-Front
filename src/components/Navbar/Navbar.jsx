@@ -25,7 +25,7 @@ const Navbar = () => {
     const location = useLocation();
 
     const linkStyle = {
-        "text-decoration": "none",
+        "textDecoration": "none",
         "color": "#fff"
     };
 
@@ -68,6 +68,10 @@ const Navbar = () => {
 
                             <div className="menu_item">
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
+                            </div>
+
+                            <div className="menu_item">
+                                <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
                             </div>
 
                             <div className="container_icons">

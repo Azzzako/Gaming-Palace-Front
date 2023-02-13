@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { restoreTotalBuy } from '../../Redux/Actions/actions';
 import CardCart from './CardCart';
 import './ShopCart.css'
+import './CardCart.css'
 
 const ShopCart = () => {
 
@@ -21,14 +22,15 @@ const ShopCart = () => {
 
   return (
     <div className='shop'>
-      Shop Cart, baby<BsEmojiSmileFill/>
-      <div>Total buy: {totalBuyOk}
-      <button onClick={()=>restoreTotal()}>Restore</button>
-      {
-        totalBuyOk>0 && <Link to="/form-adress"><button>Go to pay</button></Link>
-      }
+      <button className='restore-btn' onClick={()=>restoreTotal()}>Restore</button>
+      {/* <b>Shop Cart</b><BsEmojiSmileFill color='green'/> */}
+      <div className='total-buy' id='total-buy'>Total buy: US$ {totalBuyOk}
       
+      {
+        totalBuyOk>0 && <Link to="/showorder"><button className='go-btn'>Go to pay</button></Link>
+      }      
       </div>
+      <div >
       {
         productsCart.length>0 && productsCart.map(prod => {
           return (
@@ -44,7 +46,7 @@ const ShopCart = () => {
           )
         }) 
       }
-        
+      </div>  
     </div>
   )
 }
