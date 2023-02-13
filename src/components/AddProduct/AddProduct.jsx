@@ -109,7 +109,7 @@ export default function AddProduct() {
 
         <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
           <div className={s.formheader}>
-            <h1 className={s.formtitle}>Create your product</h1>
+            <h1 className={s.formtitle}>NEW PRODUCT</h1>
           </div>
 
         <div>

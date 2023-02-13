@@ -11,14 +11,32 @@ const initialState = {
   favourites: [],
   shopCart: [],
   totalBuy: [0],
+
   users: [],
-  user: []
+  user: [],
+
+  totalToPay: [],
+
 };
 
 
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
+    case "TOTAL_TO_PAY":
+         for(let i=0; i<state.totalToPay.length; i++){
+          if(state.totalToPay[i].name===action.payload.name){
+            state.totalToPay[i].quantity+=action.payload.quantity
+            return {
+            ...state
+          }
+          }
+        }
+      return {
+        ...state,
+        totalToPay: [...state.totalToPay, action.payload]
+      }
 
     case GET_ALL_PRODUCTS:
 
@@ -78,8 +96,6 @@ const rootReducer = (state = initialState, action) => {
         loading: action.payload,
       };
 
-
-
     case DELETE_CART:
       const prodsCart = state.shopCart.length > 0 && state.shopCart.filter(prod => prod.id !== action.payload);
       return {
@@ -93,11 +109,12 @@ const rootReducer = (state = initialState, action) => {
         totalBuy: [...state.totalBuy, action.payload]
       }
 
-    case RESTORE_TOTAL_BUY:
-      return {
-        ...state,
-        totalBuy: [0]
-      }
+      case RESTORE_TOTAL_BUY:
+        return {
+          ...state,
+          totalBuy: [0],
+          totalToPay: []
+        }
 
     case GET_USERS:
       return { ...state, users: action.payload }
