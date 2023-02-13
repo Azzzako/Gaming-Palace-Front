@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING, GET_USERS } from "./constants";
 
 
 
@@ -60,6 +60,31 @@ export const newReview = (data) => {
   };
 };
 
+export const newUser = (user) => {
+	try {
+		return async function () {
+			const newUser = await axios.post(`http://localhost:3001/users`, user)
+			return newUser
+		}
+	} catch (error) {
+		console.log((error, "Llena los campos pues"));
+	}
+}
+
+
+export const getUser = () => {
+	try {
+		return async function(dispatch) {
+			const user = await axios.get(`http://localhost:3001/users`)
+			return dispatch({
+				type: GET_USERS,
+				payload: user.data
+			})
+		}
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 
 export const getDetail = (id) => {

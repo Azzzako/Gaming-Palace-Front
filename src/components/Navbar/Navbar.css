@@ -187,3 +187,13 @@ link{
     flex-direction: row;
     justify-content: space-around;
 }
+
+.login{
+    font-family: var(--font-family-test);
+    color: #95c827;
+}
+
+.login:hover{
+    color: #95c827;
+    transition: 0.3s all ease;
+}

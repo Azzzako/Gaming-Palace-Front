@@ -8,13 +8,20 @@ import razer from "../../image/imgCarrusel/razer.png"
 import hyper from "../../image/imgCarrusel/hyper.png"
 import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
-import React from "react";
+import React, { useEffect } from "react";
+import { ConfirmData } from "../ConfirmData/ConfirmData";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getUser } from "../../Redux/Actions/actions";
 
 export const Home = () => {
 
     return (
 
         <div className="containerGeneral">
+            
+                <ConfirmData />
+            
             <div className="carousel_1">
                 <Carousel variant="dark"
                     className="carousel_indicators"

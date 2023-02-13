@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProducts } from "../../Redux/Actions/actions";
+import { getAllProducts, getUser } from "../../Redux/Actions/actions";
 import styles from "./LandingPage.module.css";
 
 function LandingPage() {
@@ -10,6 +10,7 @@ function LandingPage() {
 
   useEffect(()=>{
     dispatch(getAllProducts())
+    dispatch(getUser())
   },[])
 
   return (
