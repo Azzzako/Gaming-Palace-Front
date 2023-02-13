@@ -100,11 +100,12 @@ const Review = () => {
       // userId: "",
     });
 
-  };
+
 
   useEffect(() => {
     dispatch(getDetail);
   }, []);
+
 
 
 

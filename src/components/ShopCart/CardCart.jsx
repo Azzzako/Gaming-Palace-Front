@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux'
 import { deleteCart, totalBuy, totalToPay } from '../../Redux/Actions/actions';
+import './CardCart.css'
 
 const CardCart = ({image, name, price, stock, id}) => {
 
@@ -26,12 +27,13 @@ const handleBuy = () => {
 }
 
   return (
-    <div>
-        <button className='btn-del-fav' onClick={()=>handleDeleteCart(id)}>{<BsTrash2Fill/>}</button>
+    <div className='cards-cart-cont'>
+      <div className='card-cart'>
+        <button className='cart-btn' onClick={()=>handleDeleteCart(id)}>{<BsTrash2Fill/>}</button>
 
         <img src={image} alt='*' width='150px' height='100px'/>
-        <h2>{name}</h2>
-        <h4>US$ {price}</h4>
+        <h4>{name}</h4>
+        <h2>US$ {price}</h2>
 
         <div>
         <input name="qty" value={input} type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} 
@@ -39,7 +41,8 @@ const handleBuy = () => {
         <span>{stock}</span>
         </div>
 
-        <button onClick={()=>handleBuy()}>Add buy</button><span>Total: {total}</span>
+        <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button><span>Total: {total}</span>
+      </div>
     </div>
   )
 }
