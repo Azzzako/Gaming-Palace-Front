@@ -1,4 +1,5 @@
 .shop {
+
     background: rgb(40, 43, 58);
     padding: 25px;
     width: 80%;
@@ -9,9 +10,19 @@
 .total-buy{
     margin-left: 1300px;
     color: rgb(211, 228, 248);
+
+    display: flex;
+    /* justify-content: center; */
+    color: antiquewhite;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
 }
 
+
 .restore-btn{
+
 
     background-color: rgb(194, 191, 191);
     border-radius: 20px;
