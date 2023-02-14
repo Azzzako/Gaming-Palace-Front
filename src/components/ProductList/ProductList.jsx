@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import 'react-multi-carousel/lib/styles.css';
 // import icono1 from "../../image/imgCarrusel/logo1.png";
 import "./ProductList.css";
-import { getAllProducts } from '../../Redux/Actions/actions';
+import { getAllProducts, getCart } from '../../Redux/Actions/actions';
 import ContainerCards from '../Cards/ContainerCards';
 import { Searchbar } from '../Searchbar/Searchbar';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const ProductList = () => {
@@ -14,8 +15,14 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.allProducts)
 
+  const {user} = useAuth0();
+  const users = useSelector(state=> state?.users);
+  const findUser = users?.find(us => us?.email === user?.email)
+
   useEffect(() => {
     dispatch(getAllProducts())
+    dispatch(getCart(findUser?.id))
+
   },[dispatch])
   
   return (

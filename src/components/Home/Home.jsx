@@ -12,9 +12,26 @@ import React, { useEffect } from "react";
 import { ConfirmData } from "../ConfirmData/ConfirmData";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUser } from "../../Redux/Actions/actions";
+import { getAllProducts, getCart, getUser } from "../../Redux/Actions/actions";
 
 export const Home = () => {
+
+    const dispatch = useDispatch();
+    const {user} = useAuth0();
+    const users = useSelector(state=> state?.users);
+    const findUser = users?.find(us => us?.email === user?.email);
+
+    useEffect(()=>{
+        dispatch(getAllProducts(),getUser())
+    },[])
+
+    useEffect(()=>{
+        dispatch(getCart(findUser?.id))
+    },[findUser])
+
+   
+
+console.log(findUser,"userrrrr")
 
     return (
 

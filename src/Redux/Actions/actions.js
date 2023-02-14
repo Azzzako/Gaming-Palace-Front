@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING, GET_USERS } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING, GET_USERS, TOTAL_TO_PAY } from "./constants";
 
 
 
@@ -122,21 +122,35 @@ export function setLoading(payload) {
 };
 
 
-export const addCart = (id) => {
-	return async (dispatch) => {
-		const response = await axios.get(`http://localhost:3001/products/${id}`);
-		return dispatch({
-			type: ADD_CART,
-			payload: response.data,
-		});
+export const addCart = (product) => {
+	return async () => {
+		await axios.post(`http://localhost:3001/addproduct`, product);
+		
 	};
 };
 
-export const deleteCart = (id) => {
-	return {
-		type: DELETE_CART,
-		payload: id
+export const getCart = (id) => {
+	try {
+	return async (dispatch) => {
+		await axios.get(`http://localhost:3001/getcartbyid/${id}`)
+		.then(res=>{
+			dispatch({
+				type: GET_CART,
+				payload: res.data
+			})
+		})			
 	}
+		
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+export const deleteItemCart = (product) => {
+	return async () => {
+		await axios.post(`http://localhost:3001/deleteproduct`, product);
+		
+	};
 };
 
 
@@ -157,7 +171,7 @@ export const restoreTotalBuy = () => {
 
 export const totalToPay = (item) => {
 	return {
-		type: "TOTAL_TO_PAY",
+		type: TOTAL_TO_PAY,
 		payload: item
 	}
 };

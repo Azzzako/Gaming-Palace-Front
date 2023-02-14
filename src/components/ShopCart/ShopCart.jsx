@@ -17,7 +17,7 @@ const ShopCart = () => {
     disptach(restoreTotalBuy());
   }
 
-  
+  console.log(productsCart,"in cartttt")
 
   return (
     <div className='shop'>
@@ -39,6 +39,7 @@ const ShopCart = () => {
                 price={prod.price}
                 stock={10}
                 id={prod.id}
+                key={prod.id}
                 />
             </div>
           )

@@ -1,6 +1,6 @@
 
 
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS } from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, TOTAL_TO_PAY } from "./Actions/constants";
 
 
 
@@ -20,7 +20,7 @@ const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case "TOTAL_TO_PAY":
+    case TOTAL_TO_PAY:
          for(let i=0; i<state.totalToPay.length; i++){
           if(state.totalToPay[i].name===action.payload.name){
             state.totalToPay[i].quantity+=action.payload.quantity
@@ -72,10 +72,15 @@ const rootReducer = (state = initialState, action) => {
         favourites: [...state.favourites, action.payload]
       };
 
-    case ADD_CART:
+    case GET_CART:
+      const prodsInCart = []
+      for(let i=0; i<action.payload.length; i++){
+        const findProduct = state.allProducts.find(prod=> prod.id === action.payload[i].idproduct)
+        prodsInCart.push(findProduct)
+      }
       return {
         ...state,
-        shopCart: [...state.shopCart, action.payload]
+        shopCart: prodsInCart
       }
 
     case DELETE_FAV:
@@ -114,6 +119,8 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_USERS:
       return { ...state, users: action.payload }
+
+      
     default:
       return state;
   }

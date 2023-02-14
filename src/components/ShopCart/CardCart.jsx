@@ -1,14 +1,23 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
-import { useDispatch } from 'react-redux'
-import { deleteCart, totalBuy, totalToPay } from '../../Redux/Actions/actions';
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteItemCart, getCart, totalBuy, totalToPay } from '../../Redux/Actions/actions';
 
 const CardCart = ({image, name, price, stock, id}) => {
 
 const dispatch = useDispatch();
 
+const {user} = useAuth0();
+const users = useSelector(state=> state?.users);
+const findUser = users?.find(us => us?.email === user?.email)
+
+
+
+
+
 const handleDeleteCart = (id) => {
-  dispatch(deleteCart(id))
+  dispatch(deleteItemCart({userid: findUser.id, idproduct: id})) && setTimeout(()=>{dispatch(getCart(findUser.id))},100)
 }
 
 const [input, setInput] = useState("");
@@ -21,7 +30,7 @@ const handleInput = (e) => {
 
 const handleBuy = () => {
   dispatch(totalBuy(total));
-  dispatch(totalToPay({name: name, price: price, quantity: input}));
+  dispatch(totalToPay({name: name, price: price, quantity: input, idproduct: id}));
   setInput("")
 }
 

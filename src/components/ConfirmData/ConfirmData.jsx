@@ -21,7 +21,7 @@ export const ConfirmData = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    
+    console.log(usuario, "usersssssssssssssss")
 
     const [userInfo, setUserInfo] = useState({
         name: "",
