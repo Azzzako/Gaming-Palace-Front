@@ -13,6 +13,7 @@ export const TOTAL_BUY = "TOTAL_BUY";
 export const GET_USERS = "GET_USERS";
 export const RESTORE_TOTAL_BUY = "RESTORE_TOTAL_BUY";
 export const GET_USER = 'GET_USER'
+export const GET_USER_BY_MAIL = "GET_USER_BY_MAIL"
 
 
 
