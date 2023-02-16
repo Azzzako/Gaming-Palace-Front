@@ -17,7 +17,7 @@ import FormAdress from './components/ShopCart/FormAdress';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import OrderList from './components/ShopCart/OrderList';
 
-import { ConfirmData } from './components/ConfirmData/ConfirmData';
+// import { ConfirmData } from './components/ConfirmData/ConfirmData';
 
 
 

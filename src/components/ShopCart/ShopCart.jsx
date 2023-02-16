@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { deleteAllCart, getCart, restoreTotalBuy } from '../../Redux/Actions/actions';
 import CardCart from './CardCart';
 import './ShopCart.css'
+import './CardCart.css'
 
 const ShopCart = () => {
 
@@ -37,11 +38,15 @@ const findUser = users?.find(us => us?.email === user?.email)
       <b>Shop Cart</b><BsEmojiSmileFill color='green'/>
       <div id='total-buy'>Total buy: {totalBuyOk}
       <button onClick={()=>restoreTotal()}>Restore</button>
+      <button className='restore-btn' onClick={()=>restoreTotal()}>Restore</button>
+      {/* <b>Shop Cart</b><BsEmojiSmileFill color='green'/> */}
+      <div className='total-buy' id='total-buy'>Total buy: US$ {totalBuyOk}
+      
       {
-        totalBuyOk>0 && <Link to="/showorder"><button>Go to pay</button></Link>
+        totalBuyOk>0 && <Link to="/showorder"><button className='go-btn'>Go to pay</button></Link>
       }      
       </div>
-      <div className='prods-cart'>
+      <div >
       {
         productsCart.length>0 && productsCart.map(prod => {
           return (

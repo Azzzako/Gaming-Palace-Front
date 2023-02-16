@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, newUser } from "../../Redux/Actions/actions";
+import { createDispatchHook, useDispatch, useSelector } from "react-redux";
+import { getUser, newUser, postByMail } from "../../Redux/Actions/actions";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -12,22 +12,22 @@ export const ConfirmData = () => {
     const dispatch = useDispatch()
     const { user } = useAuth0()
     const usuario = useSelector(state => state.users)
-    const userFiltered = usuario?.filter(usr => usr.email == user?.email)
+    const filteredUser = usuario.length > 0 ? usuario.filter(usr => usr.email == user?.email) : []
     const [nombre, setNombre] = useState("")
     const [email, setEmail] = useState("")
-    const [modal, setModal] = useState(true)
-    const [enabled, setEnabled] = useState(true)
     const [open, setOpen] = useState(true);
-    const handleOpen = () => setOpen(true);
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const handleClose = () => setOpen(false);
 
-    console.log(usuario, "usersssssssssssssss")
+    // const usuarioFinal = usuario?.filter(usr => usr?.email == user?.email)
+    
 
     const [userInfo, setUserInfo] = useState({
         name: "",
         email: "",
-        adress: "",
+        address: "",
     })
+
 
     useEffect(() => {
         setNombre(user?.name)
@@ -35,12 +35,25 @@ export const ConfirmData = () => {
         setUserInfo({
             name: nombre,
             email: email,
-            adress: "",
+            address: "",
         })
         dispatch(getUser())
     }, [user?.name, user?.email, email, nombre])
 
 
+
+    const handleOnSubmit = async (e) => {
+        e.preventDefault()
+        if (!isSubmitting) { 
+            setIsSubmitting(true); 
+            const sendToDB = await dispatch(newUser(userInfo));
+            setOpen(!open);
+            if (sendToDB.success) {
+              dispatch(getUser());
+            }
+            setIsSubmitting(false); 
+          }
+    }
 
     const handleOnChange = (e) => {
         e.preventDefault()
@@ -52,11 +65,15 @@ export const ConfirmData = () => {
         })
     }
 
-    const handleOnSubmit = (e) => {
-        e.preventDefault()
-        dispatch(newUser(userInfo))
-        setOpen(!open)
-    }
+
+  
+    // useEffect(() => {
+    //     dispatch(getUser())
+    // }, [dispatch, handleOnSubmit])
+
+  
+  
+
 
     const style = {
         position: 'absolute',
@@ -70,43 +87,49 @@ export const ConfirmData = () => {
         p: 4,
         borderRadius: "8px"
     };
-
-    console.log(userFiltered)
-  
+    
+    console.log(filteredUser)
 
     return (
         <div>
             <Modal
-                open={userFiltered[0]?.verified || user == undefined ? false : open}
+                open={filteredUser[0]?.verified || user == undefined ? false : open}
                 onClose={handleClose}
                 disableEnforceFocus={true}
                 onBackdropClick={true}
+                keepMounted={false}
             >
                 <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-      Confirm Account
-    </Typography>
-                    <form className="data_container" onSubmit={(handleOnSubmit)}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Confirm Account
+                    </Typography>
+                    <form className="data_container" onSubmit={handleOnSubmit}>
                         <div className="name_container datas">
                             <label>Full name:</label>
-                            <input type="text" value={userInfo.name} onChange={handleOnChange} placeholder={nombre} name="name" className="input_cont"/>
+                            <input type="text" value={userInfo.name} onChange={handleOnChange} placeholder={nombre} name="name" className="input_cont" />
                         </div>
 
                         <div className="datas">
                             <label>Email: </label>
-                            <input type="text" value={userInfo.email} onChange={handleOnChange} placeholder={email} name="email"  disabled className="input_cont"/>
+                            <input type="text" value={userInfo.email} onChange={handleOnChange} placeholder={email} name="email" disabled className="input_cont" />
                         </div>
 
                         <div className="datas">
                             <label>Adress:</label>
-                            <input type="text" placeholder="Type Adress..." value={userInfo.adress} onChange={handleOnChange} name="adress" className="input_cont"/>
+                            <input type="text" placeholder="Type Adress..." value={userInfo.address} onChange={handleOnChange} name="address" className="input_cont" />
                         </div>
 
-                        <input type="submit" className="botton_sub" value="Save Profile" disabled={false}/>
+                        <input type="submit" className="botton_sub" value="Save Profile" disabled={false} />
                     </form>
+                    {/* 
+                <ChildModal
+                handleOnSubmit={handleOnSubmit}
+                /> */}
+
                 </Box>
             </Modal>
         </div>
     );
 }
+
 

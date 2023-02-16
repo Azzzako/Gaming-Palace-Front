@@ -1,23 +1,13 @@
-
-.list-favs {
-    height: 800px;
-}
-
-.list-favs h1 {
-    color: black;
-    text-align: center;
-}
-
-.cards-favs-cont {
-    background: rgb(40, 43, 58);
+.cards-cart-cont {
+    
     padding: 25px;
     width: 80%;
     margin: auto;
-    height: 100%;
+    
     
 }
 
-.cards-favs {
+.card-cart {
     margin-block: 10px;
     padding: 15px;
     border: 1px solid rgb(126, 126, 126);
@@ -28,28 +18,29 @@
     display: flex;
     flex-direction:row;
     gap: 20px;
-    width: 600px;
+    width: 800px;
 }
-
-.cards-favs img {
-    border-radius: 11px;
-}
-
-.cards-favs h5 {
-    color: rgb(0, 0, 0);
-    text-shadow: 1px 1px white;
-    font-size:x-large;
-    
-   
-}
-
-.cards-favs h4 {
+.card-cart .input-cart{
     position: absolute;
-    margin-top: 40px;
-    margin-left: 170px;
-    line-height: 20px;
+    margin-left: 550px;
+    
 }
-.fav-btn {  
+
+.card-cart h2{
+    position: absolute;
+    margin-left: 170px;
+    margin-top: 50px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.card-cart h4{
+    
+    font-size: 20px;
+    width: 470px;
+}
+
+.cart-btn {  
     position: absolute;
     background-color: rgb(194, 191, 191);
     border-radius: 20px;
@@ -57,10 +48,22 @@
     width: 50px;
     height: 30px;
     line-height: 10px;
-    margin-left: 520px;
+    margin-left: 660px;
 }
-.fav-btn:hover {
+.cart-btn:hover {
   background: #5c5d5e;
   border-color: red;
   color: red;
+}
+
+.buy-btn {  
+    position: absolute;
+    background-color: rgb(194, 191, 191);
+    border-radius: 20px;
+    margin-top: 70px;
+    width: 50px;
+    height: 30px;
+    line-height: 10px;
+    margin-left: 720px;
+    font-size: 12px;
 }

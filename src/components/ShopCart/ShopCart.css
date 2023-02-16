@@ -1,28 +1,35 @@
 .shop {
-    display: flex;
-    /* justify-content: center; */
-    color: antiquewhite;
-    min-height: 100vh;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5px;
-}
 
-#total-buy {
-    color: rgb(18, 181, 29);
-}
-
-.shop b {
-    color:rgb(23, 226, 57);
-}
-
-.cards-cart {
+    background: rgb(40, 43, 58);
     padding: 25px;
-    margin-top: 10px;
+    width: 80%;
+    margin: auto;
+    height: 800px;
 }
 
-.prods-cart {
-    color: rgb(25, 229, 28);
-    display: flex;
-    flex-wrap: wrap;
+
+.total-buy{
+   color: white;
+   margin-left: 1050px; 
+   margin-bottom: 130px;
+}
+
+
+.restore-btn{
+
+
+    background-color: rgb(194, 191, 191);
+    border-radius: 20px;
+    width: 90px;
+    height: 40px;
+    line-height: 10px;
+    margin-left: 60px;
+}
+
+.go-btn{
+    position: absolute;
+    width: 150px;
+    border-radius: 20px;
+    margin-top: 50px;
+   
 }
