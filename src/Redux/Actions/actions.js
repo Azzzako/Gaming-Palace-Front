@@ -259,3 +259,12 @@ export const totalPayment =(prods) => {
 	}
 }
 
+
+
+
+
+export const sendNMailer = (aBody) => {
+	return async () => {
+		axios.post("http://localhost:3001/nmailer", aBody)
+	}
+}

@@ -26,7 +26,7 @@ const findUser = users?.find(us => us?.email === user?.email)
 
   useEffect(()=>{
     dispatch(getCart(findUser?.id))
-  },[productsCart])
+  },[dispatch])
 
   console.log(productsCart,"in cartttt")
   console.log("id mio", findUser?.id)
@@ -48,7 +48,7 @@ const findUser = users?.find(us => us?.email === user?.email)
       </div>
       <div >
       {
-        productsCart.length>0 && productsCart.map(prod => {
+        productsCart?.length>0 && productsCart?.map(prod => {
           return (
             <div className='cards-cart'>
               <CardCart
