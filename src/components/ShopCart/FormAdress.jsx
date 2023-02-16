@@ -1,9 +1,10 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { totalPayment } from '../../Redux/Actions/actions';
+import { deleteItemCart, totalPayment } from '../../Redux/Actions/actions';
 import './OrderList.css'
 
 function validateForm(input){
@@ -17,8 +18,15 @@ function validateForm(input){
 
 const FormAdress = () => {
 
+  const {user} = useAuth0();
+  const users = useSelector(state=> state?.users);
+  const findUser = users?.find(us => us?.email === user?.email);
+  
   const dispatch = useDispatch();
   const prodsToPay = useSelector(state=> state.totalToPay);
+  const deleteItemsPayed = {userid: findUser.id, idproduct: []}
+  prodsToPay.forEach(prod=> deleteItemsPayed.idproduct.push(prod.idproduct))
+
   const [orderOK, setOrderOK] = useState(false);
 
     const [input, setInput] = useState({
@@ -45,6 +53,7 @@ const [error, setError] = useState({});
 
     const payMP = () => {
       dispatch(totalPayment(prodsToPay))
+      dispatch(deleteItemCart(deleteItemsPayed))
       setTimeout(()=>{setOrderOK(false)}, 5000)
     }
 
@@ -55,6 +64,7 @@ const [error, setError] = useState({});
     };
 
     console.log(prodsToPay, "payyyyy")
+    console.log("deletePay", deleteItemsPayed)
     console.log(orderOK, "orderrrrr")
     
   return (

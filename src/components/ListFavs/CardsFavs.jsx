@@ -3,6 +3,7 @@ import './CardsFavs.css'
 import { deleteFavs } from "../../Redux/Actions/actions";
 import { BsTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const CardsFavs = () => {
@@ -10,8 +11,12 @@ const CardsFavs = () => {
 const favourites = useSelector(state => state.favourites);
 const dispatch = useDispatch();
 
+const {user} = useAuth0();
+const users = useSelector(state=> state?.users);
+const findUser = users?.find(us => us?.email === user?.email)
+
 const handleDeleteFav = (id) => {
-  dispatch(deleteFavs(id))
+  dispatch(deleteFavs({userId: findUser?.id, productId: id}))
 }
    
   
@@ -19,7 +24,7 @@ const handleDeleteFav = (id) => {
       <div className='cards-favs-cont'>
         {
             favourites.length>0 && favourites.map(fav=>{
-            return <div className='cards-favs'>
+            return <div className='cards-favs' key={fav.id}>
               
              <Link to={`/detail/${fav.id}`}> <img src={fav.imageurl} alt='*' width='150px' height='100px'/></Link>
               
