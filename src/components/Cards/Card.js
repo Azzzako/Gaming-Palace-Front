@@ -23,8 +23,8 @@ const Card = ({ image, price, name, description, id }) => {
 
   const handleFav = (id) => {
     !existFavs.includes(id) ?
-    dispatch(addFav(id)) :
-    dispatch(deleteFavs(id))
+    dispatch(addFav(findUser?.id, {userId: findUser?.id, productId: id}))  :
+    dispatch(deleteFavs({userId: findUser?.id, productId: id})) 
   };
 
   const handleCart = (id) => {
@@ -36,6 +36,7 @@ const Card = ({ image, price, name, description, id }) => {
   console.log(users,"userrrriddddd")
   console.log(productsCart,"shoppppp")
   console.log(findUser,"findddddd")
+  console.log(favourites,"favourites")
 
   return (
     <div className='cards'>

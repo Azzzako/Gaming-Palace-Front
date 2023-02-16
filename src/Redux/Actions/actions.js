@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING, GET_USERS, TOTAL_TO_PAY } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING, GET_USERS, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART } from "./constants";
 
 
 
@@ -97,9 +97,9 @@ export const getDetail = (id) => {
 	};
 };
 
-export const addFav = (id) => {
+export const addFav = (id, item) => {
 	return async (dispatch) => {
-		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		const response = await axios.post(`http://localhost:3001/favorite/${id}`, item);
 		return dispatch({
 			type: ADD_FAV,
 			payload: response.data,
@@ -107,10 +107,34 @@ export const addFav = (id) => {
 	};
 };
 
-export const deleteFavs = (id) => {
-	return {
-		type: DELETE_FAV,
-		payload: id
+export const deleteFavs = (item) => {
+	return async (dispatch) => {
+		await axios.post(`http://localhost:3001/deletefav`, item);
+		return dispatch({
+			type: DELETE_FAV,
+			payload: item
+		})
+	}				
+};
+
+export const deleteAllFavs = (id) => {
+	return async (dispatch) => {
+		await axios.post(`http://localhost:3001/deleteallfav`, id);
+		return dispatch({
+			type: DELETE_ALL_FAVS,
+		})
+	}
+}
+
+export const getFavs = (id) => {
+	return async (dispatch) => {
+		await axios.get(`http://localhost:3001/getfavorites/${id}`)
+		.then(res=> {
+			dispatch({
+				type: GET_FAVS,
+				payload: res.data[0]?.favorites
+			})
+		})
 	}
 };
 
@@ -153,6 +177,14 @@ export const deleteItemCart = (product) => {
 	};
 };
 
+export const deleteAllCart = (id) => {
+	return async (dispatch) => {
+		await axios.post(`http://localhost:3001/deleteallproducts`, id);
+		return dispatch({
+			type: DELETE_ALL_CART
+		})
+	}	
+};
 
 export const totalBuy = (payload) => {
 	return {

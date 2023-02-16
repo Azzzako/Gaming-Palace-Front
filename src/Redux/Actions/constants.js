@@ -13,6 +13,9 @@ export const TOTAL_BUY = "TOTAL_BUY";
 export const GET_USERS = "GET_USERS";
 export const RESTORE_TOTAL_BUY = "RESTORE_TOTAL_BUY";
 export const TOTAL_TO_PAY = "TOTAL_TO_PAY";
+export const GET_FAVS = "GET_FAVS";
+export const DELETE_ALL_FAVS = "DELETE_ALL_FAVS";
+export const DELETE_ALL_CART = "DELETE_ALL_CART";
 
 
 

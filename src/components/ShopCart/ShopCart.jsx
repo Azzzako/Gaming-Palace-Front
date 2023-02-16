@@ -1,8 +1,10 @@
-import React from 'react'
+import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from '@mui/material';
+import React, { useEffect } from 'react'
 import { BsEmojiSmileFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { restoreTotalBuy } from '../../Redux/Actions/actions';
+import { deleteAllCart, getCart, restoreTotalBuy } from '../../Redux/Actions/actions';
 import CardCart from './CardCart';
 import './ShopCart.css'
 
@@ -11,16 +13,27 @@ const ShopCart = () => {
   const productsCart = useSelector(state => state.shopCart);
   const totalBuy = useSelector(state => state.totalBuy);
   const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
-  const disptach = useDispatch();
+  const dispatch = useDispatch();
+
+const {user} = useAuth0();
+const users = useSelector(state=> state?.users);
+const findUser = users?.find(us => us?.email === user?.email)
 
   const restoreTotal = () => {
-    disptach(restoreTotalBuy());
+    dispatch(restoreTotalBuy());
   }
 
-  console.log(productsCart,"in cartttt")
+  useEffect(()=>{
+    dispatch(getCart(findUser?.id))
+  },[productsCart])
 
+  console.log(productsCart,"in cartttt")
+  console.log("id mio", findUser?.id)
   return (
     <div className='shop'>
+
+      <Button onClick={()=> dispatch(deleteAllCart({userid: findUser?.id}))}>Delete all products</Button>
+
       <b>Shop Cart</b><BsEmojiSmileFill color='green'/>
       <div id='total-buy'>Total buy: {totalBuyOk}
       <button onClick={()=>restoreTotal()}>Restore</button>

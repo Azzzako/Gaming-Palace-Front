@@ -12,7 +12,7 @@ import React, { useEffect } from "react";
 import { ConfirmData } from "../ConfirmData/ConfirmData";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getAllProducts, getCart, getUser } from "../../Redux/Actions/actions";
+import { getAllProducts, getCart, getFavs, getUser } from "../../Redux/Actions/actions";
 
 export const Home = () => {
 
@@ -27,8 +27,8 @@ export const Home = () => {
 
     useEffect(()=>{
         dispatch(getCart(findUser?.id))
+        dispatch(getFavs(findUser?.id))
     },[findUser])
-
    
 
 console.log(findUser,"userrrrr")
