@@ -36,7 +36,7 @@ const findUser = users?.find(us => us?.email === user?.email)
       <Button onClick={()=> dispatch(deleteAllCart({userid: findUser?.id}))}>Delete all products</Button>
 
       <b>Shop Cart</b><BsEmojiSmileFill color='green'/>
-      <div id='total-buy'>Total buy: {totalBuyOk}
+      <div id='total-buy'>Total buy: {totalBuyOk}</div>
       <button onClick={()=>restoreTotal()}>Restore</button>
       <button className='restore-btn' onClick={()=>restoreTotal()}>Restore</button>
       {/* <b>Shop Cart</b><BsEmojiSmileFill color='green'/> */}
