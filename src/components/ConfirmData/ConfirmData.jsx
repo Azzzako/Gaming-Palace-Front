@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
+import { createDispatchHook, useDispatch, useSelector } from "react-redux";
 import { getUser, newUser, postByMail } from "../../Redux/Actions/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -10,11 +10,13 @@ import "./ConfirmData.css";
 export const ConfirmData = () => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
-  // const usuario = useSelector(state => state.users)
-  const usuario = useSelector((state) => state?.user);
+  const usuario = useSelector((state) => state.users);
+  const filteredUser =
+    usuario.length > 0 ? usuario.filter((usr) => usr.email == user?.email) : [];
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleClose = () => setOpen(false);
 
   // const usuarioFinal = usuario?.filter(usr => usr?.email == user?.email)
@@ -33,9 +35,21 @@ export const ConfirmData = () => {
       email: email,
       address: "",
     });
-    // dispatch(getUser())
-    dispatch(postByMail(email));
-  }, [user?.name, user?.email, email, nombre, dispatch]);
+    dispatch(getUser());
+  }, [user?.name, user?.email, email, nombre]);
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    if (!isSubmitting) {
+      setIsSubmitting(true);
+      const sendToDB = await dispatch(newUser(userInfo));
+      setOpen(!open);
+      if (sendToDB.success) {
+        dispatch(getUser());
+      }
+      setIsSubmitting(false);
+    }
+  };
 
   const handleOnChange = (e) => {
     e.preventDefault();
@@ -47,14 +61,9 @@ export const ConfirmData = () => {
     });
   };
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    dispatch(newUser(userInfo));
-    setOpen(!open);
-    // dispatch(postByMail(email))
-    // dispatch(getUser())
-    // dispatch(getUser())
-  };
+  // useEffect(() => {
+  //     dispatch(getUser())
+  // }, [dispatch, handleOnSubmit])
 
   const style = {
     position: "absolute",
@@ -69,12 +78,12 @@ export const ConfirmData = () => {
     borderRadius: "8px",
   };
 
-  console.log(usuario);
+  console.log(filteredUser);
 
   return (
     <div>
       <Modal
-        open={usuario[0]?.verified || user == undefined ? false : open}
+        open={filteredUser[0]?.verified || user == undefined ? false : open}
         onClose={handleClose}
         disableEnforceFocus={true}
         onBackdropClick={true}

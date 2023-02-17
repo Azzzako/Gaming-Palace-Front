@@ -3,7 +3,7 @@ import {
   GET_DETAIL,
   POST_NEW_PRODUCT,
   ADD_FAV,
-  ADD_CART,
+  GET_CART,
   GET_ALL_CATEGORIES,
   DELETE_FAV,
   GET_PRODUCT_FILTER,
@@ -14,6 +14,11 @@ import {
   SET_LOADING,
   GET_USERS,
   GET_USER,
+  GET_USER_BY_MAIL,
+  TOTAL_TO_PAY,
+  GET_FAVS,
+  DELETE_ALL_FAVS,
+  DELETE_ALL_CART,
 } from "./Actions/constants";
 
 const initialState = {
@@ -26,13 +31,13 @@ const initialState = {
 
   users: [],
   user: [],
-
+  userMail: [],
   totalToPay: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "TOTAL_TO_PAY":
+    case TOTAL_TO_PAY:
       for (let i = 0; i < state.totalToPay.length; i++) {
         if (state.totalToPay[i].name === action.payload.name) {
           state.totalToPay[i].quantity += action.payload.quantity;
@@ -78,24 +83,52 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ADD_FAV:
+      const addFav = state.allProducts.find(
+        (prod) => prod.id === action.payload.productId
+      );
       return {
         ...state,
-        favourites: [...state.favourites, action.payload],
+        favourites: [...state.favourites, addFav],
       };
 
-    case ADD_CART:
+    case GET_CART:
+      const prodsInCart = [];
+      for (let i = 0; i < action.payload.length; i++) {
+        const findProduct = state.allProducts.find(
+          (prod) => prod.id === action.payload[i].idproduct
+        );
+        prodsInCart.push(findProduct);
+      }
       return {
         ...state,
-        shopCart: [...state.shopCart, action.payload],
+        shopCart: prodsInCart,
       };
 
+    case GET_FAVS:
+      const prodsInFavs = [];
+      for (let i = 0; i < action.payload?.length; i++) {
+        const findFavs = state.allProducts.find(
+          (prod) => prod.id === action.payload[i].productId
+        );
+        prodsInFavs.push(findFavs);
+      }
+      return {
+        ...state,
+        favourites: prodsInFavs,
+      };
     case DELETE_FAV:
       const favs =
         state.favourites.length > 0 &&
-        state.favourites.filter((fav) => fav.id !== action.payload);
+        state.favourites.filter((fav) => fav.id !== action.payload.productId);
       return {
         ...state,
         favourites: favs,
+      };
+
+    case DELETE_ALL_FAVS:
+      return {
+        ...state,
+        favourites: [],
       };
 
     case SET_LOADING:
@@ -111,6 +144,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         shopCart: prodsCart,
+      };
+
+    case DELETE_ALL_CART:
+      return {
+        ...state,
+        shopCart: [],
       };
 
     case TOTAL_BUY:
@@ -131,6 +170,9 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_USER:
       return { ...state, user: action.payload };
+
+    case GET_USER_BY_MAIL:
+      return { ...state, userMail: action.payload };
 
     default:
       return state;
