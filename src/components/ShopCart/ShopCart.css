@@ -1,0 +1,35 @@
+.shop {
+
+    background: rgb(40, 43, 58);
+    padding: 25px;
+    width: 80%;
+    margin: auto;
+    height: 800px;
+}
+
+
+.total-buy{
+   color: white;
+   margin-left: 1050px; 
+   margin-bottom: 130px;
+}
+
+
+.restore-btn{
+
+
+    background-color: rgb(194, 191, 191);
+    border-radius: 20px;
+    width: 90px;
+    height: 40px;
+    line-height: 10px;
+    margin-left: 60px;
+}
+
+.go-btn{
+    position: absolute;
+    width: 150px;
+    border-radius: 20px;
+    margin-top: 50px;
+   
+}

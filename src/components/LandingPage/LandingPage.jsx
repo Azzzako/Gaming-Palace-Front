@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProducts } from "../../Redux/Actions/actions";
+import { getAllProducts, getUser, postByMail } from "../../Redux/Actions/actions";
 import styles from "./LandingPage.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LandingPage() {
 

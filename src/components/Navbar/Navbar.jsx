@@ -7,80 +7,106 @@ import { IconContext } from "react-icons/lib";
 import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
-import { BsHeartFill } from "react-icons/bs";
+import { TfiHeart } from "react-icons/tfi";
+import { BiLogOut } from "react-icons/bi"
+import { useAuth0 } from "@auth0/auth0-react";
+import { Avatar } from "@mui/material";
 
 
 
 const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
-    const carrito = ["1", "2", "3", "4", "5"]
-
-    const favourites = useSelector(state=> state.favourites);
-
+    const shopCart = useSelector(state => state.shopCart)
+    const favourites = useSelector(state => state.favourites);
+    const { loginWithRedirect, logout } = useAuth0()
+    const { user, isAuthenticated } = useAuth0()
+    const picture = user?.picture
     const location = useLocation();
 
     const linkStyle = {
-        "text-decoration": "none",
+        "textDecoration": "none",
         "color": "#fff"
-      };
+    };
+
+    const linkLogo = {
+        "text-decoration": "none",
+        "color": "#95c827"
+    }
+
+
 
     return (
         <nav className="navbarContainer">
             {
                 location.pathname !== "/" &&
-            
-            <div className="wrapper">
 
-                <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
-                    <div className="logo_container">
-                        <DiRuby />
-                        <p>
-                            Gaming Palace
-                        </p>
-                    </div>
+                <div className="wrapper">
 
-                    <div className="mobile_icon"
-                        onClick={() => setShowNavbar(!showNavbar)}
-                    >
-                        <TfiAlignJustify />
-                    </div>
-
-                    <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
-                    onClick={() => setShowNavbar(!showNavbar)}
-                    >
-                        <div className="menu_item">
-                          <div className="items"><Link to="/home" style={linkStyle}>Home</Link></div>
+                    <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
+                        <div className="logo_container">
+                            <DiRuby />
+                            <p>
+                                <Link to="/home" style={linkLogo}>
+                                    Gaming Palace
+                                </Link>
+                            </p>
                         </div>
 
-                        <div className="menu_item">
-                           <div className="items"><Link to="/productform" style={linkStyle}>Create Product</Link></div>
+                        <div className="mobile_icon"
+                            onClick={() => setShowNavbar(!showNavbar)}
+                        >
+                            <TfiAlignJustify />
                         </div>
 
-                        <div className="menu_item">
-                            <div className="items"> <Link to="/inconstruction" style={linkStyle}>Settings</Link></div>
-                        </div>
-
-                        <div className="menu_item">
-                            <div className="items"><Link to="/inconstruction" style={linkStyle}>About Us</Link></div>
-                        </div>
-
-                        <div className="menu_item">
-                            <div className="items">
-                            <Link to="/favourites" style={linkStyle}>{<BsHeartFill/>}</Link>
-                            {
-                                favourites.length>0 && <span className="length_cart">{favourites.length}</span>
-                            }
+                        <div className="menu" style={showNavbar ? { left: "0" } : { left: "-100%" }}
+                            onClick={() => setShowNavbar(!showNavbar)}
+                        >
+                            <div className="menu_item">
+                                <Link to="/home" style={linkStyle}> <div className="items">Home</div></Link>
                             </div>
-                        </div>
 
-                        <div className="shopping_cart">
-                           <Link to="/inconstruction" style={linkStyle}><FiShoppingCart /></Link> 
-                            <span className="length_cart">{carrito.length}</span>
+                            <div className="menu_item">
+                                <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
+                            </div>
+
+                            {!isAuthenticated ? <div></div> : <div className="menu_item">
+                                <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
+                            </div>}
+
+
+                            <div className="container_icons">
+
+                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                    <Link to="/favourites" style={linkStyle}><div className="">
+                                        <TfiHeart />
+                                        <span className="length_cart">{favourites.length}</span>
+                                    </div></Link>
+                                </div>}
+
+                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                    <Link to="/shopcart" style={linkStyle} ><FiShoppingCart /></Link>
+                                    <span className="length_cart">{shopCart.length}</span>
+                                </div>}
+
+                                <div className="shopping_cart">
+
+                                    {isAuthenticated ? <Link to="/dashboard" style={linkStyle}><span style={linkStyle}> <Avatar src={picture}>GP</Avatar></span></Link> :
+                                        <span className="login" style={linkStyle} onClick={() => loginWithRedirect()}>Log In</span  >
+                                    }</div>
+
+
+
+                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                    <span style={linkStyle} onClick={() => logout()}><BiLogOut /></span>
+                                </div>}
+                            </div>
+
+
+
                         </div>
-                    </div>
-                </IconContext.Provider>
-            </div>
+                    </IconContext.Provider>
+                </div>
             }
         </nav>
     )

@@ -1,81 +1,129 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux"
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-// import icono1 from "../../image/imgCarrusel/logo1.png";
-import imagen1 from "../../image/imgCarrusel/imagen1.jpg";
-import imagen2 from "../../image/imgCarrusel/imagen2.jpg";
-import imagen3 from "../../image/imgCarrusel/imagen3.jpg";
-import imagen4 from "../../image/imgCarrusel/imagen4.jpg";
-import "./Home.css";
-import { getAllProducts } from '../../Redux/Actions/actions';
-import ContainerCards from '../Cards/ContainerCards';
-import { Searchbar } from '../Searchbar/Searchbar';
-// import { log } from 'console';
+import imagen1 from "../../image/imgCarrusel/razer-productos.png";
+import imagen2 from "../../image/imgCarrusel/EVGA-1.png";
+import imagen3 from "../../image/imgCarrusel/TRITON-WHITE-03-1.png";
+import logitech from "../../image/imgCarrusel/pngegg.png"
+import nvidia from "../../image/imgCarrusel/nvidia.png"
+import asus from "../../image/imgCarrusel/asus.png"
+import razer from "../../image/imgCarrusel/razer.png"
+import hyper from "../../image/imgCarrusel/hyper.png"
+import Carousel from 'react-bootstrap/Carousel';
+import "./Home.css"
+import React, { useEffect } from "react";
+import { ConfirmData } from "../ConfirmData/ConfirmData";
+import { postByMail } from "../../Redux/Actions/actions";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from "react-redux";
 
+export const Home = () => {
 
-const Home = () => {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
+    const dispatch = useDispatch()
+    const { user } = useAuth0()
 
-  const dispatch = useDispatch()
-  const products = useSelector((state) => state.allProducts)
+    useEffect(() => {
+        dispatch(postByMail(user?.email))
+    })
 
-  useEffect(() => {
-    dispatch(getAllProducts())
-  },[dispatch])
-  
-  return (
-    <div className=''>
-      {/* primer carrusel del home */}
-      <div className='containerGeneral'>
+    return (
 
-        <Carousel responsive={responsive} infinite={true} className="imgCarruselContainer">
-          <div className="itemHome">
-            <img className="imagenStyle" src={imagen1} alt="Image1" />
-          </div>
-          <div className="itemHome">
-            <img className="imagenStyle" src={imagen2} alt="Image2" />
-          </div>
-          <div className="itemHome">
-            <img className="imagenStyle" src={imagen3} alt="Image3" />
-          </div>
-          <div className="itemHome">
-            <img className="imagenStyle" src={imagen4} alt="Image4" />
-          </div>
-        </Carousel>
-      </div>
-      
+        <div className="containerGeneral">
 
-    <div className='container_all'>
+            <ConfirmData />
 
-      <div className='container_search'>
-    <Searchbar/>
-      </div>
+            <div className="carousel_1">
+                <Carousel variant="dark"
+                    className="carousel_indicators"
+                    controls={false}
+                    indicators={false}
+                >
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={imagen3}
+                            alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Best performance</h3>
+                            <p>Products available</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={imagen2}
+                            alt="Second slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Improve your skills</h3>
+                            <p>The best keyboards</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={imagen1}
+                            alt="Third slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Play at another level</h3>
+                            <p>
+                                Buy Razer here!
+                            </p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
+            </div>
 
-      <ContainerCards 
-      products={products}/>
-    </div>
+            <div className="carousel2_container">
+                <div className="text_car">
+                    <h1 className="text_carousel2">Brands</h1>
+                </div>
+                <div className="carousel_2">
+                    <Carousel variant="dark"
+                        controls={false}
+                        indicators={false}
+                        interval={1000}
+                    >
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100"
+                                src={logitech}
+                                alt="First slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100 Second_slide"
+                                src={asus}
+                                alt="Second_slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100"
+                                src={razer}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100"
+                                src={nvidia}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block2 w-100"
+                                src={hyper}
+                                alt="Third slide"
+                            />
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
 
-    </div>
-  )
+            </div>
+
+        </div>
+
+    );
 }
-
-export default Home
