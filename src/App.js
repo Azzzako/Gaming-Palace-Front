@@ -14,6 +14,8 @@ import ListFavs from './components/ListFavs/ListFavs';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import ShopCart from './components/ShopCart/ShopCart';
 import FormAdress from './components/ShopCart/FormAdress';
+import Contact from './components/Contact/Contact';
+import About from './components/AboutUs/About';
 
 
 
@@ -32,7 +34,8 @@ function App() {
         <Route exact path="/detail/:id" element={<Detail />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/review" element={<Review />} />
-        
+        <Route exact path="/contact" element={<Contact/>} />
+        <Route exact path="/about" element={<About/>} />
       
 
 
