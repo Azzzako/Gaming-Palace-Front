@@ -14,26 +14,29 @@ import ListFavs from './components/ListFavs/ListFavs';
 
 import ShopCart from './components/ShopCart/ShopCart';
 import FormAdress from './components/ShopCart/FormAdress';
-// import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+
 import OrderList from './components/ShopCart/OrderList';
 // import ProductsTable from './components/AdminDashboard/ProductsTable/ProductsTable';
 // import UsersTable from './components/AdminDashboard/UsersTable/UsersTable'
 
 // import { ConfirmData } from './components/ConfirmData/ConfirmData';
 
-import Appp from './components/AdminDashboard/Appp';
+// import Dashboard from './components/AdminDashboard/data/scenes/dashboard/Dashboard'
 
-import Leftbar from './components/AdminDashboard/componentsDash/Leftbar';
-import Topbar from './components/AdminDashboard/componentsDash/Topbar';
-
-
+// import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+// import SideBar from './components/AdminDashboard/SideBar';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import UsersPanel from './components/AdminDashboard/UsersPanel';
+import Sales from './components/AdminDashboard/Sales';
+import ProductsTable from './components/AdminDashboard/ProductsTable';
+import FAQ from './components/AdminDashboard/faq';
+import AddProduct from './components/AdminDashboard/AddProduct/AddProduct';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Leftbar />
-      <Topbar />
+      
       <Routes>
 
         <Route exact path="/showorder" element={<OrderList/>}/>
@@ -54,7 +57,12 @@ function App() {
 
 
       
-        <Route exact path="/admin-dashboard" element={<Appp/>} />
+        <Route exact path="/admin-dashboard" element={<AdminDashboard/>} />
+        <Route exact path="/admin-users" element={<UsersPanel/>} />
+        <Route exact path="/admin-sales" element={<Sales/>} />
+        <Route exact path="/admin-products" element={<ProductsTable/>} />
+        <Route exact path="/admin-faq" element={<FAQ/>} />
+        <Route exact path="/admin-products-form" element={<AddProduct/>} />
 
 
         {/* <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>

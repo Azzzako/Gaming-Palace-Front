@@ -48,6 +48,18 @@ export const postNewProduct = (data) => {
 	};
 };
 
+export const updateProduct = (data) => {
+	try {
+		return async function () {
+			const updateProduct = await axios.post(`http://localhost:3001/products`, data);
+			return updateProduct
+
+		}
+	} catch (error) {
+		console.log(error)
+	};
+};
+
 export const newReview = (data) => {
 	try {
 		return async function () {
