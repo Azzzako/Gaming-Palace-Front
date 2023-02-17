@@ -120,7 +120,7 @@ const Detail = (props) => {
 							</div>
 						</div>
 					  </div>
-            {/* <Link to= "/admin-dashboard"> <button>DASH</button> </Link> */}
+            <Link to= "/admin-dashboard"> <button>DASH</button> </Link>
             
           </div>
 				}
