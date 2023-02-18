@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY,NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER, UPDATE_USER  } from "./constants";
 
 
 
@@ -61,40 +61,40 @@ export const newReview = (data) => {
 };
 
 export const newUser = (user) => {
-	// try {
-	// 	return async function (dispatch) {
-	// 		const newUser = await axios.post(`http://localhost:3001/users`, user)
-	// 		return dispatch({
-	// 			type: GET_USER,
-	// 			payload: newUser.data
-	// 		})
-	// 	}
-	// } catch (error) {
-	// 	console.log((error, "Llena los campos pues"));
-	// }
-	return async (dispatch) => {
-		try {
-		  const response = await fetch(`http://localhost:3001/users`, {
-			method: 'POST',
-			body: JSON.stringify(user),
-			headers: {
-			  'Content-Type': 'application/json'
-			}
-		  });
-	
-		  const data = await response.json();
-	
-		  if (response.ok) {
-			dispatch(newUser(data));
-			return { success: true };
-		  } else {
-			return { error: data.message };
-		  }
-		} catch (error) {
-		  console.error(error);
-		  return { error: 'Error de red' };
+	try {
+		return async function (dispatch) {
+			const newUser = await axios.post(`http://localhost:3001/users`, user)
+			return dispatch({
+				type: GET_USER,
+				payload: newUser.data
+			})
 		}
-	  };
+	} catch (error) {
+		console.log((error, "Llena los campos pues"));
+	}
+	// return async (dispatch) => {
+	// 	try {
+	// 	  const response = await fetch(`http://localhost:3001/users`, {
+	// 		method: 'POST',
+	// 		body: JSON.stringify(user),
+	// 		headers: {
+	// 		  'Content-Type': 'application/json'
+	// 		}
+	// 	  });
+	
+	// 	  const data = await response.json();
+	
+	// 	  if (response.ok) {
+	// 		dispatch(newUser(data));
+	// 		return { success: true };
+	// 	  } else {
+	// 		return { error: data.message };
+	// 	  }
+	// 	} catch (error) {
+	// 	  console.error(error);
+	// 	  return { error: 'Error de red' };
+	// 	}
+	//   };
 }
 
 
@@ -109,6 +109,20 @@ export const getUser = () => {
 		}
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+export const updateUser = (user) => {
+	try {
+		return async function (dispatch) {
+			const userUp = await axios.post(`http://localhost:3001/updateuser`, user)
+			return dispatch({
+				type: UPDATE_USER,
+				payload: userUp.data
+			})
+		}
+	} catch (error) {
+		console.log((error, "Llena los campos pues"));
 	}
 }
 
