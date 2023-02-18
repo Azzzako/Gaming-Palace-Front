@@ -16,16 +16,16 @@
     text-decoration: none;
 }
 
-.logo_container {
+.logo_containers{
     margin-left: 0.5rem;
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    font-family: sans-serif;
+    font-family: var(--font-family-brands);
     justify-content: center;
 }
 
-.logo_container>p:nth-child(2) {
+.logo_containers>p:nth-child(2) {
     font-size: 1.3rem;
     color: #95c827;
     font-weight: 500;
@@ -34,12 +34,12 @@
 }
 
 @media(max-width: 960px){
-    .logo_container>p:nth-child(2){
+    .logo_containers>p:nth-child(2){
         display: none;
     }
 }
 
-.logo_container>svg:nth-child(1) {
+.logo_containers>svg:nth-child(1) {
     fill: #ffff;
     margin-right: 0.5rem;
 }

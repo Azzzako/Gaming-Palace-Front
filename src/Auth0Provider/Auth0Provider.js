@@ -15,7 +15,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
     history.push(
       appState
         ? appState.targetUrl
-        : window.location.href = "/home"
+        : window.location.href = "/"
     );
   };
 

@@ -31,7 +31,7 @@ const Navbar = () => {
 
     const linkLogo = {
         "text-decoration": "none",
-        "color": "#95c827"
+        "color": "#95c827",
     }
 
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <div className="wrapper">
                     
                     <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
-                        <div className="logo_container">
+                        <div className="logo_containers">
                             <DiRuby />
                             <p>
                         <Link to="/home" style={linkLogo}>
