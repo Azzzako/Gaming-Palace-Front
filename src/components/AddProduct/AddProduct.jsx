@@ -22,6 +22,7 @@ export default function AddProduct() {
     description: "",
     category: "",
     imageurl: "",
+    stock: 1,
   });
   console.log("IMAGEURL: ");
   console.log(input.imageurl);
@@ -72,6 +73,7 @@ export default function AddProduct() {
         description: "",
         category: "",
         imageurl: "",
+        stock: "",
       });
     }
   };
@@ -193,6 +195,19 @@ export default function AddProduct() {
               <option value="keyboard">keyboard</option>
               <option value="Headset">Headset</option>
             </select>
+          </div>
+
+          <div>
+            <label className={s.formlabel}>Stock</label>
+            <input
+              type="number"
+              id="Stock"
+              value={input.stock}
+              name="stock"
+              className={s.forminput}
+              placeholder="Stock"
+              onChange={(e) => handleChange(e)}
+            ></input>
           </div>
 
           <div>
