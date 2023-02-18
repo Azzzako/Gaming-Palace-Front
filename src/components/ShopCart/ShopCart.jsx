@@ -12,9 +12,13 @@ import './CardCart.css'
 const ShopCart = () => {
 
   const productsCart = useSelector(state => state.shopCart);
-  const totalBuy = useSelector(state => state.totalBuy);
-  const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
-  const dispatch = useDispatch();
+  const totalBuyOk = useSelector(state => state.totalBuy);
+
+  const prodsPay = useSelector(state=> state.totalToPay);
+  const totalAmounts = prodsPay?.map(prod => prod.quantity * prod.price);
+  const totalBuyOk2 = totalAmounts.length>1 ? totalAmounts.reduce((acc, curr)=> acc + curr) : totalAmounts;
+
+const dispatch = useDispatch();
 
 const {user} = useAuth0();
 const users = useSelector(state=> state?.users);
@@ -28,15 +32,14 @@ const findUser = users?.find(us => us?.email === user?.email)
     dispatch(getCart(findUser?.id))
   },[dispatch])
 
-  console.log(productsCart,"in cartttt")
-  console.log("id mio", findUser?.id)
+
   return (
     <div className='shop'>
 
       <Button onClick={()=> dispatch(deleteAllCart({userid: findUser?.id}))}>Delete all products</Button>
 
       <b>Shop Cart</b><BsEmojiSmileFill color='green'/>
-      <div id='total-buy'>Total buy: {totalBuyOk}</div>
+      <div id='total-buy'>Total buy: {totalBuyOk || totalBuyOk2}</div>
       <button onClick={()=>restoreTotal()}>Restore</button>
       <button className='restore-btn' onClick={()=>restoreTotal()}>Restore</button>
       {/* <b>Shop Cart</b><BsEmojiSmileFill color='green'/> */}
@@ -55,7 +58,7 @@ const findUser = users?.find(us => us?.email === user?.email)
                 image={prod.imageurl}
                 name={prod.namedisplay}
                 price={prod.price}
-                stock={10}
+                stock={prod.stock}
                 id={prod.id}
                 key={prod.id}
                 />

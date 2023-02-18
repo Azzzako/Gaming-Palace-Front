@@ -24,7 +24,7 @@ const FormAdress = () => {
   
   const dispatch = useDispatch();
   const prodsToPay = useSelector(state=> state.totalToPay);
-  const deleteItemsPayed = {userid: findUser.id, idproduct: []}
+  const deleteItemsPayed = {userid: findUser?.id, idproduct: []}
   prodsToPay.forEach(prod=> deleteItemsPayed.idproduct.push(prod.idproduct))
 
   const [orderOK, setOrderOK] = useState(false);
@@ -63,9 +63,9 @@ const [error, setError] = useState({});
       return setOrderOK(true);
     };
 
-    console.log(prodsToPay, "payyyyy")
-    console.log("deletePay", deleteItemsPayed)
-    console.log(orderOK, "orderrrrr")
+    // console.log(prodsToPay, "payyyyy")
+    // console.log("deletePay", deleteItemsPayed)
+    // console.log(orderOK, "orderrrrr")
     
   return (
     // <div style={{minHeight:"100vh", display:"flex", justifyContent: "center", color:"white"}}>FormAdress</div>

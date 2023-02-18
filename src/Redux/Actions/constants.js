@@ -16,9 +16,9 @@ export const TOTAL_TO_PAY = "TOTAL_TO_PAY";
 export const GET_FAVS = "GET_FAVS";
 export const DELETE_ALL_FAVS = "DELETE_ALL_FAVS";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
-export const GET_USER = 'GET_USER'
-export const GET_USER_BY_MAIL = "GET_USER_BY_MAIL"
-
+export const GET_USER = 'GET_USER';
+export const GET_USER_BY_MAIL = "GET_USER_BY_MAIL";
+export const DELETE_THIS_ORDER = "DELETE_THIS_ORDER";
 
 
 

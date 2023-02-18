@@ -1,12 +1,13 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addCart, getDetail } from '../../Redux/Actions/actions'
+import { addCart, getCart, getDetail, totalToPay } from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
 import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
 
 import Review from '../Review/Review';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
@@ -15,29 +16,34 @@ import Review from '../Review/Review';
 
 const Detail = (props) => {
 
+	const dispatch = useDispatch();
 
 	const detail = useSelector((i) => i.details);
   const productsCart = useSelector(state=> state.shopCart);
   const existProductsCart = productsCart.map(prod => prod.id)
 
+  const {user} = useAuth0();
+  const users = useSelector(state=> state?.users);
+  const findUser = users?.find(us => us?.email === user?.email)
 
-
-	const dispatch = useDispatch();
 
   const { id } = useParams();
 	const { history } = props; 
   const favourites = useSelector(state=> state.favourites)
 
-
   const existFavs = favourites.map(fav => fav.id)
+
+  const [input, setInput] = useState("");
+
+
 	useEffect(() => {
 		dispatch(getDetail(id));
 	},[dispatch, id]);
 
   const handleFav = (id) => {
     !existFavs.includes(id) ?
-    dispatch(addFav(id)) :
-    dispatch(deleteFavs(id))
+    dispatch(addFav(findUser?.id, {userId: findUser?.id, productId: id}))  :
+    dispatch(deleteFavs({userId: findUser?.id, productId: id}))
   };
 
 	const goHome = () => {
@@ -46,9 +52,38 @@ const Detail = (props) => {
 
   const handleCart = (id) => {
     !existProductsCart.includes(id) &&
-    dispatch(addCart(id)) 
+    dispatch(addCart({userid: findUser?.id, idproduct: id, quantity: 1})) && setTimeout(()=>{dispatch(getCart(findUser?.id))},100) 
     // disptach(deleteCart(id))
   };
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setInput(e.target.value<=detail.stock ? Number(e.target.value) : detail.stock)
+  }
+
+  const handleBuy = (id) => {   
+    if(input && input <= detail.stock ){
+    dispatch(totalToPay({name: detail.name, price: detail.price, quantity: input, idproduct: id, stock: detail.stock}));
+    // dispatch(totalBuy(total));
+    setInput("")
+    dispatch(getCart(findUser?.id))
+    // setTimeout(()=>{window.location = "/showorder"},2000)
+  } 
+  else return alert(`Wrong value. Available stock (${detail.stock})`)
+}
+
+
+
+  const prodsPay = useSelector(state=> state.totalToPay);
+
+
+console.log("prodsPay", prodsPay)
+
+
+
+
+
+
 
 	return (
 
@@ -61,8 +96,9 @@ const Detail = (props) => {
 				{detail && 
 					
           <div className='container align-items-center p-5 mt-5'>
-            <Link to={"/home"}>
-            <button className="button btn btn-secondary" onClick={goHome}>HOME {'> '}{detail.category} </button></Link>
+            <Link to={"/products"}>
+            <button className="button btn btn-secondary" onClick={goHome}>HOME {'> '}{detail.category} </button>
+            </Link>
 	          <div className="row detailsContainer d-flex flex-column align-items-center">
               <div className="card row detailsContainer d-flex flex-column align-items-center">
               <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
@@ -85,7 +121,7 @@ const Detail = (props) => {
                       <div class=" form-outline item col-10 mx-auto " >
                           <h3 className='my-3'>US$ {detail.price} </h3>
                           <div className='d-flex gap-2 my-3'>
-                            <input type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} />
+                            <input value={input} onChange={(e)=>{handleInput(e)}} type="number" min="1" max={detail.stock} class="form-control form" style={{width: '5rem'}} />
 
 
 
@@ -94,8 +130,9 @@ const Detail = (props) => {
                               {
                                 existFavs.includes(detail.id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
                                 : <BsHeartFill color='lightslategray' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
-                              }     
+                              }
                            </div>
+                              <div><span>Stock: {detail.stock}</span></div>    
 
 
                           </div>
@@ -105,9 +142,7 @@ const Detail = (props) => {
 
                       
                     <div className='d-grid gap-2 col-10 mx-auto'>
-                    <Link to={"/inconstruction"}>
-                        <button type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button>
-                    </Link>
+                        <button onClick={()=> handleBuy(detail.id)} type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button>
 
                         <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}} onClick={()=>{handleCart(detail.id)}}>Add to cart</button>
                     </div>
