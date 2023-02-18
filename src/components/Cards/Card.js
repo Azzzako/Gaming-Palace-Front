@@ -3,30 +3,40 @@ import { Link } from "react-router-dom";
 import './Card.css'
 import { BsCartFill, BsHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCart, addFav, deleteCart, deleteFavs } from '../../Redux/Actions/actions.js';
+import { addCart, addFav, deleteFavs, deleteItemCart, getCart } from '../../Redux/Actions/actions.js';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
 const Card = ({ image, price, name, description, id }) => {
 
+  const {user} = useAuth0();
+  const users = useSelector(state=> state?.users);
+  const findUser = users?.find(us => us?.email === user?.email)
+
   const favourites = useSelector(state=> state.favourites)
   const productsCart = useSelector(state=> state.shopCart)
 
-  const disptach = useDispatch();
-  const existFavs = favourites.map(fav => fav.id)
-  const existProductsCart = productsCart.map(prod => prod.id)
+  const dispatch = useDispatch();
+  const existFavs = favourites?.map(fav => fav?.id)
+  const existProductsCart = productsCart?.map(prod => prod?.id)
 
   const handleFav = (id) => {
     !existFavs.includes(id) ?
-      disptach(addFav(id)) :
-      disptach(deleteFavs(id))
+    dispatch(addFav(findUser?.id, {userId: findUser?.id, productId: id}))  :
+    dispatch(deleteFavs({userId: findUser?.id, productId: id})) 
   };
 
   const handleCart = (id) => {
     !existProductsCart.includes(id) ?
-    disptach(addCart(id)) :
-    disptach(deleteCart(id))
+    dispatch(addCart({userid: findUser?.id, idproduct: id, quantity: 1})) && setTimeout(()=>{dispatch(getCart(findUser?.id))},100) :
+    dispatch(deleteItemCart({userid: findUser?.id, idproduct: id})) && setTimeout(()=>{dispatch(getCart(findUser?.id))},100)
   };
+
+  console.log(users,"userrrriddddd")
+  console.log(productsCart,"shoppppp")
+  console.log(findUser,"findddddd")
+  console.log(favourites,"favourites")
 
   return (
     <div className='cards'>
@@ -50,7 +60,6 @@ const Card = ({ image, price, name, description, id }) => {
           }          
         </div>
 
-      
 
       
 

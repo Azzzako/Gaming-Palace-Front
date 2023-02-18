@@ -8,13 +8,41 @@ import razer from "../../image/imgCarrusel/razer.png"
 import hyper from "../../image/imgCarrusel/hyper.png"
 import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
-import React from "react";
+import React, { useEffect } from "react";
+import { ConfirmData } from "../ConfirmData/ConfirmData";
+import { postByMail } from "../../Redux/Actions/actions";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts, getCart, getFavs, getUser } from "../../Redux/Actions/actions";
+
+
 
 export const Home = () => {
+
+    const dispatch = useDispatch();
+    const {user} = useAuth0();
+    const users = useSelector(state=> state?.users);
+    const findUser = users?.find(us => us?.email === user?.email);
+
+    useEffect(()=>{
+        dispatch(getAllProducts(),getUser())
+    },[])
+
+    useEffect(()=>{
+        dispatch(getCart(findUser?.id))
+        dispatch(getFavs(findUser?.id))
+    },[findUser])
+   
+
+console.log(findUser,"userrrrr")
+
 
     return (
 
         <div className="containerGeneral">
+
+            <ConfirmData />
+
             <div className="carousel_1">
                 <Carousel variant="dark"
                     className="carousel_indicators"
