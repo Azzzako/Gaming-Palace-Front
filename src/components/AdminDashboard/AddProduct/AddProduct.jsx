@@ -62,7 +62,7 @@ export default function AddProduct() {
 		setErrors(
 			validator({
 				...input,
-				season: e.target.value,
+				category: e.target.value,
 			})
 		);
 	};
@@ -73,8 +73,7 @@ export default function AddProduct() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
     if(!input.name || !input.price || !input.trademark || !input.description || !input.category || !input.imageurl){ return alert("INFORMATION REQUIRED, PLEASE COMPLETE ALL FIELDS", setModalShow(false))} 
-    // if (!input.name){ return alert("INFORMATION REQUIRED", setModalShow(false))} 
-    // if
+   
     else{  
     console.log(input)
         setErrors(
@@ -148,7 +147,15 @@ export default function AddProduct() {
         height="70vh"
         width="2000px"
         margin="30px">
+
+
+
+
       <div className={s.container}>
+
+
+
+
 
         <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
           <div className={s.formheader}>

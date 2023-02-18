@@ -1,6 +1,6 @@
 
 
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER } from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, CHANGE_PRODUCT } from "./Actions/constants";
 
 
 
@@ -11,7 +11,6 @@ const initialState = {
   favourites: [],
   shopCart: [],
   totalBuy: [0],
-
   users: [],
   user: [],
 
@@ -121,10 +120,18 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_USER:
       return { ...state, user: action.payload }
+
+    case CHANGE_PRODUCT:
+      return {
+        ...state
+        };
+  
     
       default:
       return state;
-  }
+
+
+  } 
 };
 
 

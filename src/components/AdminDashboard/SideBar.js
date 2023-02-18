@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./SideBar.css";
+import {TbHome2,TbUsers,TbClipboardText,TbFileAnalytics ,TbTags,TbTools } from "react-icons/tb";
+import {RiQuestionnaireLine} from "react-icons/ri";
+
 
 const SideBar = () => {
-	const [isExpanded, setExpendState] = useState(false);
+	const [isExpanded, setExpendState] = useState(true);
 	const menuItems = [
 		{
 			text: "Dashboard",
@@ -25,6 +28,7 @@ const SideBar = () => {
             href: "/hola"
 		},
 		{
+			
 			text: "Products",
 			icon: "icons/folder.svg",
             href: "/admin-products"
@@ -68,7 +72,10 @@ const SideBar = () => {
 						<span></span>
 					</button>
 				</div>
+
+				
 				<div className="nav-menu">
+				<TbHome2 className="home"/>	<TbUsers className="users"/>	<TbClipboardText className="sales"/>	<TbFileAnalytics className="analytics"/><TbTags className="products"/><TbTools className="create"/><RiQuestionnaireLine className="faq"/>	
 					{menuItems.map(({ text, icon, href }) => (
 						<a
 							className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
@@ -90,13 +97,15 @@ const SideBar = () => {
 							srcset=""
 						/>
 						<div className="nav-footer-info">
-							<p className="nav-footer-user-name">M Showkat</p>
-							<p className="nav-footer-user-position">store admin</p>
+							<p className="nav-footer-user-name">Dashboard</p>
+							<p className="nav-footer-user-position">Gaming Palace</p>
 						</div>
 					</div>
 				)}
 				<img className="logout-icon" src="icons/logout.svg" alt="" srcset="" />
 			</div>
+
+			
 		</div>
 	);
 };

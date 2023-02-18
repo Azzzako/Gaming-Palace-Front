@@ -51,6 +51,10 @@ code {
 	display: flex;
 	color: var(--light);
 }
+.nav-brand h2{
+	margin-top: 13px;
+	font-size: 40px
+}
 .nav-brand img {
 	width: 40px;
 	padding: 0 10px;
@@ -169,4 +173,41 @@ code {
 }
 .logout-icon:hover {
 	background-color: var(--primary);
+}
+
+.home{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 1px;
+	font-size: 20px;
+}
+.users{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 61px;
+}
+.sales{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 118px;
+}
+.analytics{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 175px;
+}
+.products{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 232px;
+}
+.create{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 289px;
+}
+.faq{
+	position: absolute;
+	margin-left: 30px;
+	margin-top: 347px;
 }

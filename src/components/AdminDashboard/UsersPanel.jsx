@@ -9,6 +9,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import SideBar from "./SideBar";
+import './UsersPanel.css'
 
 const UsersPanel = () => {
   const theme = useTheme();
@@ -82,11 +83,15 @@ const UsersPanel = () => {
   ];
 
   return (
+    <div className="Q">
+
     <Box  display="flex">
+
       <SideBar/>
+
       <Box
         display="grid"
-        height="70vh"
+        height="30vh"
         width="2000px"
         margin="30px"
         
@@ -116,9 +121,43 @@ const UsersPanel = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={user} columns={columns} />
+         <table className="table">
+        <thead>
+          <tr>
+           
+            <th>ID</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Adress</th>
+            <th>Role</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {user.map(elemento=>(
+            <tr>
+              <td className="a">{elemento.id}</td>
+              <td className="b">{elemento.name}</td>
+              <td className="b">{elemento.email}</td>
+              <td className="a">{elemento.address}</td>
+              <td className="a">{elemento.role}</td>
+              <td className="b">{elemento.disabled}</td>
+               {/* CONDICIONAR PARA QUE RENDERICE UN ICON */}
+
+              
+
+              {/* <td>
+              <button  onClick={()=>seleccionarPais(elemento, 'Editar')}><TbEdit/> </button> {"   "} 
+              <button className="btn btn-danger" onClick={()=>seleccionarPais(elemento, 'Eliminar')}><TbTrash/> </button>
+              </td> */}
+            </tr>
+          ))
+          }
+        </tbody>
+      </table>
       </Box>
     </Box>
+    </div>
   );
 };
 
