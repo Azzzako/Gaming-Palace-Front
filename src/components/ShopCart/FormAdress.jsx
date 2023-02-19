@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteItemCart, getAllProducts, totalPayment, changeStock } from '../../Redux/Actions/actions';
+import { deleteItemCart, getAllProducts, totalPayment, changeStock, restoreTotalBuy } from '../../Redux/Actions/actions';
 import './OrderList.css'
 
 function validateForm(input){
@@ -28,7 +28,10 @@ const FormAdress = () => {
   prodsToPay.forEach(prod=> deleteItemsPayed.idproduct.push(prod.idproduct))
 
   const changestock = [];
-  prodsToPay.forEach(toStock => changestock.push({idproduct: toStock.idproduct, stock: toStock.sotck-toStock.quantity}));
+  for(let i=0; i<prodsToPay.length; i++){
+    let stock = prodsToPay[i].stock - prodsToPay[i].quantity
+    changestock.push({ idproduct: prodsToPay[i].idproduct, stock })
+  };
 
 
   const [orderOK, setOrderOK] = useState(false);
@@ -56,12 +59,15 @@ const FormAdress = () => {
     };
 
     const payMP = () => {
-      dispatch(totalPayment(prodsToPay), changeStock(changestock))
+      dispatch(totalPayment(prodsToPay))
+      dispatch(changeStock(changestock))
       dispatch(deleteItemCart(deleteItemsPayed))
+      dispatch(restoreTotalBuy())
       dispatch(getAllProducts())
       setTimeout(()=>{setOrderOK(false)}, 5000)
     }
 console.log("jarana", prodsToPay)
+console.log("changestock", changestock)
     const handleConfirm = () => {
       if(!prodsToPay.length>0) return setTimeout((alert("Add products to pay")), window.location = "/products", 2000) ;
       if(!input.adress.length>0 || !input.city || !input.postalCode) return alert('Complete all fields');    
