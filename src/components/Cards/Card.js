@@ -33,10 +33,7 @@ const Card = ({ image, price, name, description, id }) => {
     dispatch(deleteItemCart({userid: findUser?.id, idproduct: id})) && setTimeout(()=>{dispatch(getCart(findUser?.id))},100)
   };
 
-  console.log(users,"userrrriddddd")
-  console.log(productsCart,"shoppppp")
   console.log(findUser,"findddddd")
-  console.log(favourites,"favourites")
 
   return (
     <div className='cards'>
