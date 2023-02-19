@@ -288,3 +288,10 @@ export const sendNMailer = (aBody) => {
 		axios.post("http://localhost:3001/nmailer", aBody)
 	}
 }
+
+
+export const changeStock = (info) => {
+	return async () => {
+		axios.post("http://localhost:3001/change/stock", info)
+	}
+}

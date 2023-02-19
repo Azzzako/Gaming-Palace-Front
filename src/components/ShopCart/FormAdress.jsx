@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteItemCart, totalPayment } from '../../Redux/Actions/actions';
+import { deleteItemCart, getAllProducts, totalPayment, changeStock } from '../../Redux/Actions/actions';
 import './OrderList.css'
 
 function validateForm(input){
@@ -27,6 +27,10 @@ const FormAdress = () => {
   const deleteItemsPayed = {userid: findUser?.id, idproduct: []}
   prodsToPay.forEach(prod=> deleteItemsPayed.idproduct.push(prod.idproduct))
 
+  const changestock = [];
+  prodsToPay.forEach(toStock => changestock.push({idproduct: toStock.idproduct, stock: toStock.sotck-toStock.quantity}));
+
+
   const [orderOK, setOrderOK] = useState(false);
 
     const [input, setInput] = useState({
@@ -35,7 +39,7 @@ const FormAdress = () => {
         postalCode: '',
     });
 
-const [error, setError] = useState({});
+  const [error, setError] = useState({});
 
 
     const handleInputChange = (e) => {
@@ -52,11 +56,12 @@ const [error, setError] = useState({});
     };
 
     const payMP = () => {
-      dispatch(totalPayment(prodsToPay))
+      dispatch(totalPayment(prodsToPay), changeStock(changestock))
       dispatch(deleteItemCart(deleteItemsPayed))
+      dispatch(getAllProducts())
       setTimeout(()=>{setOrderOK(false)}, 5000)
     }
-
+console.log("jarana", prodsToPay)
     const handleConfirm = () => {
       if(!prodsToPay.length>0) return setTimeout((alert("Add products to pay")), window.location = "/products", 2000) ;
       if(!input.adress.length>0 || !input.city || !input.postalCode) return alert('Complete all fields');    
