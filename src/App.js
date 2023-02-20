@@ -35,10 +35,11 @@ function App() {
       
         <Route exact path='/productform' element={<AddProduct/>}/>
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/inconstruction" element={<InConstructionPage />} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/detail/:id" element={<Detail />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/review" element={<Review />} />
+        <Route exact path="/about" element={<About />} />
         
       
 
