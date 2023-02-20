@@ -19,14 +19,16 @@ import { getAllProducts, getCart, getFavs } from "../../Redux/Actions/actions";
 
 export const Home = () => {
 
+
     const dispatch = useDispatch();
     const {user} = useAuth0();
     const users = useSelector(state=> state?.users);
     const findUser = users.length>0 ? users.find(us => us?.email === user?.email) : null;
 
     useEffect(()=>{
-        dispatch(getAllProducts(),getUser())
-    },[])
+        dispatch(getAllProducts())
+        dispatch(getUser())
+    },[dispatch])
 
     useEffect(()=>{
         dispatch(getCart(findUser?.id))
