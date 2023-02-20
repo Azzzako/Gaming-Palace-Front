@@ -1,6 +1,8 @@
+import { ButtonBase } from '@mui/material'
 import React from 'react'
 import { BsCashCoin } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { sendNMailer } from '../../Redux/Actions/actions'
 import FormAdress from './FormAdress'
 import './OrderList.css'
 
@@ -13,11 +15,24 @@ const OrderList = () => {
   const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
     const prodsPay = useSelector(state=> state.totalToPay);
 console.log(prodsPay, "payyyy")
+
+const dispatch = useDispatch();
+
+const sendEmail = () => {
+  dispatch(sendNMailer({destiny: "eliaspiolatto77@hotmail.com", prodsPay: prodsPay}))
+}
+
+
+
+
   return (
     <div className='order-list'>
 
       <div >
         <h1 className="page-nav">MY ORDER</h1>
+
+        <ButtonBase onClick={()=> sendEmail()}>Enviar orden al email</ButtonBase>
+
         <p className='in-cart'>In cart: US$ {totalBuyOk}<BsCashCoin color='green'/></p>
       </div>
 

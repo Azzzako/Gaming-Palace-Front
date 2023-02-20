@@ -35,24 +35,23 @@ const Navbar = () => {
     }
 
 
-
     return (
         <nav className="navbarContainer">
             {
                 location.pathname !== "/" &&
 
                 <div className="wrapper">
-                    
+
                     <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
                         <div className="logo_containers">
                             <DiRuby />
                             <p>
-                        <Link to="/home" style={linkLogo}>
-                                Gaming Palace
-                            </Link>
+                                <Link to="/home" style={linkLogo}>
+                                    Gaming Palace
+                                </Link>
                             </p>
                         </div>
-                        
+
                         <div className="mobile_icon"
                             onClick={() => setShowNavbar(!showNavbar)}
                         >
@@ -70,13 +69,14 @@ const Navbar = () => {
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
-                            <div className="menu_item">
+                            {!isAuthenticated ? <div></div> : <div className="menu_item">
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
-                            </div>
+                            </div>}
+
 
                             <div className="container_icons">
 
-                                {!isAuthenticated ? <div></div> :   <div className="shopping_cart">
+                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
                                     <Link to="/favourites" style={linkStyle}><div className="">
                                         <TfiHeart />
                                         <span className="length_cart">{favourites.length}</span>
