@@ -25,7 +25,7 @@ const SideBar = () => {
 		{
 			text: "Analytics",
 			icon: "icons/pie-chart.svg",
-            href: "/hola"
+            href: "/admin-analytics"
 		},
 		{
 			

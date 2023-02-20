@@ -36,22 +36,21 @@ const Sales = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>Trademark</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Category</th>
+              <th>User</th>
+              <th>Date</th>
+              <th>Products</th>
+              <th>Spent</th>
             </tr>
           </thead>
           <tbody>
             {user.Carts?.map(elemento=>(
               <tr>
                 <td className="price">{elemento.id}</td>
-                <td td className="trademark">{elemento.name}</td>
-                <td td className="trademark">{elemento.trademark}</td>
-                <td td className="price">{elemento.price}</td>
+                <td td className="trademark">{elemento.email}</td>
+                <td td className="trademark">{elemento}</td>
+                <td td className="price">{elemento}</td>
                 <td td className="price">{elemento.stock}</td>
-                <td td className="trademark">{elemento.category}</td>
+                
   
               </tr>
             ))

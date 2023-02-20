@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { getAllProducts, changeProduct} from "../../Redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Switch, Typography, useTheme } from "@mui/material"
+import { Box, Switch, useTheme } from "@mui/material"
 import { tokens } from "./theme";
 import './ProductsTable.css';
 import { TbEdit } from "react-icons/tb"
-import { TbTrash } from "react-icons/tb"
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, ModalBody, ModalHeader, ModalFooter} from 'reactstrap';
 import SideBar from './SideBar';
 
@@ -18,61 +16,41 @@ function ProductsTable() {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-////////////////trae productos a la tabla
+
+
   useEffect(() => {
 		dispatch(getAllProducts());
 	},[dispatch]);
  
-  const [inputd, setinputd] = useState({
-    idproduct: "",
-    productname: "",
-    trademark: "",
-    price: 0,
-    description: "",
-    category: "",
-    imageurl: "",
-    disabled: "",
-    stock: "",
-    namedisplay: ""
-  });
 
-  const changeDisabled = (id, elemento) => {
-    let findProduct = product?.find(e => e.id === id)
-    // findProduct[id] = "idproduct"
-    findProduct.disabled = findProduct?.disabled === false ? true : false
-    setinputd({
-      idproduct: id,
-      productname:"hola",
+
+  const changeDisabled = (elemento) => {
+    
+    elemento.disabled = elemento?.disabled === false ? true : false;
+
+    const inputd = {
+      idproduct: elemento.id,
+      productname:elemento.name,
       trademark: elemento.trademark,
       price: elemento.price,
       description: elemento.description,
       category: elemento.category,
       imageurl: elemento.imageurl,
-      disabled: findProduct.disabled,
+      disabled: elemento.disabled,
       stock: elemento.stock,
       namedisplay: elemento.namedisplay
-    })
-    // dispatch(changeProduct(inputd))
+    }
+
+    dispatch(changeProduct(inputd))
+
     console.log(inputd)
-    // console.log(findProduct)
-    // dispatch(getAllProducts())
+  
   }
 
-
-
-
-  const [data, setData] = useState(product);
   const [modalEditar, setModalEditar] = useState(false);
   const [modalEliminar, setModalEliminar] = useState(false);
 
-  const [paisSeleccionado, setPaisSeleccionado] = useState({
-    id: "",
-    trademark: "",
-    price: "",
-    category: "",
-    stock: "",
-    namedisplay: ""
-  });
+ 
 
   ////////////////////estados de la info tabla(input)
   const [input, setinput] = useState({
@@ -115,14 +93,11 @@ function ProductsTable() {
             });
   setModalEditar(!modalEditar)
          }  
-    
-    
-    //  console.log(input);      
 
-     
+
       /////////mostrar segun cual sea 
-  const seleccionarPais=(elemento, caso)=>{
-    setinput( {idproduct: elemento.id,
+  const selectModal=(elemento, caso)=>{
+    setinput({idproduct: elemento.id,
     name: elemento.name,
     trademark: elemento.trademark,
     price: elemento.price,
@@ -134,89 +109,82 @@ function ProductsTable() {
     namedisplay: elemento.namedisplay})
 
     setModalEditar(true)
-
   }
-   
     console.log(product)
 
 
-
-  
-    
   return (
     <div className="P">
     <Box  display="flex" >
+
     <SideBar/>
-    <Box
-      display="grid"
-      height="30vh"
-      width="2000px"
-      margin="30px"
-    >
 
-    {/* ///////////////////////////////// TABLA */}
-      <table className="table-fixed">
-        <thead>
-          
-           <tr>
-             
-            <th >ID</th>
-            <th >Name</th>
-            <th >Trademark</th>
-            <th >Price</th>
-            <th >Stock</th>
-            <th >Category</th>
-            <th></th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {product.map(elemento=>(
+      <Box
+        display="grid"
+        height="30vh"
+        width="2000px"
+        margin="30px"
+      >
+
+      {/* ///////////////////////////////// TABLA */}
+        <table className="table-fixed">
+          <thead>
+
             <tr>
-              <td >{elemento.id}</td>
-              <td td >{elemento.namedisplay}</td>
-              <td td >{elemento.trademark}</td>
-              <td td >{elemento.price}</td>
-              <td td >{elemento.stock}</td>
-              <td td >{elemento.category}</td>
-              {/* <td td className="trademark">{elemento.imageurl}</td> */}
+              <th >ID</th>
+              <th >Name</th>
+              <th >Trademark</th>
+              <th >Price</th>
+              <th >Stock</th>
+              <th >Category</th>
+              <th></th>
+              <th>Status</th>
+            </tr>
 
-              <td className="btns-p-table">
-              <button className="btn-p-table"  onClick={()=>seleccionarPais(elemento, 'Editar')}><TbEdit/></button> 
+          </thead>
+
+          <tbody>
+            {product.map(elemento=>(
+              <tr>
+                <td >{elemento.id}</td>
+                <td td >{elemento.namedisplay}</td>
+                <td td >{elemento.trademark}</td>
+                <td td >{elemento.price}</td>
+                <td td >{elemento.stock}</td>
+                <td td >{elemento.category}</td>
               
 
-
-              <td><span>enabled</span></td>
-              <Switch
-              checked={elemento.disabled === false ? false: true}
-              onChange={() =>changeDisabled(elemento.id, elemento)}
-              inputProps={{ 'aria-label': 'controlled' }}/>
-              <td><span>disabled</span></td>
+                <td className="btns-p-table">
+                <button className="btn-p-table"  onClick={()=>selectModal(elemento, 'Editar')}><TbEdit/></button> 
 
 
+                <td><span>enabled</span></td>
+                <Switch
+                checked={elemento.disabled === false ? false: true}
+                onClick={() =>changeDisabled(elemento)}
+                inputProps={{ 'aria-label': 'controlled' }}/>
+                <td><span>disabled</span></td>
+                </td>
 
-              {/* <button className="btn-p-table " onClick={()=>setModalEliminar(true)}><TbTrash/> </button> */}
-              </td>
-            </tr>
-          ))
-          }
-        </tbody>
-      </table>
-</Box>
+              </tr>
+            ))
+            }
+          </tbody>
+          
+        </table>
+      </Box>
 {/* //////////////////////////////////////////////////// */}
 
 
       <Modal isOpen={modalEditar}>
+
         <ModalHeader>
-          
           <div>
             <h3>Edit Product</h3>
           </div>
         </ModalHeader>
 
-
         <ModalBody>
-
           <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form-group">
             <label>ID</label>
@@ -317,11 +285,12 @@ function ProductsTable() {
           </div>
           </form>
         </ModalBody>
+
+
         <ModalFooter>
           <button type="submit" id="edit" name= "edit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
             Actualizar
           </button>
-
 
           <button
             className="btn btn-danger"
@@ -348,6 +317,7 @@ function ProductsTable() {
             No
           </button>
         </ModalFooter>
+
       </Modal>
 
 
