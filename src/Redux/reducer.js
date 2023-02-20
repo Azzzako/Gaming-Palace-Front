@@ -1,6 +1,6 @@
 
 
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART } from "./Actions/constants";
+import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
 
 
 
@@ -27,7 +27,7 @@ const rootReducer = (state = initialState, action) => {
     case TOTAL_TO_PAY:
          for(let i=0; i<state.totalToPay.length; i++){
           if(state.totalToPay[i].name===action.payload.name){
-            state.totalToPay[i].quantity+=action.payload.quantity
+            state.totalToPay[i].quantity=action.payload.quantity
             return {
             ...state
           }
@@ -131,9 +131,11 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case TOTAL_BUY:
+      const totalAmounts = state.totalToPay.length>0 ? state.totalToPay?.map(prod => prod.quantity * prod.price) : 0;
+      const totalCount = totalAmounts.length>1 ? totalAmounts.reduce((acc, curr)=> acc + curr) : totalAmounts;
       return {
         ...state,
-        totalBuy: [...state.totalBuy, action.payload]
+        totalBuy: totalCount
       }
 
       case RESTORE_TOTAL_BUY:
@@ -141,6 +143,15 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           totalBuy: [0],
           totalToPay: []
+        }
+
+      case DELETE_THIS_ORDER:
+        const deleteOneOrder = state.totalToPay.filter(prod => prod.idproduct !== action.payload.id)
+        const totalbuy = state.totalBuy - (action.payload.quantity * action.payload.price)
+        return {
+          ...state,
+          totalToPay: deleteOneOrder,
+          totalBuy: totalbuy
         }
 
     case GET_USERS:

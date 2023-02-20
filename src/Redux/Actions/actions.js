@@ -1,7 +1,8 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, UPDATE_USER } from "./constants";
+
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER, UPDATE_USER } from "./constants";
 
 
 
@@ -256,6 +257,12 @@ export const restoreTotalBuy = () => {
 
 };
 
+export const deleteThisOrder = (idproduct) => {
+	return {
+		type: DELETE_THIS_ORDER,
+		payload: idproduct
+	}
+}
 
 export const totalToPay = (item) => {
 	return {
@@ -280,5 +287,12 @@ export const totalPayment =(prods) => {
 export const sendNMailer = (aBody) => {
 	return async () => {
 		axios.post("http://localhost:3001/nmailer", aBody)
+	}
+}
+
+
+export const changeStock = (info) => {
+	return async () => {
+		axios.post("http://localhost:3001/change/stock", info)
 	}
 }

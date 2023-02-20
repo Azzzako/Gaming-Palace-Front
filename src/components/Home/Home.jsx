@@ -13,7 +13,7 @@ import { ConfirmData } from "../ConfirmData/ConfirmData";
 import { getUser, postByMail } from "../../Redux/Actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, getCart, getFavs, getUser } from "../../Redux/Actions/actions";
+import { getAllProducts, getCart, getFavs } from "../../Redux/Actions/actions";
 
 
 
@@ -23,7 +23,7 @@ export const Home = () => {
     const dispatch = useDispatch();
     const {user} = useAuth0();
     const users = useSelector(state=> state?.users);
-    const findUser = users?.find(us => us?.email === user?.email);
+    const findUser = users.length>0 ? users.find(us => us?.email === user?.email) : null;
 
     useEffect(()=>{
         dispatch(getAllProducts())
@@ -37,6 +37,7 @@ export const Home = () => {
    
 
 console.log(findUser,"userrrrr")
+
 
 
     return (
