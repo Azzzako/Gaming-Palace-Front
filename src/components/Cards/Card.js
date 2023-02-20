@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 
-const Card = ({ image, price, name, description, id }) => {
+const Card = ({ image, price, name, description, id, stock }) => {
 
   const {user} = useAuth0();
   const users = useSelector(state=> state?.users);
@@ -52,6 +52,7 @@ const Card = ({ image, price, name, description, id }) => {
           }     
        
           {
+            stock <= 0 ? "Agotadisimo" :
             existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
             <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
           }          
