@@ -4,12 +4,14 @@ import React, { useEffect } from 'react'
 import { BsEmojiSmileFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteAllCart, getCart, restoreTotalBuy } from '../../Redux/Actions/actions';
+import { deleteAllCart, getCart, restoreTotalBuy, totalBuy } from '../../Redux/Actions/actions';
 import CardCart from './CardCart';
 import './ShopCart.css'
 import './CardCart.css'
 
 const ShopCart = () => {
+
+  const dispatch = useDispatch();
 
   const productsCart = useSelector(state => state.shopCart);
   const totalBuyOk = useSelector(state => state.totalBuy);
@@ -18,7 +20,6 @@ const ShopCart = () => {
   const totalAmounts = prodsPay?.map(prod => prod.quantity * prod.price);
   const totalBuyOk2 = totalAmounts.length>1 ? totalAmounts.reduce((acc, curr)=> acc + curr) : totalAmounts;
 
-const dispatch = useDispatch();
 
 const {user} = useAuth0();
 const users = useSelector(state=> state?.users);
@@ -30,6 +31,7 @@ const findUser = users?.find(us => us?.email === user?.email)
 
   useEffect(()=>{
     dispatch(getCart(findUser?.id))
+    dispatch(totalBuy())
   },[dispatch])
 
 

@@ -33,7 +33,7 @@ const Detail = (props) => {
 
   const existFavs = favourites.map(fav => fav.id)
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(0);
 
 
 	useEffect(() => {
@@ -64,22 +64,29 @@ const Detail = (props) => {
   const handleBuy = (id) => {   
     if(input && input <= detail.stock ){
     dispatch(totalToPay({name: detail.name, price: detail.price, quantity: input, idproduct: id, stock: detail.stock}));
-    // dispatch(totalBuy(total));
-    setInput("")
-    dispatch(getCart(findUser?.id))
-    // setTimeout(()=>{window.location = "/showorder"},2000)
+    !existProductsCart.includes(id) &&
+    dispatch(addCart({userid: findUser?.id, idproduct: id, quantity: 1})) && 
+    setTimeout(()=>{dispatch(getCart(findUser?.id))},100)
+    
+    setInput(0)
+    
+    setTimeout(()=>{window.location = "/showorder"},200)
   } 
   else return alert(`Wrong value. Available stock (${detail.stock})`)
 }
 
 
 
-  const prodsPay = useSelector(state=> state.totalToPay);
-
-
+const prodsPay = useSelector(state=> state.totalToPay);
 console.log("prodsPay", prodsPay)
 
+const decrement = () => {
+  if(input > 0) setInput(input -1)
+}
 
+const increment = () => {
+  if(input < detail.stock) setInput(input +1) 
+}
 
 
 
@@ -121,7 +128,7 @@ console.log("prodsPay", prodsPay)
                       <div class=" form-outline item col-10 mx-auto " >
                           <h3 className='my-3'>US$ {detail.price} </h3>
                           <div className='d-flex gap-2 my-3'>
-                            <input value={input} onChange={(e)=>{handleInput(e)}} type="number" min="1" max={detail.stock} class="form-control form" style={{width: '5rem'}} />
+                            <input value={input} onChange={(e)=>{handleInput(e)}} type="input" min="1" max={detail.stock} class="form-control form" style={{width: '5rem'}} />
 
 
 
@@ -133,6 +140,9 @@ console.log("prodsPay", prodsPay)
                               }
                            </div>
                               <div><span>Stock: {detail.stock}</span></div>    
+                              <button onClick={()=> decrement()}> - </button>
+                              <button onClick={()=> increment()}> + </button>
+
 
 
                           </div>
