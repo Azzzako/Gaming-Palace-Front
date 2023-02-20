@@ -40,7 +40,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/review" element={<Review />} />
         <Route exact path="/about" element={<About />} />
-        
+        <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>
       
 
 
