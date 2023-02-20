@@ -13,8 +13,8 @@ const {user} = useAuth0();
 const users = useSelector(state=> state?.users);
 const findUser = users?.find(us => us?.email === user?.email)
 
-
-
+const prodsPay = useSelector(state=> state.totalToPay);
+// const findProd = prodsPay?.find(prod => prod.idproduct === id);
 
 
 const handleDeleteCart = (id) => {
@@ -22,18 +22,25 @@ const handleDeleteCart = (id) => {
 }
 
 const [input, setInput] = useState("");
-const total = input * price;
+let total = input * price;
 
 const handleInput = (e) => {
   e.preventDefault();
-  setInput(Number(e.target.value))
+  setInput(e.target.value<=stock ? Number(e.target.value) : stock)
+}
+const handleBuy = () => {   
+    if(input && input <= stock ){
+    total = input * price;
+    dispatch(totalToPay({name: name, price: price, quantity: input, idproduct: id, stock: stock}));
+    dispatch(totalBuy(total));
+    setInput("")
+  } 
+  else return alert(`Wrong value. Available stock (${stock})`)
 }
 
-const handleBuy = () => {
-  dispatch(totalBuy(total));
-  dispatch(totalToPay({name: name, price: price, quantity: input, idproduct: id}));
-  setInput("")
-}
+
+// console.log("aca esta el findddd", findProd)
+// console.log("prodsPay", prodsPay)
 
   return (
     <div className='cards-cart-cont'>
@@ -45,12 +52,12 @@ const handleBuy = () => {
         <h2>US$ {price}</h2>
 
         <div className='input-cart'>
-        <input  name="qty" value={input} type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} 
+        <input  name="qty" value={input} type="number" min="1" max={stock} class="form-control form" style={{width: '5rem'}} 
         onChange={(e)=>{handleInput(e)}}/>
-        <span>{stock}</span>
+        <span>Stock: {stock}</span>
         
         </div>
-<span>Total: {total}</span>
+        <span>Total: {total}</span>
         <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button>
       </div>
     </div>

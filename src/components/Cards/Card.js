@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 
-const Card = ({ image, price, name, description, id }) => {
+const Card = ({ image, price, name, description, id, stock }) => {
 
   const {user} = useAuth0();
   const users = useSelector(state=> state?.users);
@@ -33,10 +33,7 @@ const Card = ({ image, price, name, description, id }) => {
     dispatch(deleteItemCart({userid: findUser?.id, idproduct: id})) && setTimeout(()=>{dispatch(getCart(findUser?.id))},100)
   };
 
-  console.log(users,"userrrriddddd")
-  console.log(productsCart,"shoppppp")
   console.log(findUser,"findddddd")
-  console.log(favourites,"favourites")
 
   return (
     <div className='cards'>
@@ -55,6 +52,7 @@ const Card = ({ image, price, name, description, id }) => {
           }     
        
           {
+            stock <= 0 ? "Agotadisimo" :
             existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
             <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
           }          
