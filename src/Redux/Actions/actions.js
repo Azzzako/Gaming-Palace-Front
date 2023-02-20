@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW,  UPDATE_USER, SET_LOADING, GET_USERS, GET_USER, } from "./constants";
 
 
 
@@ -209,3 +209,16 @@ export const totalPayment =(prods) => {
 	}
 }
 
+export const updateUser = (user) => {
+    try {
+        return async function (dispatch) {
+            const userUp = await axios.post("http://localhost:3001/updateuser", user)
+            return dispatch({
+                type: UPDATE_USER,
+                payload: userUp.data
+            })
+        }
+    } catch (error) {
+        console.log((error, "Llena los campos pues"));
+    }
+}

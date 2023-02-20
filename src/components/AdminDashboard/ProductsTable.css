@@ -1,9 +1,11 @@
 .trademark{
   width: 350px;
+  margin-top: 10px;
  
 }
 
 .price{
+  margin-top: 10px;
   width: 150px;
  
 }
@@ -12,8 +14,52 @@
     min-height: 100vh;
   }
   
- 
   
 
-  
+
+.table-fixed thead,
+.table-fixed thead>th {
+  background: #394044;
+  color: #fff;
+  line-height: 20px;
+}
+
+.table-fixed tbody tr td {
+  background: #fff;
+}
+
+
+
+.table-fixed tbody td,
+.table-fixed thead>tr>th {
+  float: left;
+  font-size: 14px;
+  padding-left: 10px !important;
+}
+
+
+
+.table-fixed tbody {
+  display: block;
+  height: 800px;
+  overflow-y: auto;
+}
+
+.table-fixed tr {
+  display: block;
+}
+
+.btn-p-table{
+  height: 20px;
+  padding: 0;
+  margin-top: 1px;
+  color: black;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.btns-p-table{
+  margin: 5px;
+}
+
 

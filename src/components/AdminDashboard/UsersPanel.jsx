@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import { getUser} from "../../Redux/Actions/actions";
+import React, {useEffect, useState} from "react";
+import { getUser, updateUser} from "../../Redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, filledInputClasses, Switch, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "./theme";
 // import { mockDataTeam } from "../../data/mockData";
@@ -17,12 +17,34 @@ const UsersPanel = () => {
   
   const dispatch = useDispatch()
   const user = useSelector((state) => state.users)
-    
+  
 
   useEffect(() => {
 		dispatch(getUser(user));
 	},[dispatch]);
   
+
+
+
+  const changeRol = (id) => {
+    let findUser = user.find(e => e.id === id)
+    findUser.role = findUser.role=== "admin" ? "customer" : "admin" 
+    dispatch(updateUser(findUser))
+    console.log(findUser)
+    dispatch(getUser())
+  }
+
+  console.log(user)
+
+
+
+  const changeDisabled = (id) => {
+    let findUser = user.find(e => e.id === id)
+    findUser.disabled = findUser.disabled === false ? true : false
+    dispatch(updateUser(findUser))
+    console.log(findUser)
+    dispatch(getUser())
+  }
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -129,7 +151,9 @@ const UsersPanel = () => {
             <th>Name</th>
             <th>E-mail</th>
             <th>Adress</th>
+            <th></th>
             <th>Role</th>
+            <th></th>
             <th>Status</th>
           </tr>
         </thead>
@@ -140,16 +164,22 @@ const UsersPanel = () => {
               <td className="b">{elemento.name}</td>
               <td className="b">{elemento.email}</td>
               <td className="a">{elemento.address}</td>
-              <td className="a">{elemento.role}</td>
-              <td className="b">{elemento.disabled}</td>
-               {/* CONDICIONAR PARA QUE RENDERICE UN ICON */}
 
+              <td><span>customer</span></td><Switch
+              checked={elemento.role === "admin" ? true : false}
+              onClick={() =>changeRol(elemento.id)}
+              inputProps={{ 'aria-label': 'controlled' }}/>
+              <td><span>admin</span></td>
+            
+              <td><span>enabled</span></td>
+              <Switch
+              checked={elemento.disabled === false ? false: true}
+              onClick={() =>changeDisabled(elemento.id)}
+              inputProps={{ 'aria-label': 'controlled' }}/>
+              <td><span>disabled</span></td>
               
-
-              {/* <td>
-              <button  onClick={()=>seleccionarPais(elemento, 'Editar')}><TbEdit/> </button> {"   "} 
-              <button className="btn btn-danger" onClick={()=>seleccionarPais(elemento, 'Eliminar')}><TbTrash/> </button>
-              </td> */}
+              
+              
             </tr>
           ))
           }
