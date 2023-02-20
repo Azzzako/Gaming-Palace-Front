@@ -18,6 +18,7 @@ export const DELETE_ALL_FAVS = "DELETE_ALL_FAVS";
 export const DELETE_ALL_CART = "DELETE_ALL_CART";
 export const GET_USER = 'GET_USER'
 export const GET_USER_BY_MAIL = "GET_USER_BY_MAIL"
+export const UPDATE_USER = "UPDATE_USER"
 
 
 

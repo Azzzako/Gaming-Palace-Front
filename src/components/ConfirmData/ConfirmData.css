@@ -1,4 +1,4 @@
-.data_container{
+.data_container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -12,7 +12,7 @@
     padding: 10px;
 }
 
-.input_cont{
+.input_cont {
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -20,9 +20,9 @@
     border-color: #95c827;
 }
 
-.input_cont:focus{
+.input_cont:focus {
     border-color: green;
-  outline: 1px  #000
+    outline: 1px #000
 }
 
 .botton_sub {
@@ -33,7 +33,7 @@
     border: none;
 }
 
-.botton_sub:hover{
+.botton_sub:hover {
     box-shadow: 2px 2px 30px 2px #95c827;
     transition: 0.5s all ease;
 }
