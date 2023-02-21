@@ -1,8 +1,7 @@
 /* eslint-disable no-unreachable */
 import axios from "axios";
+import { GET_ALL_PRODUCTS,GET_STATS, GET_ALL_CATEGORIES, GET_BY_YEAR, GET_DETAIL,GET_BY_MONTH, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, ADD_CART,TOTAL_BUY, DELETE_CART, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER, UPDATE_USER } from "./constants";
 
-
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER, UPDATE_USER } from "./constants";
 
 
 
@@ -16,6 +15,25 @@ export const getArray = (payload) => {
 	};
 };
 
+export const getByMonth = (month) => {
+	return async function (dispatch) {
+		const response = await axios.get(`http://localhost:3001/stats/getbymonth/${month}`)
+		return dispatch({
+			type: GET_BY_MONTH,
+			payload: response.data
+		});
+	};
+};
+
+export const getByYear = (year) => {
+	return async function (dispatch) {
+		const response = await axios.get(`http://localhost:3001/stats/getbyyear/${year}`)
+		return dispatch({
+			type: GET_BY_YEAR,
+			payload: response.data
+		});
+	};
+};
 
 export const getAllProducts = () => {
 	return async function (dispatch) {
@@ -26,6 +44,17 @@ export const getAllProducts = () => {
 		});
 	};
 };
+
+export const getStats = () => {
+	return async function (dispatch) {
+		const response = await axios.get(`http://localhost:3001/stats`);
+		return dispatch({
+			type: GET_STATS,
+			payload: response.data,
+		});
+	};
+};
+
 
 export const getAllCategories = () => {
 	return async function (dispatch) {
@@ -42,6 +71,28 @@ export const postNewProduct = (data) => {
 		return async function () {
 			const newProduct = await axios.post(`http://localhost:3001/products`, data);
 			return newProduct
+		}
+	} catch (error) {
+		console.log(error)
+	};
+};
+
+export const changeProduct = (data) => {
+	try {
+		return async function () {
+			const changeProduct = await axios.post(`http://localhost:3001/change`, data);
+			return changeProduct
+		}
+	} catch (error) {
+		console.log(error)
+	};
+};
+
+export const updateProduct = (data) => {
+	try {
+		return async function () {
+			const updateProduct = await axios.post(`http://localhost:3001/products`, data);
+			return updateProduct
 
 		}
 	} catch (error) {
@@ -126,6 +177,9 @@ export const updateUser = (user) => {
 		console.log((error, "Llena los campos pues"));
 	}
 }
+
+
+
 
 export const postByMail = (email) => {
 	return async function (dispatch) {
@@ -323,4 +377,5 @@ export const successBuy = (userid) => {
 	return async () => {
 		await axios.post("http://localhost:3001/stats/register", userid)
 	}
+
 }

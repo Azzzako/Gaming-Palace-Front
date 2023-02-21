@@ -1,49 +1,112 @@
-import React from "react";
-import './AdminDashboard.css'
-import image from './img1dash.png'
-import image2 from './img2dash.png'
-import {TbReportMoney, TbTruckLoading, TbUsers, TbTimeline, TbReportSearch, TbArrowsRightLeft,TbPhone, TbBrandFacebook, TbBrandTwitter, TbBrandInstagram} from "react-icons/tb"
-import { Link } from "react-router-dom";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { tokens } from "./theme";
+import Sidebar from "./SideBar"
 
-function AdminDashboard() {
- 
 
-    return (
-     
-       <body>
+const AdminDashboard = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
-<div class="wrapper">
-    <div class="sidebar">
-        <h2>ADMIN DASHBOARD</h2>
-        <ul> 
-          <Link to= "/inconstruction"><li><a><TbReportMoney/><i></i> Sales</a></li></Link>
-          <Link to= "/productform"><li><a><TbTruckLoading/><i></i> Create Product</a></li></Link>
-          <Link to= "/inconstruction"><li><a><TbUsers/><i></i> Users</a></li></Link>
-          <Link to= "/inconstruction"><li><a><TbTimeline/><i></i> Stadistics</a></li></Link>
-          <Link to= "/inconstruction"><li><a><TbReportSearch/><i></i> Reporting</a></li></Link>
-          <Link to= "/inconstruction"><li><a><TbArrowsRightLeft/><i></i> Transactions</a></li></Link>
-          <Link to= "/inconstruction"><li><a><TbPhone/><i></i> Contacts</a></li></Link>
-             
-        </ul> 
-        <div class="social_media">
-        <Link to= "/inconstruction"> <a href="#"><TbBrandFacebook/><i class="fab fa-facebook-f"></i></a></Link>
-        <Link to= "/inconstruction"><a href="#"><TbBrandTwitter/><i class="fab fa-twitter"></i></a></Link>
-        <Link to= "/inconstruction"><a href="#"><TbBrandInstagram/><i class="fab fa-instagram"></i></a></Link>
-      </div>
-    </div>
-    <div class="main_content">
-      <div className="info">
-        <div className="images">
-          <img src={image} alt="Girl in a jacket" width="1010" height="280"></img>
-          <img src={image2} alt="Girl in a jacket" width="1010" height="280"></img>
-        </div>
-      </div>
-    </div>
-</div>
+  return ( 
+    <div>
+    <Box  display="flex">
 
-</body>
-    
-    );
-  }
+     <Sidebar/>
   
-  export default AdminDashboard;
+      {/* GRID & CHARTS */}
+      <Box
+       marginLeft="30px"
+       marginRight="30px"
+       marginTop="80px"
+       display="grid"
+       gridTemplateColumns="repeat(60, 1fr)"
+       gridAutoRows="140px"
+       width="2000px"
+       gap="20px"
+     >
+       
+        
+        {/* ROW 1 */}
+      <Box
+          gridColumn="span 40"
+          gridRow="span 3"
+          backgroundColor={colors.primary[400]}
+        >
+        <Box
+          mt="20px"
+          p="0 30px"
+          display="flex "
+          justifyContent="space-between"
+          alignItems="center"
+          >
+          <Box>
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              color={colors.grey[100]}
+              >
+                Text Text
+            </Typography>
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              color={colors.greenAccent[500]}
+              >
+                $59,342.32
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
+
+
+      <Box
+          gridColumn="span 20"
+          gridRow="span 5"
+          backgroundColor={colors.primary[400]}
+          
+        >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        borderBottom={`4px solid ${colors.primary[500]}`}
+        colors={colors.grey[100]}
+        p="15px"
+        >
+          <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+              Text Text
+          </Typography>
+        </Box>
+      </Box>
+
+
+
+        {/* ROW 2 */}
+      <Box
+          gridColumn="span 40"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          p="30px"
+        >
+        <Typography variant="h5" fontWeight="600">
+            Text
+        </Typography>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          mt="25px"
+          >
+        </Box>
+      </Box>
+       
+    
+      </Box>
+    </Box>
+  </div>
+    
+  );
+};
+
+export default AdminDashboard;

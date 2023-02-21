@@ -1,6 +1,7 @@
 
 
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
+import { GET_STATS ,GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_CART,GET_BY_MONTH, GET_BY_YEAR, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, CHANGE_PRODUCT,UPDATE_USER,DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
+
 
 
 
@@ -11,11 +12,13 @@ const initialState = {
   favourites: [],
   shopCart: [],
   totalBuy: [0],
-
   users: [],
   user: [],
+  allStats: [],
   userMail: [],
   totalToPay: [],
+  salesByMonth: [],
+  salesByYear:[]
 
 };
 
@@ -37,6 +40,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalToPay: [...state.totalToPay, action.payload]
       }
+
+      case GET_STATS:
+        console.log("entrando a reducer getStats")
+        console.log(action.payload)
+        return{
+          ...state,
+          allStats: action.payload
+          
+        }
 
     case GET_ALL_PRODUCTS:
 
@@ -164,12 +176,36 @@ const rootReducer = (state = initialState, action) => {
     case GET_USER:
       return { ...state, user: action.payload }
 
+
+    case CHANGE_PRODUCT:
+      return {
+        ...state
+        };
+
+    case UPDATE_USER:
+      return{
+        ...state
+      };
+    
+    case GET_BY_MONTH:
+      return{
+        ...state, salesByMonth: action.payload
+      } 
+
+    case GET_BY_YEAR:
+      return{
+        ...state, salesByYear : action.payload
+      }
+
       case GET_USER_BY_MAIL:
         return { ...state, userMail: action.payload }
 
+
       default:
       return state;
-  }
+
+
+  } 
 };
 
 

@@ -6,11 +6,12 @@ import { DiRuby } from "react-icons/di"
 import { IconContext } from "react-icons/lib";
 import { Link, useLocation } from "react-router-dom";
 import "../Navbar/Navbar.css"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TfiHeart } from "react-icons/tfi";
 import { BiLogOut } from "react-icons/bi"
 import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar } from "@mui/material";
+import { getAllProducts, getStats } from "../../Redux/Actions/actions";
 
 
 
@@ -24,8 +25,12 @@ const Navbar = () => {
     const { user, isAuthenticated } = useAuth0()
     const picture = user?.picture
     const location = useLocation();
+<<<<<<< HEAD
+    const dispatch = useDispatch();
+=======
     const filteredUser = usuario?.filter(usr => usr.email === user?.email)
     const adminShow = filteredUser[0]?.role
+>>>>>>> Develop3
 
     const linkStyle = { 
         "textDecoration": "none",
@@ -98,7 +103,7 @@ const Navbar = () => {
                                     {isAuthenticated ? <Link to="/dashboard" style={linkStyle}><span style={linkStyle}> <Avatar src={picture}>GP</Avatar></span></Link> :
                                         <span className="login" style={linkStyle} onClick={() => loginWithRedirect()}>Log In</span  >
                                     }</div>
-
+            
 
 
                                 {!isAuthenticated ? <div></div> : <div className="shopping_cart">

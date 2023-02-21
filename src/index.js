@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from './Redux/store';
 import Auth0ProviderWithHistory from './Auth0Provider/Auth0Provider';
+import ProSidebarProvider from 'react-pro-sidebar'
 
 
 
@@ -21,6 +22,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Auth0ProviderWithHistory
+
         domain={domain}
         clientId={clientId}
         authorizationParams={{
