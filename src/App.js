@@ -16,6 +16,7 @@ import ShopCart from './components/ShopCart/ShopCart';
 import FormAdress from './components/ShopCart/FormAdress';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import OrderList from './components/ShopCart/OrderList';
+import { PurchaseSuccess } from './components/PurchaseSuccess/PurchaseSuccess';
 
 // import { ConfirmData } from './components/ConfirmData/ConfirmData';
 
@@ -46,6 +47,7 @@ function App() {
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/products' element={<ProductList/>} />
         <Route exact path="/dashboard" element={<Dashboard/>} />
+        <Route exact path='/purchase-success' element={<PurchaseSuccess/>} />
 
         {/* <Route path='/login/savedata' element={<ConfirmData/>}/> */}
       </Routes>

@@ -35,6 +35,7 @@ const ContainerCards = ({ products }) => {
               name={p.namedisplay}
               price={p.price}
               description={p.description}
+              stock={p.stock}
             />
           ))
         }

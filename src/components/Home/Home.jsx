@@ -13,7 +13,7 @@ import { ConfirmData } from "../ConfirmData/ConfirmData";
 import { getUser, postByMail } from "../../Redux/Actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, getCart, getFavs, getUser } from "../../Redux/Actions/actions";
+import { getAllProducts, getCart, getFavs } from "../../Redux/Actions/actions";
 
 
 
