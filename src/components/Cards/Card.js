@@ -34,10 +34,7 @@ const Card = ({ image, price, name, description, id, stock }) => {
       dispatch(deleteItemCart({ userid: findUser?.id, idproduct: id })) && setTimeout(() => { dispatch(getCart(findUser?.id)) }, 100)
   };
 
-  console.log(users, "userrrriddddd")
-  console.log(productsCart, "shoppppp")
-  console.log(findUser, "findddddd")
-  console.log(favourites, "favourites")
+
 
   return (
     <div className='cards'>
@@ -49,19 +46,19 @@ const Card = ({ image, price, name, description, id, stock }) => {
         </Link>
       </div>
 
-      <div className='icons'>
-        {
-          existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={() => { handleFav(id) }} />
-            : <BsHeartFill className='icons-fav' onClick={() => { handleFav(id) }} />
-        }
 
-        {
-          stock === 0 ? "Agotado" :  
-          existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={() => { handleCart(id) }} /> :
-            <BsCartFill className='icons-cart' onClick={() => { handleCart(id) }} />
-        }
-      </div>
-
+        <div className='icons'>
+          {
+            existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
+            : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
+          }     
+       
+          {
+            stock <= 0 ? "Agotadisimo" :
+            existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
+            <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
+          }          
+        </div>
 
 
 

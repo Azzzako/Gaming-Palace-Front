@@ -23,7 +23,7 @@ export const Home = () => {
     const dispatch = useDispatch();
     const {user} = useAuth0();
     const users = useSelector(state=> state?.users);
-    const findUser = users?.find(us => us?.email === user?.email);
+    const findUser = users.length>0 ? users.find(us => us?.email === user?.email) : null;
 
     useEffect(()=>{
         dispatch(getAllProducts())
@@ -37,6 +37,7 @@ export const Home = () => {
    
 
 console.log(findUser,"userrrrr")
+
 
 
     return (

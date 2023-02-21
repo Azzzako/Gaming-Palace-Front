@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getDetail, newReview } from '../../Redux/Actions/actions';
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { TbUserCircle} from "react-icons/tb"
-import { Link } from 'react-router-dom';
 import './Review.css'
 
 
@@ -18,6 +17,7 @@ const [hoverStar, setHoverStar] = useState(undefined);
 function handleClick (e) {
   window.location.reload(false);
 }
+
 
 
 const handleText = () => {
@@ -61,14 +61,13 @@ const dispatch = useDispatch();
 
 const detail = useSelector((state) => state.details)
 
-
+console.log("detalle : ", detail)
 
 const [input, setInput] = useState({
     author: "",
     title: "",
     description:"",
     productId: detail.id,
-    // userId: "",
     rating: number,
 })
 
@@ -81,9 +80,15 @@ const handleChange = ((e)=>{
         rating : number,
         title : detail.name,
         productId: detail.id,
-        // userId: "",
+
     });
-    
+  
+})
+console.log(input)
+
+
+const funcionCorneta= ((e)=>{
+  alert(detail.reviews)
 })
 
 const handleSubmit = (e) => {
@@ -99,24 +104,22 @@ const handleSubmit = (e) => {
       productId: detail.id,
       // userId: "",
     });
-    
+    console.log("despachando creacion")
+    console.log(input)
 };
 
-useEffect(() => {
-  
-    dispatch(getDetail);
-    
-},[]);
+  useEffect(() => {
+    dispatch(getDetail(detail.id));
+  },[]);
 
 
-
-
-
-console.log(number)
+ 
 
   return (
     <div className='mainContainer'>
 
+    <button  onClick={(e) => funcionCorneta(e)}>redux detail</button>
+{/* <h6 key="detallekey">{detail}</h6> */}
 
     <form onSubmit={(e) => handleSubmit(e)}>
       <div className="all">
@@ -162,6 +165,9 @@ console.log(number)
 
       {/* //////////////////////////////////////////////////////////////////////////////// */}
 
+
+
+
           <div className='containerComment'>
             <h1>Leave a comment</h1>
             <textarea id="description" value={input.description} name= "description" placeholder={handlePlaceHolder()}  onChange={(e) => handleChange(e)}></textarea> 
@@ -170,7 +176,7 @@ console.log(number)
           </div>
 
           <div>
-            <button type="submit" id="createreview" name= "createreview" value="createreview" className='createreview' onClick={e =>{handleClick(e)}}>Submit</button>
+            <button type="submit" id="createreview" name= "createreview" value="createreview" className='createreview'  onClick={(e) => handleClick(e)} >Submit</button>
           </div>
           </div>
         </div>
@@ -180,21 +186,24 @@ console.log(number)
 
     <div className='popuptwo'>
       
+      
+
         <div className="containerRevs">
-          {detail.Reviews?.map(review =>(
+        {detail.reviews?.map(review =>(
                           <div className='containerNewRev'>
                             <div className='authorNstars'>
                             <TbUserCircle className='iconUser'/><h5 item key={review.author}>{review.author}</h5> 
                               <div className='starsReview'>{
                                 [... new Array(5)].map((star, index)=>{
-                                    return index< review.rating ? <AiFillStar  style={{ color: "orange" }}/> : <AiOutlineStar  style={{ color: "orange" }}/>
+                                    return index < review.rating ? <AiFillStar  style={{ color: "orange" }}/> : <AiOutlineStar  style={{ color: "orange" }} key={review.rating}/>
                                 })}
                               </div>
                             </div> 
                             <h6 item key={review.description}>{review.description}</h6>
                             <p item key={review.title}>{review.title}</p>
                           </div>
-                      )) }
+                      )) 
+    }
                       
         </div>
        
