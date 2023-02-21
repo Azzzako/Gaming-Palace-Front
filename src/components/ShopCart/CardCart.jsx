@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteItemCart, getCart, totalBuy, totalToPay } from '../../Redux/Actions/actions';
+import { deleteItemCart, getCart, totalBuy, totalToPay, updateQtyCart } from '../../Redux/Actions/actions';
 import './CardCart.css'
 
 const CardCart = ({image, name, price, stock, id}) => {
@@ -43,6 +43,7 @@ let total = input * price;
 const handleBuy = () => {   
     if(input && input <= stock ){
     total = input * price;
+    dispatch(updateQtyCart({userid: findUser.id, idproduct: id, quantity: input}))
     dispatch(totalToPay({name: name, price: price, quantity: input, idproduct: id, stock: stock}));
     dispatch(totalBuy(total));
     setInput(0)

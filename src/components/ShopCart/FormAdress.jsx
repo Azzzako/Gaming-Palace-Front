@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteItemCart, getAllProducts, totalPayment, changeStock, restoreTotalBuy } from '../../Redux/Actions/actions';
+import { deleteItemCart, getAllProducts, totalPayment, changeStock, restoreTotalBuy, successBuy } from '../../Redux/Actions/actions';
 import './OrderList.css'
 
 function validateForm(input){
@@ -63,6 +63,7 @@ const FormAdress = ({name, address}) => {
     const payMP = () => {
       dispatch(totalPayment(prodsToPay))
       dispatch(changeStock(changestock))
+      dispatch(successBuy({userid: findUser.id}))
       dispatch(deleteItemCart(deleteItemsPayed))
       dispatch(restoreTotalBuy())
       dispatch(getAllProducts())

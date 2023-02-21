@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addCart, getCart, getDetail, totalToPay } from '../../Redux/Actions/actions'
+import { addCart, getCart, getDetail, totalToPay, updateQtyCart } from '../../Redux/Actions/actions'
 import { Link } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
 import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
@@ -65,12 +65,12 @@ const Detail = (props) => {
     if(input && input <= detail.stock ){
     dispatch(totalToPay({name: detail.name, price: detail.price, quantity: input, idproduct: id, stock: detail.stock}));
     !existProductsCart.includes(id) &&
-    dispatch(addCart({userid: findUser?.id, idproduct: id, quantity: 1})) && 
+    dispatch(addCart({userid: findUser?.id, idproduct: id, quantity: input})) && 
     setTimeout(()=>{dispatch(getCart(findUser?.id))},100)
-    
+
     setInput(0)
     
-    setTimeout(()=>{window.location = "/showorder"},200)
+    setTimeout(()=>{window.location = "/shopcart"},200)
   } 
   else return alert(`Wrong value. Available stock (${detail.stock})`)
 }
