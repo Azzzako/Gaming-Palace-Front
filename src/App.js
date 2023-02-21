@@ -16,11 +16,13 @@ import ShopCart from './components/ShopCart/ShopCart';
 import FormAdress from './components/ShopCart/FormAdress';
 
 import OrderList from './components/ShopCart/OrderList';
+
 // import ProductsTable from './components/AdminDashboard/ProductsTable/ProductsTable';
 // import UsersTable from './components/AdminDashboard/UsersTable/UsersTable'
 
-// import { ConfirmData } from './components/ConfirmData/ConfirmData';
+import { PurchaseSuccess } from './components/PurchaseSuccess/PurchaseSuccess';
 
+// import { ConfirmData } from './components/ConfirmData/ConfirmData';
 // import Dashboard from './components/AdminDashboard/data/scenes/dashboard/Dashboard'
 
 // import AdminDashboard from './components/AdminDashboard/AdminDashboard';
@@ -31,6 +33,7 @@ import Sales from './components/AdminDashboard/Sales';
 import ProductsTable from './components/AdminDashboard/ProductsTable';
 import AddProduct from './components/AdminDashboard/AddProduct/AddProduct';
 import Graphics from './components/AdminDashboard/Graphics';
+
 
 function App() {
   return (
@@ -52,6 +55,10 @@ function App() {
         <Route exact path="/shopcart" element={<ShopCart/>}/>
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/products' element={<ProductList/>} />
+
+        
+        <Route exact path='/purchase-success' element={<PurchaseSuccess/>} />
+
 
       
         <Route exact path="/admin-dashboard" element={<AdminDashboard/>} />

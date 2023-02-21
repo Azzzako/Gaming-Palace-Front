@@ -1,30 +1,59 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
-import { useDispatch } from 'react-redux'
-import { deleteCart, totalBuy, totalToPay } from '../../Redux/Actions/actions';
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteItemCart, getCart, totalBuy, totalToPay, updateQtyCart } from '../../Redux/Actions/actions';
 import './CardCart.css'
 
 const CardCart = ({image, name, price, stock, id}) => {
 
 const dispatch = useDispatch();
 
+const {user} = useAuth0();
+const users = useSelector(state=> state?.users);
+const findUser = users?.find(us => us?.email === user?.email)
+
+const prodsPay = useSelector(state=> state.totalToPay);
+// const findProd = prodsPay?.find(prod => prod.idproduct === id);
+
+
 const handleDeleteCart = (id) => {
-  dispatch(deleteCart(id))
+  dispatch(deleteItemCart({userid: findUser.id, idproduct: id})) && setTimeout(()=>{dispatch(getCart(findUser.id))},100)
 }
 
-const [input, setInput] = useState("");
-const total = input * price;
+let [input, setInput] = useState(0);
 
 const handleInput = (e) => {
   e.preventDefault();
-  setInput(Number(e.target.value))
+  setInput(e.target.value<=stock ? Number(e.target.value) : stock)
 }
 
-const handleBuy = () => {
-  dispatch(totalBuy(total));
-  dispatch(totalToPay({name: name, price: price, quantity: input}));
-  setInput("")
+const decrement = () => {
+  if(input > 0) setInput(input -1)
 }
+
+const increment = () => {
+  if(input < stock) setInput(input +1) 
+}
+
+let total = input * price;
+
+
+
+const handleBuy = () => {   
+    if(input && input <= stock ){
+    total = input * price;
+    dispatch(updateQtyCart({userid: findUser.id, idproduct: id, quantity: input}))
+    dispatch(totalToPay({name: name, price: price, quantity: input, idproduct: id, stock: stock}));
+    dispatch(totalBuy(total));
+    setInput(0)
+  } 
+  else return alert(`Wrong value. Available stock (${stock})`)
+}
+
+// console.log("input", input)
+// console.log("aca esta el findddd", findProd)
+// console.log("prodsPay", prodsPay)
 
   return (
     <div className='cards-cart-cont'>
@@ -36,12 +65,18 @@ const handleBuy = () => {
         <h2>US$ {price}</h2>
 
         <div className='input-cart'>
-        <input  name="qty" value={input} type="number" min="1" max="10" class="form-control form" style={{width: '5rem'}} 
+        <input  name="qty" value={input} type="input" min="1" max={stock} class="form-control form" style={{width: '5rem'}} 
         onChange={(e)=>{handleInput(e)}}/>
-        <span>{stock}</span>
+
+        <button onClick={()=> decrement()}> - </button>
+
+        <span>Stock: {stock}</span>
+
+        <button onClick={()=> increment()}> + </button>
+
         
         </div>
-<span>Total: {total}</span>
+        <span>Total: {total}</span>
         <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button>
       </div>
     </div>

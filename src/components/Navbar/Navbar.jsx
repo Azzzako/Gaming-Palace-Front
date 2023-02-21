@@ -19,24 +19,31 @@ const Navbar = () => {
 
     const [showNavbar, setShowNavbar] = useState(false)
     const shopCart = useSelector(state => state.shopCart)
+    const usuario = useSelector(state => state.users)
     const favourites = useSelector(state => state.favourites);
     const { loginWithRedirect, logout } = useAuth0()
     const { user, isAuthenticated } = useAuth0()
     const picture = user?.picture
     const location = useLocation();
+<<<<<<< HEAD
     const dispatch = useDispatch();
+=======
+    const filteredUser = usuario?.filter(usr => usr.email === user?.email)
+    const adminShow = filteredUser[0]?.role
+>>>>>>> Develop3
 
-    const linkStyle = {
+    const linkStyle = { 
         "textDecoration": "none",
         "color": "#fff"
     };
 
     const linkLogo = {
         "text-decoration": "none",
-        "color": "#95c827"
+        "color": "#95c827",
     }
 
 
+    console.log(filteredUser);
 
     return (
         <nav className="navbarContainer">
@@ -46,7 +53,7 @@ const Navbar = () => {
                 <div className="wrapper">
 
                     <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
-                        <div className="logo_container">
+                        <div className="logo_containers">
                             <DiRuby />
                             <p>
                                 <Link to="/home" style={linkLogo}>
@@ -72,7 +79,7 @@ const Navbar = () => {
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
-                            {!isAuthenticated ? <div></div> : <div className="menu_item">
+                            {adminShow === "customer" ? <div></div> : <div className="menu_item">
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
                             </div>}
 

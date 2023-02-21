@@ -1,6 +1,9 @@
-import React from 'react'
-import { BsCashCoin } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
+import { useAuth0 } from '@auth0/auth0-react'
+import { Button, ButtonBase } from '@mui/material'
+import React, { useEffect } from 'react'
+import { BsCashCoin, BsTrash } from 'react-icons/bs'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteThisOrder, getCart, restoreTotalBuy, sendNMailer, totalBuy } from '../../Redux/Actions/actions'
 import FormAdress from './FormAdress'
 import './OrderList.css'
 
@@ -9,15 +12,40 @@ import './OrderList.css'
 
 const OrderList = () => {
 
-  const totalBuy = useSelector(state => state.totalBuy);
-  const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
-    const prodsPay = useSelector(state=> state.totalToPay);
-console.log(prodsPay, "payyyy")
+  const dispatch = useDispatch();
+
+  const totalBuyOk = useSelector(state => state.totalBuy);
+  // const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
+  const prodsPay = useSelector(state=> state.totalToPay);
+
+const {user} = useAuth0();
+const users = useSelector(state=> state?.users);
+const findUser = users?.find(us => us?.email === user?.email)
+
+useEffect(()=>{
+  dispatch(getCart(findUser?.id))
+  dispatch(totalBuy())
+},[dispatch])
+  
+  
+  const sendEmail = () => {
+    dispatch(sendNMailer({destiny: "eliaspiolatto77@hotmail.com", prodsPay: prodsPay}))
+  }
+  
+  
+console.log("totalBuy",totalBuyOk )
+console.log("prodsPay", prodsPay)
+
+// console.log("totalBuyOK",totalBuyOk )
+
   return (
     <div className='order-list'>
 
       <div >
         <h1 className="page-nav">MY ORDER</h1>
+
+        <ButtonBase onClick={()=> sendEmail()}>Enviar orden al email</ButtonBase>
+
         <p className='in-cart'>In cart: US$ {totalBuyOk}<BsCashCoin color='green'/></p>
       </div>
 
@@ -37,6 +65,7 @@ console.log(prodsPay, "payyyy")
               <th>Detail</th>
               <th>Quantity</th>
               <th>Unit price</th>
+              <th onClick={()=>dispatch(restoreTotalBuy())}><Button>Delete all</Button></th>
             </tr>
             {
               prodsPay?.map(prod=>{
@@ -44,6 +73,7 @@ console.log(prodsPay, "payyyy")
                 <td>{prod.name}</td>
                 <td>{prod.quantity}</td>
                 <td>{prod.price}</td>
+                <td onClick={()=> dispatch(deleteThisOrder({id: prod.idproduct, quantity: prod.quantity, price: prod.price}))}><BsTrash/></td>
               </tr>
               })
             }
@@ -53,7 +83,7 @@ console.log(prodsPay, "payyyy")
 
         <h1 className='direccion-envio'>Shipping Address:</h1>
           
-          <FormAdress/>
+          <FormAdress name={findUser?.name} address={findUser?.address}/>
           {/* <div className="order-shipping">
 
             <div className="form-group">

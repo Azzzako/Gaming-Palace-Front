@@ -1,6 +1,7 @@
 
 
-import { GET_STATS ,GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_BY_MONTH, GET_BY_YEAR, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, CHANGE_PRODUCT, UPDATE_USER } from "./Actions/constants";
+import { GET_STATS ,GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, GET_CART,GET_BY_MONTH, GET_BY_YEAR, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, CHANGE_PRODUCT,UPDATE_USER,DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
+
 
 
 
@@ -14,6 +15,7 @@ const initialState = {
   users: [],
   user: [],
   allStats: [],
+  userMail: [],
   totalToPay: [],
   salesByMonth: [],
   salesByYear:[]
@@ -25,10 +27,10 @@ const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case "TOTAL_TO_PAY":
+    case TOTAL_TO_PAY:
          for(let i=0; i<state.totalToPay.length; i++){
           if(state.totalToPay[i].name===action.payload.name){
-            state.totalToPay[i].quantity+=action.payload.quantity
+            state.totalToPay[i].quantity=action.payload.quantity
             return {
             ...state
           }
@@ -62,7 +64,10 @@ const rootReducer = (state = initialState, action) => {
 
 
     case GET_DETAIL:
-      return {
+    console.log("entrando a reducer get detail , action. payload es ...")
+    console.log(action.payload)  
+    return {
+        
         ...state, details: action.payload,
       };
 
@@ -81,24 +86,45 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case ADD_FAV:
+      const addFav = state.allProducts.find(prod => prod.id === action.payload.productId)
       return {
         ...state,
-        favourites: [...state.favourites, action.payload]
+        favourites: [...state.favourites, addFav]
       };
 
-    case ADD_CART:
+    case GET_CART:
+      const prodsInCart = []
+      for(let i=0; i<action.payload.length; i++){
+        const findProduct = state.allProducts.find(prod=> prod.id === action.payload[i].idproduct)
+        prodsInCart.push(findProduct)
+      }
       return {
         ...state,
-        shopCart: [...state.shopCart, action.payload]
+        shopCart: prodsInCart
       }
 
+      case GET_FAVS:
+        const prodsInFavs = []
+      for(let i=0; i<action.payload?.length; i++){
+        const findFavs = state.allProducts.find(prod=> prod.id === action.payload[i].productId)
+        prodsInFavs.push(findFavs)
+      }
+        return {
+          ...state,
+          favourites: prodsInFavs
+        }
     case DELETE_FAV:
-      const favs = state.favourites.length > 0 && state.favourites.filter(fav => fav.id !== action.payload);
+      const favs = state.favourites.length > 0 && state.favourites.filter(fav => fav.id !== action.payload.productId);
       return {
         ...state,
         favourites: favs
-
       };
+
+    case DELETE_ALL_FAVS:
+      return {
+        ...state,
+        favourites: []
+      }
 
     case SET_LOADING:
       return {
@@ -113,10 +139,18 @@ const rootReducer = (state = initialState, action) => {
         shopCart: prodsCart
       }
 
-    case TOTAL_BUY:
+    case DELETE_ALL_CART:
       return {
         ...state,
-        totalBuy: [...state.totalBuy, action.payload]
+        shopCart: []
+      }
+
+    case TOTAL_BUY:
+      const totalAmounts = state.totalToPay.length>0 ? state.totalToPay?.map(prod => prod.quantity * prod.price) : 0;
+      const totalCount = totalAmounts.length>1 ? totalAmounts.reduce((acc, curr)=> acc + curr) : totalAmounts;
+      return {
+        ...state,
+        totalBuy: totalCount
       }
 
       case RESTORE_TOTAL_BUY:
@@ -126,11 +160,22 @@ const rootReducer = (state = initialState, action) => {
           totalToPay: []
         }
 
+      case DELETE_THIS_ORDER:
+        const deleteOneOrder = state.totalToPay.filter(prod => prod.idproduct !== action.payload.id)
+        const totalbuy = state.totalBuy - (action.payload.quantity * action.payload.price)
+        return {
+          ...state,
+          totalToPay: deleteOneOrder,
+          totalBuy: totalbuy
+        }
+
     case GET_USERS:
       return { ...state, users: action.payload }
 
+      
     case GET_USER:
       return { ...state, user: action.payload }
+
 
     case CHANGE_PRODUCT:
       return {
@@ -151,6 +196,10 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state, salesByYear : action.payload
       }
+
+      case GET_USER_BY_MAIL:
+        return { ...state, userMail: action.payload }
+
 
       default:
       return state;
