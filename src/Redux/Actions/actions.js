@@ -296,3 +296,16 @@ export const changeStock = (info) => {
 		axios.post("http://localhost:3001/change/stock", info)
 	}
 }
+
+
+export const updateQtyCart = (item) => {
+	return async () => {
+		await axios.post("http://localhost:3001/updateproduct", item)
+	}
+}
+
+export const successBuy = (userid) => {
+	return async () => {
+		await axios.post("http://localhost:3001/stats/register", userid)
+	}
+}
