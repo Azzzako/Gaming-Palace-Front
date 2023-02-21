@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, sendNMailer } from "../../Redux/Actions/actions";
+import { changeStock, deleteItemCart, getUser, restoreTotalBuy, sendNMailer, successBuy } from "../../Redux/Actions/actions";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -19,17 +19,28 @@ export const PurchaseSuccess = () => {
 
     const dispatch = useDispatch()
     const { user } = useAuth0()
+    
     const compra = useSelector(state => state.totalToPay)
+
+    const changestock = [];
+    for(let i=0; i<compra.length; i++){
+      let stock = compra[i].stock - compra[i].quantity
+      changestock.push({ idproduct: compra[i].idproduct, stock })
+    };
+
     const usuario = useSelector(state => state.users)
-    const filteredUser = usuario.length > 0 ? usuario.filter(usr => usr.email === user?.email) : []
+    // const filteredUser = usuario.length > 0 ? usuario.filter(usr => usr.email === user?.email) : []
+    const findUser = usuario?.find(us => us?.email === user?.email);
+    const deleteItemsPayed = { userid: findUser?.id, idproduct: [] }
+    compra.forEach(prod => deleteItemsPayed.idproduct.push(prod.idproduct))
     const email = user?.email
 
     const cantidades = []
-    compra.forEach(element => {
-        cantidades.push(element.price * element.quantity)
+    compra?.forEach(element => {
+        cantidades?.push(element?.price * element?.quantity)
     });
 
-    const total = cantidades.reduce((current, prev) => current + prev)
+    const total = cantidades
 
     useEffect(() => {
         dispatch(sendNMailer({
@@ -37,9 +48,15 @@ export const PurchaseSuccess = () => {
             prodsPay: compra
         }))
         dispatch(getUser())
-    }, [compra, email, dispatch])
+    }, [dispatch])
 
+    const deleteAll = () => {
+        dispatch(changeStock(changestock))
+        dispatch(deleteItemCart(deleteItemsPayed))
+        dispatch(restoreTotalBuy())
+    }
 
+    console.log(deleteItemsPayed)
 
     return (
         <div className="purchase_container_success">
@@ -48,7 +65,7 @@ export const PurchaseSuccess = () => {
                 <div className="text_container">
                     <h1 className="text_purchase">THANK YOU!</h1>
                     <h2 className="text_subtitle">For shopping with us.</h2>
-                    <h3 className="text_subtitle">Dear, {filteredUser[0]?.name}</h3>
+                    <h3 className="text_subtitle">Dear, {findUser?.name}</h3>
                     <h3 className="text_subtitle">This is what you ordered this time: </h3>
                 </div>
 
@@ -94,7 +111,7 @@ export const PurchaseSuccess = () => {
 
                     <div className="social_website">
                         <h3 className="text_purchase">Follow us! <SiFacebook /> <SiTwitter /> <SiInstagram /></h3>
-                        <h4 className="text_subtitle">Click <Link to='/home'>here</Link> to go home</h4>
+                        <Link to="/home"><button className="text_subtitle" onClick={() => deleteAll()}>Click here to go home</button></Link>
                     </div>
                 </div>
             </div>

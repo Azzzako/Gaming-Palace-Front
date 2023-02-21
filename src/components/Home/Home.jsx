@@ -14,6 +14,7 @@ import { getUser, postByMail } from "../../Redux/Actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getCart, getFavs } from "../../Redux/Actions/actions";
+import { persistor } from "../../Redux/store";
 
 
 
@@ -21,6 +22,7 @@ export const Home = () => {
 
 
     const dispatch = useDispatch();
+    const persistorState = persistor.getState()
     const {user} = useAuth0();
     const users = useSelector(state=> state?.users);
     const findUser = users.length>0 ? users.find(us => us?.email === user?.email) : null;
@@ -34,10 +36,17 @@ export const Home = () => {
         dispatch(getCart(findUser?.id))
         dispatch(getFavs(findUser?.id))
     },[findUser])
+
+    const onBeforeLift = async () => {
+        // Realizar operaciones necesarias para la carga inicial
+        // Devolver una promesa que se resuelva cuando se hayan cargado todos los datos
+        await dispatch(getAllProducts());
+        await dispatch(getUser());
+      };
    
 
-console.log(findUser,"userrrrr")
 
+    console.log(persistorState);
 
 
     return (

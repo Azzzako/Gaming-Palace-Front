@@ -22,7 +22,6 @@ const FormAdress = ({name, address}) => {
   const {user} = useAuth0();
   const users = useSelector(state=> state?.users);
   const findUser = users?.find(us => us?.email === user?.email);
-  
   const dispatch = useDispatch();
   const prodsToPay = useSelector(state=> state.totalToPay);
   const deleteItemsPayed = {userid: findUser?.id, idproduct: []}
@@ -63,9 +62,8 @@ const FormAdress = ({name, address}) => {
     const payMP = () => {
       dispatch(totalPayment(prodsToPay))
       dispatch(changeStock(changestock))
-      dispatch(successBuy({userid: findUser.id}))
-      dispatch(deleteItemCart(deleteItemsPayed))
-      dispatch(restoreTotalBuy())
+      // dispatch(deleteItemCart(deleteItemsPayed))
+      // dispatch(restoreTotalBuy())
       dispatch(getAllProducts())
       setTimeout(()=>{setOrderOK(false)}, 5000)
     }
