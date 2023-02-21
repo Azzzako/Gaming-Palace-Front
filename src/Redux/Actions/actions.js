@@ -145,13 +145,28 @@ export const postByMail = (email) => {
 
 export const getDetail = (id) => {
 	return async (dispatch) => {
-		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		 axios.get(`http://localhost:3001/products/${id}`).then((x) => {
+			console.log("el response del review es este...")
+		console.log(x)
 		return dispatch({
 			type: GET_DETAIL,
-			payload: response.data,
+			payload: x.data, 
+		 })
+		
 		});
 	};
 };
+
+
+// export const getDetail = (id) => {
+// 	return async (dispatch) => {
+// 		const response = await axios.get(`http://localhost:3001/products/${id}`);
+// 		return dispatch({
+// 			type: GET_DETAIL,
+// 			payload: response.data,
+// 		});
+// 	};
+// };
 
 export const addFav = (id, item) => {
 	return async (dispatch) => {

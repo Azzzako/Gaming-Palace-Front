@@ -52,7 +52,10 @@ const rootReducer = (state = initialState, action) => {
 
 
     case GET_DETAIL:
-      return {
+    console.log("entrando a reducer get detail , action. payload es ...")
+    console.log(action.payload)  
+    return {
+        
         ...state, details: action.payload,
       };
 
