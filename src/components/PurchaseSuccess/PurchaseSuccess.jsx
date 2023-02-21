@@ -33,21 +33,21 @@ export const PurchaseSuccess = () => {
     const findUser = usuario?.find(us => us?.email === user?.email);
     const deleteItemsPayed = { userid: findUser?.id, idproduct: [] }
     compra.forEach(prod => deleteItemsPayed.idproduct.push(prod.idproduct))
-    const email = user?.email
+    const email = findUser.email
 
     const cantidades = []
     compra?.forEach(element => {
         cantidades?.push(element?.price * element?.quantity)
     });
 
-    const total = cantidades
+    const total = cantidades.reduce((value, prev) => value + prev)
 
     useEffect(() => {
+        dispatch(getUser())
         dispatch(sendNMailer({
             destiny: email,
             prodsPay: compra
         }))
-        dispatch(getUser())
     }, [dispatch])
 
     const deleteAll = () => {
@@ -56,7 +56,7 @@ export const PurchaseSuccess = () => {
         dispatch(restoreTotalBuy())
     }
 
-    console.log(deleteItemsPayed)
+    console.log(deleteItemsPayed, email)
 
     return (
         <div className="purchase_container_success">
