@@ -1,8 +1,9 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { Button, ButtonBase } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsCashCoin, BsTrash } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteThisOrder, restoreTotalBuy, sendNMailer } from '../../Redux/Actions/actions'
+import { deleteThisOrder, getCart, restoreTotalBuy, sendNMailer, totalBuy } from '../../Redux/Actions/actions'
 import FormAdress from './FormAdress'
 import './OrderList.css'
 
@@ -11,18 +12,28 @@ import './OrderList.css'
 
 const OrderList = () => {
 
-  const totalBuy = useSelector(state => state.totalBuy);
+  const dispatch = useDispatch();
+
+  const totalBuyOk = useSelector(state => state.totalBuy);
   // const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
   const prodsPay = useSelector(state=> state.totalToPay);
+
+const {user} = useAuth0();
+const users = useSelector(state=> state?.users);
+const findUser = users?.find(us => us?.email === user?.email)
+
+useEffect(()=>{
+  dispatch(getCart(findUser?.id))
+  dispatch(totalBuy())
+},[dispatch])
   
-  const dispatch = useDispatch();
   
   const sendEmail = () => {
     dispatch(sendNMailer({destiny: "eliaspiolatto77@hotmail.com", prodsPay: prodsPay}))
   }
   
   
-console.log("totalBuy",totalBuy )
+console.log("totalBuy",totalBuyOk )
 console.log("prodsPay", prodsPay)
 
 // console.log("totalBuyOK",totalBuyOk )
@@ -35,7 +46,7 @@ console.log("prodsPay", prodsPay)
 
         <ButtonBase onClick={()=> sendEmail()}>Enviar orden al email</ButtonBase>
 
-        <p className='in-cart'>In cart: US$ {totalBuy}<BsCashCoin color='green'/></p>
+        <p className='in-cart'>In cart: US$ {totalBuyOk}<BsCashCoin color='green'/></p>
       </div>
 
       {/* <div className="page-content"> */}
@@ -72,7 +83,7 @@ console.log("prodsPay", prodsPay)
 
         <h1 className='direccion-envio'>Shipping Address:</h1>
           
-          <FormAdress/>
+          <FormAdress name={findUser?.name} address={findUser?.address}/>
           {/* <div className="order-shipping">
 
             <div className="form-group">
