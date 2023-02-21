@@ -1,6 +1,6 @@
 
 
-import { GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, CHANGE_PRODUCT, UPDATE_USER } from "./Actions/constants";
+import { GET_STATS ,GET_ALL_PRODUCTS, GET_DETAIL, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_BY_MONTH, GET_BY_YEAR, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, CHANGE_PRODUCT, UPDATE_USER } from "./Actions/constants";
 
 
 
@@ -13,8 +13,10 @@ const initialState = {
   totalBuy: [0],
   users: [],
   user: [],
-
+  allStats: [],
   totalToPay: [],
+  salesByMonth: [],
+  salesByYear:[]
 
 };
 
@@ -36,6 +38,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalToPay: [...state.totalToPay, action.payload]
       }
+
+      case GET_STATS:
+        console.log("entrando a reducer getStats")
+        console.log(action.payload)
+        return{
+          ...state,
+          allStats: action.payload
+          
+        }
 
     case GET_ALL_PRODUCTS:
 
@@ -131,6 +142,16 @@ const rootReducer = (state = initialState, action) => {
         ...state
       };
     
+    case GET_BY_MONTH:
+      return{
+        ...state, salesByMonth: action.payload
+      } 
+
+    case GET_BY_YEAR:
+      return{
+        ...state, salesByYear : action.payload
+      }
+
       default:
       return state;
 

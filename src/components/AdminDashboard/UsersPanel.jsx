@@ -1,21 +1,21 @@
 import React, {useEffect, useState} from "react";
-import { getUser, updateUser} from "../../Redux/Actions/actions";
+import { getUser, updateUser, } from "../../Redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Box,  Switch, Typography, useTheme } from "@mui/material";
-import { tokens } from "./theme";
+
+
 // import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+
 import SideBar from "./SideBar";
 import './UsersPanel.css'
 
 const UsersPanel = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  
+
   const dispatch = useDispatch()
   const user = useSelector((state) => state.users)
+  
+ 
+
   
 
   useEffect(() => {
@@ -45,32 +45,13 @@ const UsersPanel = () => {
     dispatch(getUser())
   }
 
-  const columns = [
-    { field: "id", headerName: "ID" },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    }
-  ];
+ 
+
+
+  const Fecha = new Date()
+  console.log(Fecha)
+  
+  
 
   return (
     <div className="Q">
@@ -84,33 +65,10 @@ const UsersPanel = () => {
         height="30vh"
         width="2000px"
         margin="30px"
-        
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-        }}
-      >
+        >
+
+         
+
          <table className="table">
         <thead>
           <tr>
@@ -120,10 +78,10 @@ const UsersPanel = () => {
             <th>E-mail</th>
             <th>Adress</th>
             <th></th>
-            <th>Role</th>
+            <th className="status">Role</th>
             <th></th>
             <th></th>
-            <th>Status</th>
+            <th className="status2">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -134,18 +92,18 @@ const UsersPanel = () => {
               <td className="b">{elemento.email}</td>
               <td className="a">{elemento.address}</td>
 
-              <td><span>customer</span></td><Switch
+              <td><span className="enabled">customer</span></td><Switch
               checked={elemento.role === "admin" ? true : false}
               onClick={() =>changeRol(elemento.id)}
               inputProps={{ 'aria-label': 'controlled' }}/>
-              <td><span>admin</span></td>
+              <td><span className="disabled">admin</span></td>
             
-              <td><span>enabled</span></td>
+              <td><span className="enabled">enabled</span></td>
               <Switch
               checked={elemento.disabled === false ? false: true}
               onClick={() =>changeDisabled(elemento.id)}
               inputProps={{ 'aria-label': 'controlled' }}/>
-              <td><span>disabled</span></td>
+              <td><span className="disabled">disabled</span></td>
               
               
               

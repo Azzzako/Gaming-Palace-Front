@@ -13,11 +13,6 @@ import SideBar from '../SideBar';
 
 
 
-
-
-
-
-
 export default function AddProduct() {
 
   

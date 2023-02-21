@@ -1,21 +1,62 @@
 import React, {useEffect, useState} from "react";
-import { getAllProducts, changeProduct} from "../../Redux/Actions/actions";
+import { getAllProducts, changeProduct, getArray} from "../../Redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Switch, useTheme } from "@mui/material"
-import { tokens } from "./theme";
+import { Box, Switch} from "@mui/material"
 import './ProductsTable.css';
 import { TbEdit } from "react-icons/tb"
 import {Modal, ModalBody, ModalHeader, ModalFooter} from 'reactstrap';
 import SideBar from './SideBar';
 
+    
+
+ 
 
 function ProductsTable() {
-  const dispatch = useDispatch()
+  
   const product = useSelector((state) => state.allProducts)
+ 
+  product.sort(function (a, b) {
+    if (a.id < b.id) {
+      return -1;            // -1 = izquierda en el array
+    }
+    if (b.id < a.id) {
+      return 1;            // 1 = derecha en el array
+    }
+    return 0  } )              // 0 = iguales
+  
 
+  const [word, setWord] = useState("")
+  const [filter1, setFilter1] = useState('empty')
+  const [filter2, setFilter2] = useState('empty')
+  const [order, setOrder] = useState('empty')
 
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const marks = product.map(product => product.trademark)
+  const marks2 = new Set(marks)
+  const trademark = [...marks2]
+
+  const catego = product.map(product => product.category)
+  const catego2 = new Set(catego)
+  const categories = [...catego2]
+  
+  const dispatch = useDispatch()
+
+  const handleSearch = (e) => {
+      e.preventDefault()
+      const obj = {
+          word: word,
+          filter1: filter1, //Logitech
+          filter2: filter2,
+          order: order
+      }
+      dispatch(getArray(obj))
+  }
+
+  const resetFilters = () => {
+      setWord("")
+      setFilter1("empty")
+      setFilter2("empty")
+      setOrder("empty")
+  }
 
 
   useEffect(() => {
@@ -42,10 +83,12 @@ function ProductsTable() {
     }
 
     dispatch(changeProduct(inputd))
-
+    dispatch(getAllProducts())
     console.log(inputd)
   
   }
+
+  
 
   const [modalEditar, setModalEditar] = useState(false);
   const [modalEliminar, setModalEliminar] = useState(false);
@@ -113,6 +156,44 @@ function ProductsTable() {
     console.log(product)
 
 
+  //////////////////////////////////////// Cloudinary
+
+    const [image, setImage] = useState("");
+    const [minImage, setMiniImage] = useState("");
+  
+    useEffect(() => {
+      if (image) {
+        uploadImage();
+      }
+    }, [image]);
+  
+
+    const uploadImage = () => {
+      const data = new FormData();
+      data.append("file", image);
+      data.append("upload_preset", "gamepalace");
+      data.append("cloud_name", "ddxezv6as");
+      fetch("https://api.cloudinary.com/v1_1/ddxezv6as/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setinput({
+            ...input,
+            imageurl: data.url,
+          });
+          setMiniImage(data.url);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    console.log("INPUT ES");
+    console.log(input);
+
+
   return (
     <div className="P">
     <Box  display="flex" >
@@ -125,20 +206,76 @@ function ProductsTable() {
         width="2000px"
         margin="30px"
       >
+    
+    <div className="filters_contain">
+            <form 
+                onSubmit={handleSearch}
+            >
+                <label className="filter" for="namedisplay">Filter by Product name: </label>
+                <input namedisplay="namedisplay" id="namedisplay" type="text" placeholder="Search..."
+                    onChange={(e) => setWord(e.target.value)}
+                    value={word}
+                />
+
+                <label className="filter" for="trademark">Filter by Trademark: </label>
+                <select
+                    onChange={(e) => setFilter1(e.target.value)}
+                    option="first"
+                    selected="true"
+                    
+                >
+                    <option selected="true" value="empty">Trademark...</option>
+                    {trademark?.map(product => {
+                        return <option value={product}>{product}</option>
+                    })}
+
+
+                </select>
+
+
+                <label className="filter" for="trademark">Filter by Price: </label>
+                <select onChange={(e) => setOrder(e.target.value)}
+                    
+                >
+                    <option value="">Sort...</option>
+                    <option value="nameup">↕A - Z↕</option>
+                    <option value="namedown">↕Z - A↕</option>
+                    <option value="priceup">$$$</option>
+                    <option value="pricedown">$</option>
+                </select>
+
+                <input type="submit"
+                    value="Apply filters"
+                    className="btn-filter-products"
+                />
+
+                <button
+                    onClick={() => resetFilters()}
+                    className="btn-filter-products"
+                >
+                    Reset filters
+                </button>
+
+            </form>
+        </div>
 
       {/* ///////////////////////////////// TABLA */}
-        <table className="table-fixed">
-          <thead>
+      <div>
+        <table className="tableC" >
+          <div className="table">
+          <thead >
 
             <tr>
-              <th >ID</th>
-              <th >Name</th>
-              <th >Trademark</th>
-              <th >Price</th>
-              <th >Stock</th>
-              <th >Category</th>
+              <th className="c">ID</th>
+              <th className="name">Name</th>
+              <th className="d">Trademark</th>
+              <th className="d">Price</th>
+              <th className="c">Stock</th>
+              <th className="c">Category</th>
               <th></th>
-              <th>Status</th>
+              <th className="status">Status</th>
+              <th></th>
+              <th className="editp">Edit Product</th>
             </tr>
 
           </thead>
@@ -147,31 +284,33 @@ function ProductsTable() {
             {product.map(elemento=>(
               <tr>
                 <td >{elemento.id}</td>
-                <td td >{elemento.namedisplay}</td>
+                <td td className="name">{elemento.namedisplay}</td>
                 <td td >{elemento.trademark}</td>
                 <td td >{elemento.price}</td>
                 <td td >{elemento.stock}</td>
                 <td td >{elemento.category}</td>
               
 
-                <td className="btns-p-table">
-                <button className="btn-p-table"  onClick={()=>selectModal(elemento, 'Editar')}><TbEdit/></button> 
+                
 
-
-                <td><span>enabled</span></td>
-                <Switch
+                <td><span className="enabled">enabled</span></td>
+                <Switch 
                 checked={elemento.disabled === false ? false: true}
                 onClick={() =>changeDisabled(elemento)}
                 inputProps={{ 'aria-label': 'controlled' }}/>
-                <td><span>disabled</span></td>
+                
+                <td><span className="disabled">disabled</span></td>
+                
+                <td className="btns-p-table">
+                  <button className="btn-p-table"  onClick={()=>selectModal(elemento, 'Editar')}><TbEdit/></button> 
                 </td>
-
               </tr>
             ))
             }
           </tbody>
-          
+          </div>
         </table>
+        </div>
       </Box>
 {/* //////////////////////////////////////////////////// */}
 
@@ -261,26 +400,15 @@ function ProductsTable() {
             />
             <br />
 
+            
             <label>Image</label>
-            <input
-              className="form-control"
-              type="text"
-              name="imageurl"
-              id="imageurl"
-              value={ input && input.imageurl}
-              onChange={(e) => handleChange(e)}
-            />
-            <br />
-            <label>Disabled</label>
-            <input
-              className="form-control"
-              type="text"
-              name="disable"
-              id="disabled"
-              value={ input && input.disabled}
-              onChange={(e) => handleChange(e)}
-            />
-            <br />
+                <h1></h1>
+                <input
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                ></input>
+                <br />
+
 
           </div>
           </form>
@@ -289,14 +417,14 @@ function ProductsTable() {
 
         <ModalFooter>
           <button type="submit" id="edit" name= "edit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
-            Actualizar
+            Update
           </button>
 
           <button
             className="btn btn-danger"
             onClick={()=>setModalEditar(false)}
           >
-            Cancelar
+            Cancel
           </button>
         </ModalFooter>
       </Modal>

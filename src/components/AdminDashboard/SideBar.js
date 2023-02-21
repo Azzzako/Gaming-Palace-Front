@@ -23,9 +23,9 @@ const SideBar = () => {
             href: "/admin-sales"
 		},
 		{
-			text: "Analytics",
+			text: "Graphics",
 			icon: "icons/pie-chart.svg",
-            href: "/admin-analytics"
+            href: "/admin-graphics"
 		},
 		{
 			
@@ -38,11 +38,7 @@ const SideBar = () => {
 			icon: "icons/folder.svg",
             href: "/admin-products-form"
 		},
-		{
-			text: "FAQ",
-			icon: "icons/shopping-cart.svg",
-            href: "/admin-faq"
-		},
+		
 	
 	];
 	return (
@@ -75,7 +71,7 @@ const SideBar = () => {
 
 				
 				<div className="nav-menu">
-				<TbHome2 className="home"/>	<TbUsers className="users"/>	<TbClipboardText className="sales"/>	<TbFileAnalytics className="analytics"/><TbTags className="products"/><TbTools className="create"/><RiQuestionnaireLine className="faq"/>	
+				<TbHome2 className="home"/>	<TbUsers className="users"/>	<TbClipboardText className="sales"/>	<TbFileAnalytics className="analytics"/><TbTags className="products"/><TbTools className="create"/>
 					{menuItems.map(({ text, icon, href }) => (
 						<a
 							className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}

@@ -29,8 +29,8 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import UsersPanel from './components/AdminDashboard/UsersPanel';
 import Sales from './components/AdminDashboard/Sales';
 import ProductsTable from './components/AdminDashboard/ProductsTable';
-import FAQ from './components/AdminDashboard/faq';
 import AddProduct from './components/AdminDashboard/AddProduct/AddProduct';
+import Graphics from './components/AdminDashboard/Graphics';
 
 function App() {
   return (
@@ -40,8 +40,6 @@ function App() {
       <Routes>
 
         <Route exact path="/showorder" element={<OrderList/>}/>
-      
-        {/* <Route exact path='/productform' element={<AddProduct/>}/> */}
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/inconstruction" element={<InConstructionPage />} />
         <Route exact path="/detail/:id" element={<Detail />} />
@@ -55,25 +53,16 @@ function App() {
         <Route exact path="/favourites" element={<ListFavs/>}/>
         <Route exact path='/products' element={<ProductList/>} />
 
-
       
         <Route exact path="/admin-dashboard" element={<AdminDashboard/>} />
         <Route exact path="/admin-users" element={<UsersPanel/>} />
         <Route exact path="/admin-sales" element={<Sales/>} />
         <Route exact path="/admin-products" element={<ProductsTable/>} />
-        <Route exact path="/admin-faq" element={<FAQ/>} />
         <Route exact path="/admin-products-form" element={<AddProduct/>} />
+        <Route exact path="/admin-graphics" element={<Graphics/>} />
 
 
-        {/* <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>
-        <Route exact path="/admin-dashboard-products" element={<ProductsTable/>} />
-        <Route exact path="/admin-dashboard-users" element={<UsersTable/>} /> */}
-        {/* <Route exact path="/admin-dashboard-sales" element={<SalesTable/>} /> */}
-
-
-
-
-        {/* <Route path='/login/savedata' element={<ConfirmData/>}/> */}
+  
       </Routes>
       <Footer />
     </div>

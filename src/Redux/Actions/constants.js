@@ -15,7 +15,9 @@ export const RESTORE_TOTAL_BUY = "RESTORE_TOTAL_BUY";
 export const GET_USER = 'GET_USER';
 export const CHANGE_PRODUCT= "CHANGE_PRODUCT";
 export const UPDATE_USER= 'UPDATE_USER'
-
+export const GET_STATS = 'GET_STATS'
+export const GET_BY_MONTH = 'GET_BY_MONTHS'
+export const GET_BY_YEAR = "GET_BY_YEAR"
 
 
 

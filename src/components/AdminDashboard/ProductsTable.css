@@ -59,7 +59,58 @@
 }
 
 .btns-p-table{
-  margin: 5px;
+  width: 120px;
 }
+
+.switch{
+  width: 10px;
+ 
+}
+.name{
+  position: relative;
+  width: 400px;
+}
+
+.status{
+ width: 70px; 
+}
+
+.enabled, .disabled{
+ display: flex;
+  width: 30px;
+  font-size: 12px;
+  
+}
+
+.btn-filter-products{
+  width: 90px;
+  margin: 10px;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.filter{
+  margin: 10px;
+}
+
+.table{
+  align-items: center;
+  width: 1600px;
+  height: 760px;
+  overflow: scroll;
+  
+}
+
+.d{
+  width: 200px;
+}
+.c{width: 200px;}
+
+.editp{
+  width: 150px;
+}
+
+
+
 
 
