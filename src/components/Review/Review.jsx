@@ -118,7 +118,7 @@ const handleSubmit = (e) => {
   return (
     <div className='mainContainer'>
 
-    <button  onClick={(e) => funcionCorneta(e)}>redux detail</button>
+    {/* <button  onClick={(e) => funcionCorneta(e)}>redux detail</button> */}
 {/* <h6 key="detallekey">{detail}</h6> */}
 
     <form onSubmit={(e) => handleSubmit(e)}>

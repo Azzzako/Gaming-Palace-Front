@@ -1,16 +1,15 @@
 
-import React, { useState , useEffect} from 'react';
-import { Box} from "@mui/material";
-import SideBar from '../SideBar';
-import {useDispatch,} from 'react-redux';
-import { postNewProduct } from '../../../Redux/Actions/actions';
-import validator from './ValidatorForm';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Box } from "@mui/material"
+import { postNewProduct } from "../../../Redux/Actions/actions";
+import validator from "./ValidatorForm";
 import s from "./AddProduct.module.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import MyVerticallyCenteredModal from './ModalForm';
-import Button from 'react-bootstrap/Button';
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import MyVerticallyCenteredModal from "./ModalForm";
+import Button from "react-bootstrap/Button";
+//import { Image } from "cloudinary-react";
+import SideBar from "../SideBar";
 
 export default function AddProduct() {
   const dispatch = useDispatch();
@@ -43,22 +42,28 @@ export default function AddProduct() {
     );
   };
 
+  const handleSelect = (e) => {
+    setInput({
+      ...input,
+      category: e.target.value,
+    });
+    setErrors(
+      validator({
+        ...input,
+        season: e.target.value,
+      })
+    );
+  };
 
-  const handleSelect= (e) => {
-		setInput({
-			...input,
-			category: e.target.value,
-		});
-		setErrors(
-			validator({
-				...input,
-				category: e.target.value,
-			})
-		);
-	};
-
- 
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(input);
+    setErrors(
+      validator({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
 
     if (Object.keys(errors).length === 0) {
       dispatch(postNewProduct(input));
@@ -72,48 +77,16 @@ export default function AddProduct() {
         imageurl: "",
       });
     }
-  
-
-  
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-    if(!input.name || !input.price || !input.trademark || !input.description || !input.category || !input.imageurl){ return alert("INFORMATION REQUIRED, PLEASE COMPLETE ALL FIELDS", setModalShow(false))} 
-   
-    else{  
-    console.log(input)
-        setErrors(
-          validator({
-            ...input,
-          [e.target.name]: e.target.value
-          })
-        );
-        
-        if(Object.keys(errors).length === 0){
-          dispatch(postNewProduct(input));
-         
-  
-            setInput({
-              name:"",
-              trademark:"", 
-              price:"",
-              description:"",
-              category:"",
-              imageurl:""
-            });
-        } }  
-      }
+  };
 
   const [image, setImage] = useState("");
   const [minImage, setMiniImage] = useState("");
-
 
   useEffect(() => {
     if (image) {
       uploadImage();
     }
   }, [image]);
-
 
   const uploadImage = () => {
     const data = new FormData();
@@ -139,31 +112,17 @@ export default function AddProduct() {
   };
   console.log("INPUT ES");
   console.log(input);
-	
-	 
-  
-
   return (
     <div>
-    <Box display="flex">
-      
-    
-    <SideBar className="sidebar"/>
-    <Box  display="grid"
-        height="70vh"
-        width="2000px"
-        margin="30px">
-
-
-
-
+      <Box  display="flex" >
+      <SideBar/>
+      <Box
+                display="grid"
+                height="30vh"
+                width="2000px"
+                margin="30px"
+            >
       <div className={s.container}>
-
-
-
-
-
-
         <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
           <div className={s.formheader}>
             <h1 className={s.formtitle}>NEW PRODUCT</h1>
@@ -275,73 +234,6 @@ export default function AddProduct() {
           </div>
 
 
-        <div> 
-        {errors.trademark && (
-              <div className={s.error}>
-                {errors.trademark} 
-              </div>
-              )}     
-          <label className={s.formlabel}>Brand</label>
-          <input type="text" id="brand" value={input.trademark} name= "trademark" className={s.forminput} placeholder="Brand" onChange={(e) => handleChange(e)}></input>
-        </div>  
-
-        <div>
-        {errors.category && (
-              <div className={s.error}>
-                {errors.select} 
-              </div>
-              )}
-          <label className={s.formlabel}>Category</label>
-          <select className={s.forminput} id="category" value={input.category} name= "category" required onChange={(e) => handleSelect(e)}>
-
-            <option value="select">Select category</option>
-            
-            <option value="Powerbank">Powerbank</option>
-            <option value="wireless network card">wireless network card</option>
-            <option value="videocard">videocard</option>
-            <option value="Harddrive">Harddrive</option>
-            <option value="Monitor">Monitor</option>
-            <option value="Mouse pad">Mouse pad</option>
-            <option value="coolers">coolers</option>
-            <option value="processors">processors</option>
-            <option value="mouse">mouse</option>
-            <option value="motherboard">motherboard</option>
-            <option value="memory RAM">memory RAM</option>
-            <option value="Tower">Tower</option>
-            <option value="SSD">SSD</option>
-            <option value="GAMING CHAIR">GAMING CHAIR</option>
-            <option value="keyboard">keyboard</option>
-            <option value="Headset">Headset</option>
-          </select>
-        </div>
-
-
-        <div>
-            <div>
-              <label className={s.formlabel}>Image</label>
-
-              <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-              ></input>
-              {/* <button onClick={uploadImage}>Upload</button> */}
-            </div>
-          </div>
-
-
-
-        <div>
-        {errors.description && (
-              <div className={s.errordescription}>
-                {errors.description} 
-              </div>
-              )}
-          <label className={s.formlabel}>Description</label>
-          <textarea id="description" value={input.description} name= "description" className={s.formtextarea} placeholder="Description" onChange={(e) => handleChange(e)}></textarea>
-        </div>
-
-
-          
 
           <Button
             type="submit"
@@ -361,13 +253,8 @@ export default function AddProduct() {
         </form>
       </div>
       </Box>
-    </Box>
-    
-
+      </Box>
 
     </div>
-
-   
   );
 }
-

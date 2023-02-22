@@ -33,7 +33,7 @@ export const PurchaseSuccess = () => {
     const findUser = usuario?.find(us => us?.email === user?.email);
     const deleteItemsPayed = { userid: findUser?.id, idproduct: [] }
     compra.forEach(prod => deleteItemsPayed.idproduct.push(prod.idproduct))
-    const email = findUser?.email
+    const email = user?.email
 
     const cantidades = []
     compra?.forEach(element => {
@@ -44,15 +44,25 @@ export const PurchaseSuccess = () => {
 
     useEffect(() => {
         dispatch(getUser())
-        dispatch(sendNMailer({
-            destiny: email,
+        
+    }, [dispatch])
+
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            dispatch(sendNMailer({
+            destiny: `${email}`,
             prodsPay: compra
         }))
-    }, [dispatch])
+        }, 2000)
+    }, [email, compra, dispatch])
+
+
+    console.log("este es el id", findUser?.id)
 
     const deleteAll = () => {
         dispatch(changeStock(changestock))
-        dispatch(successBuy({userid: findUser.id}))
+        dispatch(successBuy({userid: findUser?.id}))
         dispatch(deleteItemCart(deleteItemsPayed))
         dispatch(restoreTotalBuy())
         
