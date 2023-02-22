@@ -25,12 +25,9 @@ const Navbar = () => {
     const { user, isAuthenticated } = useAuth0()
     const picture = user?.picture
     const location = useLocation();
-<<<<<<< HEAD
     const dispatch = useDispatch();
-=======
     const filteredUser = usuario?.filter(usr => usr.email === user?.email)
     const adminShow = filteredUser[0]?.role
->>>>>>> Develop3
 
     const linkStyle = { 
         "textDecoration": "none",

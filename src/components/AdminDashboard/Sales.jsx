@@ -14,7 +14,7 @@ const Sales = () => {
 
   
   const dispatch = useDispatch()
-  const stats = useSelector((state) => state.allStats)
+  let stats = useSelector((state) => state.allStats)
   const products = useSelector((state) => state.allProducts)
 
 
@@ -56,21 +56,39 @@ const Sales = () => {
 
 console.log("estado por año:",salesY )
 
- 
-  let price = []
+ // let price = []
     for (let i = 0; i < products.length; i++) {
       for (let j = 0; j < stats.length; j++) {
         if(products[i].id === stats[j].idproduct){
-          price.push({price:products[i].price, namedisplay:products[i].namedisplay})
+          // price.push({price:products[i].price, namedisplay:products[i].namedisplay})
           stats.forEach(element => {  
             element["pricee"] = products[i].price})
             stats.forEach(element => {  
               element["namedisplayy"] = products[i].namedisplay})
         } 
       }
-    }
+    };
 
-  //  console.log(input)
+    //////=================================NUEVA FUNCION (ELIAS)=========================
+    let statss = () => {
+      for(let i = 0; i < stats.length; i++){
+        let matched = []
+        if(sales.length>0) {
+        let finded = sales.find(match=> match.idproduct === stats[i].idproduct)
+        matched.push(finded)
+        
+      }
+      if(salesY.length>0) {
+        let finded = salesY.find(match=> match.idproduct === stats[i].idproduct)
+        matched.push(finded)
+        
+      }
+      return matched.length >0 ? matched : stats
+    }
+    }
+     /////////====================================================================================//////////////// 
+
+
   
     
     
@@ -160,7 +178,7 @@ console.log("estado por año:",salesY )
             {/* {(sales.length>0 ? sales.map((elemento)=>(
 
             )))} */}
-            {stats?.map((elemento)=> (
+            {statss()?.map((elemento)=> (
            
            <tr>
                 
