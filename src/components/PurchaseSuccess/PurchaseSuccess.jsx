@@ -33,7 +33,7 @@ export const PurchaseSuccess = () => {
     const findUser = usuario?.find(us => us?.email === user?.email);
     const deleteItemsPayed = { userid: findUser?.id, idproduct: [] }
     compra.forEach(prod => deleteItemsPayed.idproduct.push(prod.idproduct))
-    const email = findUser.email
+    const email = findUser?.email
 
     const cantidades = []
     compra?.forEach(element => {
@@ -52,8 +52,10 @@ export const PurchaseSuccess = () => {
 
     const deleteAll = () => {
         dispatch(changeStock(changestock))
+        dispatch(successBuy({userid: findUser.id}))
         dispatch(deleteItemCart(deleteItemsPayed))
         dispatch(restoreTotalBuy())
+        
     }
 
     console.log(deleteItemsPayed, email)
