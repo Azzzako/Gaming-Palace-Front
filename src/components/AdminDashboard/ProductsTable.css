@@ -1,0 +1,116 @@
+.trademark{
+  width: 350px;
+  margin-top: 10px;
+ 
+}
+
+.price{
+  margin-top: 10px;
+  width: 150px;
+ 
+}
+.P {
+    text-align: center;
+    min-height: 100vh;
+  }
+  
+  
+
+
+.table-fixed thead,
+.table-fixed thead>th {
+  background: #394044;
+  color: #fff;
+  line-height: 20px;
+}
+
+.table-fixed tbody tr td {
+  background: #fff;
+}
+
+
+
+.table-fixed tbody td,
+.table-fixed thead>tr>th {
+  float: left;
+  font-size: 14px;
+  padding-left: 10px !important;
+}
+
+
+
+.table-fixed tbody {
+  display: block;
+  height: 800px;
+  overflow-y: auto;
+}
+
+.table-fixed tr {
+  display: block;
+}
+
+.btn-p-table{
+  height: 20px;
+  padding: 0;
+  margin-top: 1px;
+  color: black;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.btns-p-table{
+  width: 120px;
+}
+
+.switch{
+  width: 10px;
+ 
+}
+.name{
+  position: relative;
+  width: 400px;
+}
+
+.status{
+ width: 70px; 
+}
+
+.enabled, .disabled{
+ display: flex;
+  width: 30px;
+  font-size: 12px;
+  
+}
+
+.btn-filter-products{
+  width: 90px;
+  margin: 10px;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.filter{
+  margin: 10px;
+}
+
+.table{
+  align-items: center;
+  width: 1600px;
+  height: 760px;
+  overflow: scroll;
+  
+}
+
+.d{
+  width: 200px;
+}
+.c{width: 200px;}
+
+.editp{
+  width: 150px;
+}
+
+
+
+
+

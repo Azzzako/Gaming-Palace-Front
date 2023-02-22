@@ -7,7 +7,7 @@ import Detail from './components/Detail/Detail'
 import InConstructionPage from './components/InconstructionPage/InConstructionPage';
 import "./App.css"
 import { Route, Routes } from 'react-router-dom';
-import AddProduct from './components/AddProduct/AddProduct';
+import AddProduct from './components/AdminDashboard/AddProduct/AddProduct';
 import Review from './components/Review/Review';
 import Footer from '../src/components/Footer/Footer'
 import ListFavs from './components/ListFavs/ListFavs';
