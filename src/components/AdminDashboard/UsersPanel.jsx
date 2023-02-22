@@ -2,10 +2,6 @@ import React, {useEffect, useState} from "react";
 import { getUser, updateUser, } from "../../Redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Box,  Switch, Typography, useTheme } from "@mui/material";
-
-
-// import { mockDataTeam } from "../../data/mockData";
-
 import SideBar from "./SideBar";
 import './UsersPanel.css'
 

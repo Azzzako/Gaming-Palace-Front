@@ -14,7 +14,7 @@ const Sales = () => {
 
   
   const dispatch = useDispatch()
-  const stats = useSelector((state) => state.allStats)
+ let stats = useSelector((state) => state.allStats)
   const products = useSelector((state) => state.allProducts)
 
 
@@ -57,139 +57,160 @@ const Sales = () => {
 console.log("estado por año:",salesY )
 
  
-  let price = []
-    for (let i = 0; i < products.length; i++) {
-      for (let j = 0; j < stats.length; j++) {
-        if(products[i].id === stats[j].idproduct){
-          price.push({price:products[i].price, namedisplay:products[i].namedisplay})
-          stats.forEach(element => {  
-            element["pricee"] = products[i].price})
-            stats.forEach(element => {  
-              element["namedisplayy"] = products[i].namedisplay})
-        } 
-      }
+// let price = []
+for (let i = 0; i < products.length; i++) {
+  for (let j = 0; j < stats.length; j++) {
+    if(products[i].id === stats[j].idproduct){
+      // price.push({price:products[i].price, namedisplay:products[i].namedisplay})
+      stats.forEach(element => {  
+        element["pricee"] = products[i].price})
+        stats.forEach(element => {  
+          element["namedisplayy"] = products[i].namedisplay})
+    } 
+  }
+};
+
+
+//////=================================NUEVA FUNCION (ELIAS)=========================
+let statss = () => {
+  let finStats = []
+  for(let i = 0; i < stats?.length; i++){
+    if(sales.length>0){
+      for (let j = 0; j < sales?.length; j++) {
+    let fStats =  stats?.find(e => e.idproduct === sales[j].idproduct)
+      finStats.push(fStats)
+    }}
+    if(salesY.length>0){
+      for (let j = 0; j < salesY?.length; j++) {
+        let fStats =  stats?.find(e => e.idproduct === salesY[j].idproduct)
+          finStats.push(fStats)
+        }
     }
-
-  //  console.log(input)
-  
     
-    
+}
+return finStats.length > 0 ? finStats : stats
+}
+ /////////====================================================================================//////////////// 
 
-    return (
-      <div className="P">
 
-    
+console.log("statss" , statss())
+console.log("saless", sales)
 
-      <Box  display="flex">
-      <SideBar/>
-      <Box
-        display="grid"
-        height="30vh"
-        width="2000px"
-        margin="30px"
-      >
-         <div className="filter">
 
-    <div>
-    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-    <InputLabel id="demo-simple-select-standard-label">Month</InputLabel>
-    <Select
-    labelId="demo-simple-select-standard-label"
-    id="demo-simple-select-standard"
-    value={input}
-    onChange={handleChangeMonth}
-    
-    >
-    <MenuItem value="">
-      <em>None</em>
-    </MenuItem>
-    {meses.map( elemento => {
-      return(
-        <MenuItem value={elemento}>{elemento}</MenuItem>
-      )
-    })}
+return (
+  <div className="P">
 
-  </Select>
-  </FormControl>
-  <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-  <InputLabel id="demo-simple-select-filled-label">Year</InputLabel>
-  <Select
-  labelId="demo-simple-select-filled-label"
-  id="demo-simple-select-filled"
-  value={input}
-  onChange={handleChangeYear}
+
+
+  <Box  display="flex">
+  <SideBar/>
+  <Box
+    display="grid"
+    height="30vh"
+    width="2000px"
+    margin="30px"
   >
-  <MenuItem value="">
-    <em>None</em>
-  </MenuItem>
-  {años.map( elemento => {
-    return(
-      <MenuItem value={elemento}>{elemento}</MenuItem>
-    )
-  })}
+     <div className="filter">
+
+<div>
+<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+<InputLabel id="demo-simple-select-standard-label">Month</InputLabel>
+<Select
+labelId="demo-simple-select-standard-label"
+id="demo-simple-select-standard"
+value={input}
+onChange={handleChangeMonth}
+
+>
+<MenuItem value="">
+  <em>None</em>
+</MenuItem>
+{meses.map( elemento => {
+  return(
+    <MenuItem value={elemento}>{elemento}</MenuItem>
+  )
+})}
+
+</Select>
+</FormControl>
+<FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+<InputLabel id="demo-simple-select-filled-label">Year</InputLabel>
+<Select
+labelId="demo-simple-select-filled-label"
+id="demo-simple-select-filled"
+value={input}
+onChange={handleChangeYear}
+>
+<MenuItem value="">
+<em>None</em>
+</MenuItem>
+{años.map( elemento => {
+return(
+  <MenuItem value={elemento}>{elemento}</MenuItem>
+)
+})}
 
 
-  </Select>
-  </FormControl>
-  </div>
-  </div>
+</Select>
+</FormControl>
+</div>
+</div>
 
 
-        
-  
-      {/* ///////////////////////////////// TABLA */}
+    
+
+  {/* ///////////////////////////////// TABLA */}
 
 
 
-        <table className="table">
-          <tbody>
+    <table className="table">
+      <tbody>
+      
+        <tr>
+
           
-            <tr>
-
-              
-              
-              <th>ID User</th>
-              <th>ID Product</th>  
-              <th>Name</th> 
-              <th>Price</th>
-              <th>Month</th>
-              <th>Year</th>
           
-              
+          <th>ID User</th>
+          <th>ID Product</th>  
+          <th>Name</th> 
+          <th>Price</th>
+          <th>Month</th>
+          <th>Year</th>
+      
+          
+        </tr>
+        {/* {(sales.length>0 ? sales.map((elemento)=>(
+
+        )))} */}
+        {statss()?.map((elemento)=> (
+       
+       <tr>
+            
+            
+            <td>{elemento.userid}</td>
+            <td>{elemento.idproduct}</td>
+            <td>{elemento.namedisplayy}</td>
+            <td>{elemento.pricee}</td>
+            <td>{elemento.month}</td>
+            <td>{elemento.year}</td>
             </tr>
-            {/* {(sales.length>0 ? sales.map((elemento)=>(
-
-            )))} */}
-            {stats?.map((elemento)=> (
-           
-           <tr>
-                
-                
-                <td>{elemento.userid}</td>
-                <td>{elemento.idproduct}</td>
-                <td>{elemento.namedisplayy}</td>
-                <td>{elemento.pricee}</td>
-                
-                <td>{elemento.month}</td>
-                <td>{elemento.year}</td>
-                </tr>
-                
-                )
-            )}
-
             
-          
-            
-          </tbody>
-        </table>
-  </Box>
-  </Box>
-  {/* //////////////////////////////////////////////////// */}
-  
-  
+            )
+        )}
+
         
-      </div>
-    );
+      
+        
+      </tbody>
+    </table>
+</Box>
+</Box>
+{/* //////////////////////////////////////////////////// */}
+
+
+    
+  </div>
+);
 };
 
 export default Sales;
