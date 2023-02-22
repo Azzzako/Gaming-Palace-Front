@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './Redux/store';
 import Auth0ProviderWithHistory from './Auth0Provider/Auth0Provider';
+import ProSidebarProvider from 'react-pro-sidebar'
 
 
 const domain = process.env.REACT_APP_GAMING_PALACE_DOMAIN
@@ -24,7 +25,9 @@ root.render(
       redirect_uri: window.location.origin
     }}
     > 
-          <App />
+   
+          <App /> 
+         
       </Auth0ProviderWithHistory>
       </BrowserRouter>
       </Provider>

@@ -19,6 +19,7 @@ import {
   GET_FAVS,
   DELETE_ALL_FAVS,
   DELETE_ALL_CART,
+  CHANGE_PRODUCT,
 } from "./Actions/constants";
 
 const initialState = {
@@ -173,6 +174,11 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_USER_BY_MAIL:
       return { ...state, userMail: action.payload };
+
+    case CHANGE_PRODUCT:
+      return {
+        ...state,
+      };
 
     default:
       return state;

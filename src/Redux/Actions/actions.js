@@ -279,3 +279,17 @@ export const sendNMailer = (aBody) => {
     axios.post("http://localhost:3001/nmailer", aBody);
   };
 };
+
+export const changeProduct = (data) => {
+  try {
+    return async function () {
+      const changeProduct = await axios.post(
+        `http://localhost:3001/change`,
+        data
+      );
+      return changeProduct;
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
