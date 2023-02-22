@@ -20,7 +20,10 @@ export const GET_USER = 'GET_USER';
 export const GET_USER_BY_MAIL = "GET_USER_BY_MAIL";
 export const DELETE_THIS_ORDER = "DELETE_THIS_ORDER";
 export const UPDATE_USER = "UPDATE_USER";
-
+export const GET_BY_MONTH = "GET_BY_MONTH"
+export const ADD_CART = "ADD_CART";
+export const GET_STATS = "GET_STATS";
+export const GET_BY_YEAR= "GET_BY_YEAR"
 
 
 
