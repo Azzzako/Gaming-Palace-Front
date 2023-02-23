@@ -17,6 +17,8 @@ import OrderList from './components/ShopCart/OrderList';
 import { PurchaseSuccess } from './components/PurchaseSuccess/PurchaseSuccess';
 
 // import { ConfirmData } from './components/ConfirmData/ConfirmData';
+import Contact from './components/Contact/Contact';
+import About from './components/AboutUs/About';
 
 
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
@@ -38,12 +40,20 @@ function App() {
       
         <Route exact path='/productform' element={<AddProduct/>}/>
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/inconstruction" element={<InConstructionPage />} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/detail/:id" element={<Detail />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/review" element={<Review />} />
+
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>
+      
+
+
+
         
         
+
         <Route exact path="/form-adress" element={<FormAdress/>}/>
 
         <Route exact path="/shopcart" element={<ShopCart/>}/>
