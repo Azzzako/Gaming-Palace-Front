@@ -107,18 +107,18 @@ export const Dashboard = () => {
 
 
     
-    let funcion1 = () => { 
-        let productsFil = []
-        for (let i = 0; i < products?.length; i++) {
-        for (let j = 0; j < userProduct?.length; j++) {
-           let fil = products?.find(e => e.id === userProduct[j]?.idproduct)
-           productsFil.push(fil)
-        } 
-        return productsFil
+//     let funcion1 = () => { 
+//         let productsFil = []
+//         for (let i = 0; i < products?.length; i++) {
+//         for (let j = 0; j < userProduct?.length; j++) {
+//            let fil = products?.find(e => e.id === userProduct[j]?.idproduct)
+//            productsFil.push(fil)
+//         } 
+//         return productsFil
    
-}}
+// }}
 
-      console.log("funcion1:", funcion1())   
+//       console.log("funcion1:", funcion1())   
     
     // console.log("Historiccarts:",filteredUser[0]?.Historiccarts?.Historicproducts)
 
@@ -164,9 +164,9 @@ console.log("estado:" , userProduct)
 
 
 
-<div class="mainContPProducts">
-    <h4>previously purchased products</h4>
-	<section class="productsCP">
+{/* <div class="mainContPProducts"> */}
+    {/* <h4>previously purchased products</h4> */}
+	{/* <section class="productsCP">
         <div class="all-productsCP">
                 {funcion1()?.map(elemento=>(
                 
@@ -195,8 +195,8 @@ console.log("estado:" , userProduct)
       
             ))
             }	</div> 
-	</section>
-    </div>
+	</section> */}
+    {/* </div> */}
         </div>
         </div>
 

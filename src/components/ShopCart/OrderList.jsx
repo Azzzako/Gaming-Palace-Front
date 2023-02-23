@@ -44,7 +44,7 @@ console.log("prodsPay", prodsPay)
       <div >
         <h1 className="page-nav">MY ORDER</h1>
 
-        <ButtonBase onClick={()=> sendEmail()}>Enviar orden al email</ButtonBase>
+        {/* <ButtonBase onClick={()=> sendEmail()}>Enviar orden al email</ButtonBase> */}
 
         <p className='in-cart'>In cart: US$ {totalBuyOk}<BsCashCoin color='green'/></p>
       </div>
