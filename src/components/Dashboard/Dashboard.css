@@ -51,13 +51,20 @@
 
 /* ///////////////////////////////////////////////////////////// */
 
-
+:root {
+	--black:#262831;
+	--green:#95c827;
+	--primary: #b9b9b9;
+	--dark: #061b28;
+	--gray: #756388;
+	--light: #ffffff;
+	--font-family-test: 'Poppins', sans-serif;
+	--font-family-brands: 'Press Start 2P', cursive;
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
-*{
-  font-family: 'Poppins', sans-serif;
-}
+
 
 
 .container-du{
@@ -68,7 +75,7 @@
   position: relative;
   width: 320px;
   height: 330px;
-  background: #232323;
+  background: #262831;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -255,4 +262,68 @@
 .btn-du span{
     margin-top: 10px;
     color: rgb(0, 0, 0);
+}
+
+.mainContPProducts{
+	font-size: 20px;
+	font-family: 'Merriweather Sans', sans-serif;
+	background: #262831;
+	color: #ececec;
+	padding: 4rem;
+  display: flex;
+  flex-direction: row;
+  width: 945px;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.mainContPProducts h4{
+  font-family:	var(--font-family-test) ;
+  color: #eeeeee;
+  text-transform: uppercase;
+}
+
+.all-productsCP{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.productCP{
+	overflow: hidden;
+	background: #ffffff;
+	color: #21201e;
+	text-align: center;
+	width: 240px;
+	height: 400px;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1.2rem;
+	margin: 2rem;
+  
+}
+
+
+
+.productCP:hover img{
+	scale:  1.1;
+}
+
+.productCP:hover {
+	box-shadow: 5px 15px 25px #eeeeee;
+}
+
+
+
+
+
+.productCP a:hover{
+	transform: scale(1.1);
 }

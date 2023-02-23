@@ -1,6 +1,6 @@
 
 
-import { GET_ALL_PRODUCTS, GET_BY_MONTH, GET_BY_YEAR, CHANGE_PRODUCT, GET_DETAIL,GET_STATS, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
+import {GET_USER_PRODUCTS, GET_ALL_PRODUCTS, GET_BY_MONTH, GET_BY_YEAR, CHANGE_PRODUCT, GET_DETAIL,GET_STATS, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
 
 
 
@@ -18,8 +18,8 @@ const initialState = {
   totalToPay: [],
   salesByMonth: [],
   salesByYear:[],
-  allStats: []
-
+  allStats: [],
+  userProducts: []
 
 };
 
@@ -27,6 +27,18 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
+    case GET_ALL_PRODUCTS:
+
+      return {
+        ...state, allProducts: action.payload
+      }
+
+      case GET_USER_PRODUCTS:
+        return{
+          ...state, userProducts : action.payload
+        }
+
 
     case TOTAL_TO_PAY:
          for(let i=0; i<state.totalToPay.length; i++){
@@ -41,12 +53,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         totalToPay: [...state.totalToPay, action.payload]
       }
-
-    case GET_ALL_PRODUCTS:
-
-      return {
-        ...state, allProducts: action.payload
-      }
+      
+      
 
     case GET_ALL_CATEGORIES:
 

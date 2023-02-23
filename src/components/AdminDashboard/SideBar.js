@@ -22,11 +22,7 @@ const SideBar = () => {
 			icon: "icons/message.svg",
             href: "/admin-sales"
 		},
-		{
-			text: "Graphics",
-			icon: "icons/pie-chart.svg",
-            href: "/admin-graphics"
-		},
+		
 		{
 			
 			text: "Products",
@@ -71,7 +67,7 @@ const SideBar = () => {
 
 				
 				<div className="nav-menu">
-				<TbHome2 className="home"/>	<TbUsers className="users"/>	<TbClipboardText className="sales"/>	<TbFileAnalytics className="analytics"/><TbTags className="products"/><TbTools className="create"/>
+				<TbHome2 className="home"/>	<TbUsers className="users"/>	<TbClipboardText className="sales"/>	<TbTags className="products"/><TbTools className="create"/>
 					{menuItems.map(({ text, icon, href }) => (
 						<a
 							className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}

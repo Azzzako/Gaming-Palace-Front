@@ -5,11 +5,15 @@
   flex-direction: column;
 }
 
+.img-detail{
+  min-width:500px
+}
 
-
-.img-fluid{
-  max-width: 100%;  
+.img-detail img{
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
+  width: auto;
 }
 .icons:hover {
   cursor: pointer;

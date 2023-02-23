@@ -22,8 +22,8 @@ const UsersPanel = () => {
 
 
   const changeRol = (id) => {
-    let findUser = user.find(e => e.id === id)
-    findUser.role = findUser.role=== "admin" ? "customer" : "admin" 
+    let findUser = user?.find(e => e.id === id)
+    findUser.role = findUser?.role=== "admin" ? "customer" : "admin" 
     dispatch(updateUser(findUser))
     console.log(findUser)
     dispatch(getUser())
@@ -34,8 +34,8 @@ const UsersPanel = () => {
 
 
   const changeDisabled = (id) => {
-    let findUser = user.find(e => e.id === id)
-    findUser.disabled = findUser.disabled === false ? true : false
+    let findUser = user?.find(e => e?.id === id)
+    findUser.disabled = findUser?.disabled === false ? true : false
     dispatch(updateUser(findUser))
     console.log(findUser)
     dispatch(getUser())
@@ -44,8 +44,8 @@ const UsersPanel = () => {
  
 
 
-  const Fecha = new Date()
-  console.log(Fecha)
+  // const Fecha = new Date()
+  // console.log(Fecha)
   
   
 
@@ -88,7 +88,8 @@ const UsersPanel = () => {
               <td className="b">{elemento.email}</td>
               <td className="a">{elemento.address}</td>
 
-              <td><span className="enabled">customer</span></td><Switch
+              <td><span className="enabled">customer</span></td>
+              <Switch
               checked={elemento.role === "admin" ? true : false}
               onClick={() =>changeRol(elemento.id)}
               inputProps={{ 'aria-label': 'controlled' }}/>
@@ -96,7 +97,7 @@ const UsersPanel = () => {
             
               <td><span className="enabled">enabled</span></td>
               <Switch
-              checked={elemento.disabled === false ? false: true}
+              checked={elemento.disabled === false ? false : true}
               onClick={() =>changeDisabled(elemento.id)}
               inputProps={{ 'aria-label': 'controlled' }}/>
               <td><span className="disabled">disabled</span></td>

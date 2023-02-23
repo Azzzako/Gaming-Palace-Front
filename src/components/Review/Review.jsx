@@ -116,6 +116,7 @@ const handleSubmit = (e) => {
  
 
   return (
+    
     <div className='mainContainer'>
 
     {/* <button  onClick={(e) => funcionCorneta(e)}>redux detail</button> */}
@@ -158,7 +159,7 @@ const handleSubmit = (e) => {
 
                       </div>
 
-                      <h4 className="text">{handleText()}</h4>
+                      <h4 className="textR">{handleText()}</h4>
 
               </div>
           </div>
@@ -200,7 +201,7 @@ const handleSubmit = (e) => {
                               </div>
                             </div> 
                             <h6 item key={review.description}>{review.description}</h6>
-                            <p item key={review.title}>{review.title}</p>
+                            {/* <p item key={review.title}>{review.title}</p> */}
                           </div>
                       )) 
     }

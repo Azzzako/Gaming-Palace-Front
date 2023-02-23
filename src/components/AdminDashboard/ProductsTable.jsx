@@ -6,12 +6,14 @@ import './ProductsTable.css';
 import { TbEdit } from "react-icons/tb"
 import {Modal, ModalBody, ModalHeader, ModalFooter} from 'reactstrap';
 import SideBar from './SideBar';
-
+const Swal = require('sweetalert2')
     
 
  
 
 function ProductsTable() {
+  
+
   
   const product = useSelector((state) => state.allProducts)
  
@@ -49,6 +51,7 @@ function ProductsTable() {
           order: order
       }
       dispatch(getArray(obj))
+      console.log(obj)
   }
 
   const resetFilters = () => {
@@ -65,6 +68,9 @@ function ProductsTable() {
  
 
 
+
+
+
   const changeDisabled = (elemento) => {
     
     elemento.disabled = elemento?.disabled === false ? true : false;
@@ -77,13 +83,14 @@ function ProductsTable() {
       description: elemento.description,
       category: elemento.category,
       imageurl: elemento.imageurl,
-      disabled: elemento.disabled,
+      disabled: elemento?.disabled,
       stock: elemento.stock,
       namedisplay: elemento.namedisplay
     }
 
     dispatch(changeProduct(inputd))
     dispatch(getAllProducts())
+    console.log("INPUTD ES:")
     console.log(inputd)
   
   }
@@ -98,7 +105,6 @@ function ProductsTable() {
   ////////////////////estados de la info tabla(input)
   const [input, setinput] = useState({
     idproduct: "",
-    name: "",
     trademark: "",
     price: 0,
     description: "",
@@ -124,7 +130,7 @@ function ProductsTable() {
          
             setinput({
               idproduct: product.id,
-              name:"",
+             
               trademark:"", 
               price:"",
               description:"",
@@ -135,13 +141,19 @@ function ProductsTable() {
               namedisplay: ""
             });
   setModalEditar(!modalEditar)
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Your change has been saved',
+    showConfirmButton: false,
+    timer: 1600
+  })
          }  
 
 
       /////////mostrar segun cual sea 
   const selectModal=(elemento, caso)=>{
     setinput({idproduct: elemento.id,
-    name: elemento.name,
     trademark: elemento.trademark,
     price: elemento.price,
     description: elemento.description,
@@ -153,7 +165,7 @@ function ProductsTable() {
 
     setModalEditar(true)
   }
-    console.log(product)
+    // console.log(product)
 
 
   //////////////////////////////////////// Cloudinary
@@ -190,9 +202,9 @@ function ProductsTable() {
           console.log(error);
         });
     };
-    console.log("INPUT ES");
-    console.log(input);
-
+    // console.log("INPUT ES");
+    // console.log(input);
+    
 
   return (
     <div className="P">
@@ -209,8 +221,16 @@ function ProductsTable() {
     
     <div className="filters_contain">
             <form 
-                onSubmit={handleSearch}
+                onSubmit={handleSearch} className="filtp"
             >
+
+                  <button
+                      onClick={() => resetFilters()}
+                      className="btnfilterproducts"
+                    >
+                      Reload Changes
+                </button>
+
                 <label className="filter" for="namedisplay">Filter by Product name: </label>
                 <input namedisplay="namedisplay" id="namedisplay" type="text" placeholder="Search..."
                     onChange={(e) => setWord(e.target.value)}
@@ -233,7 +253,7 @@ function ProductsTable() {
                 </select>
 
 
-                <label className="filter" for="trademark">Filter by Price: </label>
+                {/* <label className="filter" for="trademark">Filter by Price: </label>
                 <select onChange={(e) => setOrder(e.target.value)}
                     
                 >
@@ -247,11 +267,11 @@ function ProductsTable() {
                 <input type="submit"
                     value="Apply filters"
                     className="btn-filter-products"
-                />
+                /> */}
 
                 <button
                     onClick={() => resetFilters()}
-                    className="btn-filter-products"
+                    className="btnfilterproducts"
                 >
                     Reset filters
                 </button>
@@ -301,8 +321,8 @@ function ProductsTable() {
                 
                 <td><span className="disabled">disabled</span></td>
                 
-                <td className="btns-p-table">
-                  <button className="btn-p-table"  onClick={()=>selectModal(elemento, 'Editar')}><TbEdit/></button> 
+                <td className="btnsptable">
+                  <button className="btnptable"  onClick={()=>selectModal(elemento, 'Editar')}><TbEdit /></button> 
                 </td>
               </tr>
             ))
@@ -326,7 +346,8 @@ function ProductsTable() {
         <ModalBody>
           <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form-group">
-            <label>ID</label>
+
+            {/* <label>ID</label>
             <input
               className="form-control"
               readOnly
@@ -334,16 +355,17 @@ function ProductsTable() {
               name="idproduct"
               id="idproduct"
               value={input.idproduct}
-            />
+            /> */}
+
             <br />
 
             <label>Name</label>
             <input
               className="form-control"
               type="text"
-              name="name"
-              id="name"
-              value={input.name}
+              name="namedisplay"
+              id="namedisplay"
+              value={input.namedisplay}
               onChange={(e) => handleChange(e)}
             />
             <br />
@@ -423,30 +445,16 @@ function ProductsTable() {
           <button
             className="btn btn-danger"
             onClick={()=>setModalEditar(false)}
+          
           >
             Cancel
           </button>
         </ModalFooter>
+    
       </Modal>
 
 
-      <Modal isOpen={modalEliminar}>
-        <ModalBody>
-          Estás Seguro que deseas eliminar {input && input.nombre}
-        </ModalBody>
-        <ModalFooter>
-          <button className="btn btn-danger">
-            Sí
-          </button>
-          <button
-            className="btn btn-secondary"
-            onClick={()=>setModalEliminar(false)}
-          >
-            No
-          </button>
-        </ModalFooter>
-
-      </Modal>
+      
 
 
      </Box>  

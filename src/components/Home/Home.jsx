@@ -46,7 +46,7 @@ export const Home = () => {
    
 
 
-    console.log(persistorState);
+    // console.log(persistorState);
 
 
     return (

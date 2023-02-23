@@ -7,16 +7,21 @@ import validator from "./ValidatorForm";
 import s from "./AddProduct.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyVerticallyCenteredModal from "./ModalForm";
+import ModalError from "./ModalForm"
+
+
 import Button from "react-bootstrap/Button";
 //import { Image } from "cloudinary-react";
 import SideBar from "../SideBar";
 
+const Swal = require('sweetalert2')
 export default function AddProduct() {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({}); //se setea el objeto vacío de errores
 
   const [modalShow, setModalShow] = React.useState(false);
+  // const [modalError, setModalError] = React.useState(false);
 
   const [input, setInput] = useState({
     name: "",
@@ -65,12 +70,26 @@ export default function AddProduct() {
       })
     );
 
-    if (Object.keys(errors).length === 0) {
-      dispatch(postNewProduct(input));
+}
 
+
+const valModal =() =>{
+  
+   if (Object.keys(errors).length === 0) {
+      if(input.category === "Select category"){
+        return errors
+      }
+      dispatch(postNewProduct(input));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your product has been created',
+        showConfirmButton: false,
+        timer: 1500
+      })
       setInput({
         name: "",
-        trademark: "",
+        trademark: "" ,
         price: "",
         description: "",
         category: "",
@@ -78,6 +97,7 @@ export default function AddProduct() {
       });
     }
   };
+   
 
   const [image, setImage] = useState("");
   const [minImage, setMiniImage] = useState("");
@@ -173,7 +193,9 @@ export default function AddProduct() {
           </div>
 
           <div>
-            {errors.category && <div className={s.error}>{errors.select}</div>}
+          {errors.category && (
+              <div className={s.error}>{errors.category}</div>
+            )}
             <label className={s.formlabel}>Category</label>
             <select
               className={s.forminput}
@@ -186,9 +208,7 @@ export default function AddProduct() {
               <option value="select">Select category</option>
 
               <option value="Powerbank">Powerbank</option>
-              <option value="wireless network card">
-                wireless network card
-              </option>
+              <option value="wireless network card">wireless network card</option>
               <option value="videocard">videocard</option>
               <option value="Harddrive">Harddrive</option>
               <option value="Monitor">Monitor</option>
@@ -208,9 +228,15 @@ export default function AddProduct() {
 
           <div>
             <div>
+            {errors.imageurl && (
+              <div className={s.error} >{errors.imageurl}</div>
+            )}
               <label className={s.formlabel}>Image</label>
 
               <input
+              id= "imageurl"
+            
+             
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
               ></input>
@@ -241,15 +267,21 @@ export default function AddProduct() {
             name="create"
             className={s.btnsubmit}
             value="create"
-            onClick={() => setModalShow(true)}
+            onClick={() => valModal()}
           >
             CREATE
+
+            
           </Button>
+          
+          
 
           <MyVerticallyCenteredModal
             show={modalShow}
             onHide={() => setModalShow(false)}
           />
+
+         
         </form>
       </div>
       </Box>

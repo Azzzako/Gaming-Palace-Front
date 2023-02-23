@@ -49,17 +49,26 @@
   display: block;
 }
 
-.btn-p-table{
-  height: 20px;
+.btnptable{
+  height: 40px;
+  width: 45px;
   padding: 0;
   margin-top: 1px;
   color: black;
   background-color: #fff;
   font-size: 20px;
+  border: none;
 }
 
-.btns-p-table{
-  width: 120px;
+.filtp{
+  margin-bottom: 45px;
+}
+.btnfilterproducts{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 30px;
 }
 
 .switch{
@@ -109,6 +118,7 @@
 .editp{
   width: 150px;
 }
+
 
 
 

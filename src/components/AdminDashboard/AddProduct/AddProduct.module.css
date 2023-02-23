@@ -43,6 +43,8 @@
   
   
   .container .form .formlabel{
+    margin-top: 10px;
+    margin-bottom: 5px;
     display: block;
     color: #747479;
     font-size: 16px;
@@ -94,7 +96,7 @@
     font-size: 11px;
     text-transform: uppercase;
     position: absolute;
-    margin-left: 450px;
+    margin-left: 620px;
     color: rgb(197, 5, 5);
     margin-top: 80px;
     line-height: 12px;
@@ -105,7 +107,7 @@
     font-size: 11px;
     text-transform: uppercase;
     position: absolute;
-    margin-left: 425px;
+    margin-left: 500px;
     color: rgb(197, 5, 5);
     margin-top: 85px;
     line-height: 12px;
@@ -116,7 +118,7 @@
     font-size: 11px;
     text-transform: uppercase;
     position: absolute;
-    margin-left: 360px;
+    margin-left: 550px;
     color: rgb(197, 5, 5);
     margin-top: 100px;
     line-height: 12px;

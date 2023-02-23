@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import "./Dashboard.css"
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, updateUser, getAllProducts, getStats } from '../../Redux/Actions/actions';
+import { getUser, updateUser, getAllProducts, getStats, getUserProducts } from '../../Redux/Actions/actions';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
-import Carousel from 'react-bootstrap/Carousel';
+
 
 export const Dashboard = () => {
 
@@ -20,7 +20,7 @@ export const Dashboard = () => {
     // //     dispatch(getUser())
     // // }, [dispatch])
 
-
+    const userProduct = useSelector(state=>state.userProducts)
 
     const { user } = useAuth0()
     const usuario = useSelector(state => state.users)
@@ -46,6 +46,7 @@ export const Dashboard = () => {
         dispatch(getAllProducts())
         dispatch(getStats())
         dispatch(getUser())
+        dispatch(getUserProducts(filteredUser.id))
     },[dispatch]);
 /////////////////////////////////
 
@@ -100,19 +101,23 @@ export const Dashboard = () => {
             }
         })
     }
- const carritoUsuario= filteredUser?.Historiccarts
+
+
+
+
 
     
     let funcion1 = () => { 
         let productsFil = []
         for (let i = 0; i < products?.length; i++) {
-        for (let j = 0; j < carritoUsuario?.length; j++) {
-           let fil = products?.find(e => e.id === carritoUsuario[j].id)
+        for (let j = 0; j < userProduct?.length; j++) {
+           let fil = products?.find(e => e.id === userProduct[j]?.idproduct)
            productsFil.push(fil)
         } 
         return productsFil
    
 }}
+
       console.log("funcion1:", funcion1())   
     
     // console.log("Historiccarts:",filteredUser[0]?.Historiccarts?.Historicproducts)
@@ -120,11 +125,13 @@ export const Dashboard = () => {
    
     // console.log("usuario:", usuario)
      
-    console.log("carrito:", carritoUsuario)
-    console.log("productos:", products)
+    // console.log("carrito:", carritoUsuario)
+    // console.log("productos:", products)
 
-    console.log(filteredUser)
+    // console.log(filteredUser)
 
+console.log("estado:" , userProduct)
+    
     return (
         <div className='dash_g'>
             <form className="dashboard_container" onSubmit={handleOnSubmit}>
@@ -145,28 +152,25 @@ export const Dashboard = () => {
 
 
 
-          {/* <div class="container">
-  <div class="card">
-    <div class="imgBx">
-      <img src="https://assets.codepen.io/4164355/shoes.png">
-    </div>
-    <div class="contentBx">
-      <h2>Nike Shoes GTX 4569</h2>
-      
-      <div class="color">
-        <h3>$500</h3>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <button>Buy Again</button>
-    </div>
-  </div>
-</div>  */}
-
+  
+            <div></div>
             <div >
-                
+            
+		
+		
+			
+			
+	
+
+
+
+<div class="mainContPProducts">
+    <h4>previously purchased products</h4>
+	<section class="productsCP">
+        <div class="all-productsCP">
                 {funcion1()?.map(elemento=>(
+                
+			<div class="productCP">
                 <div class="container-du">
                         <div class="card-du">
                                 
@@ -175,7 +179,7 @@ export const Dashboard = () => {
                                 </div>
 
                                 <div class="contentBx">
-                                    <h3 className='text'>{elemento.name}</h3>
+                                    <h3 className='text'>{elemento.namedisplay}</h3>
                                     <h3 className='text'>US${elemento.price}</h3>
                                     <Link className='btn-du' to={`/detail/${id}`}><span>Buy Again</span></Link>  
                                 </div> 
@@ -184,12 +188,15 @@ export const Dashboard = () => {
                     
                     
                      
-                    
+                   	
+				</div>
+			
     
       
             ))
-            }
-        
+            }	</div> 
+	</section>
+    </div>
         </div>
         </div>
 

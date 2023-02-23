@@ -8,6 +8,9 @@ const validator = (input) => {
  	 if (input.price < 1) {
 		errors.price = 'Please enter a price';
 	}
+	if (!input.trademark) {
+		errors.trademark = 'Please select a trademark';
+	}
 	if (!input.category) {
 		errors.category = 'Please select a category';
 	}
@@ -15,7 +18,7 @@ const validator = (input) => {
 		errors.description = 'Please enter a product description';
 	}
   if (!input.imageurl) {
-		errors.imageurl = 'Please enter a url image';
+		errors.imageurl = <span color="red">Please enter a url image</span>
 	}
 	return errors;
 };

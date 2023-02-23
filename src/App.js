@@ -22,7 +22,7 @@ import { PurchaseSuccess } from './components/PurchaseSuccess/PurchaseSuccess';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import UsersPanel from './components/AdminDashboard/UsersPanel';
 import Sales from './components/AdminDashboard/Sales'
-import Graphics from './components/AdminDashboard/Graphics'
+
 import ProductsTable from './components/AdminDashboard/ProductsTable';
 import AddProduct from './components/AdminDashboard/AddProduct/AddProduct';
 
@@ -56,7 +56,7 @@ function App() {
         <Route exact path="/admin-dashboard" element={<AdminDashboard/>}/>
         <Route exact path="/admin-users" element={<UsersPanel/>}/>
         <Route exact path="/admin-sales" element={<Sales/>}/>
-        <Route exact path="/admin-graphics" element={<Graphics/>}/>
+        
         <Route exact path="/admin-products" element={<ProductsTable/>}/>
         <Route exact path="/admin-products-form" element={<AddProduct/>}/>
 

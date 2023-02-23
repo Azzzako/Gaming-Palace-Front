@@ -1,112 +1,88 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
-import { tokens } from "./theme";
-import SideBar from "./SideBar"
+import React from "react";
+import SideBar from "./SideBar";
+import { Box } from "@mui/material";
+import "./Graphics.css";
+import { Chart } from "react-google-charts";
 
+function Graphics() {
+  const dataLine = [
+    ["Months", "Sales"],
+    ["November", 74],
+    ["December", 95],
+    ["January", 86],
+    ["February", 118],
+  ];
 
-const AdminDashboard = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const optionsLine = {
+    legend: { position: "none" },
+    backgroundColor: "white",
+    isStacked: true,
+    bar: { groupWidth: "90%" },
+    chartArea: { width: "80%", height: "80%" },
+    vAxis: {
+      viewWindowMode: "explicit",
+      viewWindow: {
+        max: 150,
+      },
+    },
+  };
 
-  return ( 
-    <div>
-    <Box  display="flex">
+  const dataCir = [
+    ["Product", "Sale"],
+    ["Gaming GeForce RTX 4080", 15],
+    ["Cooler Master CMP 510 ATX", 11],
+    ["500GB M2 NVME PCI 2280 HP EX900", 6],
+    ["Keyboard Gamer Logitech G Prodigy series G213 Qwerty Light Rgb", 4],
+    ["MICRO INTEL CORE I5 10400F", 3],
+  ];
 
-     <SideBar/>
-  
-      {/* GRID & CHARTS */}
+  const optionsCir = {
+    title: "Most selled products",
+    pieHole: 0.5,
+    is3D: false,
+  };
+
+  return (
+    
+    <Box display="flex">
+      <SideBar />
       <Box
-       marginLeft="30px"
-       marginRight="30px"
+       marginLeft="100px"
+       marginRight="100px"
        marginTop="80px"
        display="grid"
        gridTemplateColumns="repeat(60, 1fr)"
        gridAutoRows="140px"
-       width="2000px"
-       gap="20px"
+       width="1851px"
+       
      >
-       
-        
-        {/* ROW 1 */}
-      <Box
-          gridColumn="span 40"
-          gridRow="span 3"
-          backgroundColor={colors.primary[400]}
-        >
-        <Box
-          mt="20px"
-          p="0 30px"
-          display="flex "
-          justifyContent="space-between"
-          alignItems="center"
-          >
-          <Box>
-            <Typography
-              variant="h5"
-              fontWeight="600"
-              color={colors.grey[100]}
-              >
-                Text Text
-            </Typography>
-            <Typography
-              variant="h3"
-              fontWeight="bold"
-              color={colors.greenAccent[500]}
-              >
-                $59,342.32
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
 
-
-
-      <Box
-          gridColumn="span 20"
-          gridRow="span 5"
-          backgroundColor={colors.primary[400]}
-          
-        >
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        borderBottom={`4px solid ${colors.primary[500]}`}
-        colors={colors.grey[100]}
-        p="15px"
-        >
-          <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Text Text
-          </Typography>
-        </Box>
-      </Box>
-
-
-
-        {/* ROW 2 */}
-      <Box
-          gridColumn="span 40"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
-        >
-        <Typography variant="h5" fontWeight="600">
-            Text
-        </Typography>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          mt="25px"
-          >
-        </Box>
-      </Box>
-       
-    
-      </Box>
-    </Box>
+<div className="charts">
+<div className="pie">
+      <Chart
+        chartType="PieChart"
+        width="850px"
+        height="700px"
+        data={dataCir}
+        options={optionsCir}
+      />
   </div>
-    
-  );
-};
+  
+  <div className="column">
+      <Chart chartType="ColumnChart" data={dataLine} options={optionsLine}
+       width="800px"
+      height="450px" />
+</div>
 
-export default AdminDashboard;
+<div className="algo"> Last months sales analysis
+</div>
+<div className="algo2"></div>
+</div>
+
+
+</Box>
+    </Box>
+  );
+}
+
+export default Graphics;

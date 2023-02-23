@@ -109,8 +109,8 @@ const increment = () => {
 	          <div className="row detailsContainer d-flex flex-column align-items-center">
               <div className="card row detailsContainer d-flex flex-column align-items-center">
               <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
-                <div className="d-flex img-fluid justify-content-center">
-                <img src={detail.imageurl}  className="img-fluid" alt="img" />
+                <div className="d-flex img-detail">
+                <img src={detail.imageurl}  className="img-fluid" alt="img"  style={{width: '1000px'}}/>
                 </div>
 
                 <div className="container-title">
@@ -124,7 +124,7 @@ const increment = () => {
                           </div>
                     </div>
 
-                      {/* HACER RESPONSIVES BOTONES */}
+                      
                       <div class=" form-outline item col-10 mx-auto " >
                           <h3 className='my-3'>US$ {detail.price} </h3>
                           <div className='d-flex gap-2 my-3'>
@@ -139,9 +139,9 @@ const increment = () => {
                                 : <BsHeartFill color='lightslategray' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
                               }
                            </div>
-                              <div><span>Stock: {detail.stock}</span></div>    
+                              {/* <div><span>Stock: {detail.stock}</span></div>    
                               <button onClick={()=> decrement()}> - </button>
-                              <button onClick={()=> increment()}> + </button>
+                              <button onClick={()=> increment()}> + </button> */}
 
 
 

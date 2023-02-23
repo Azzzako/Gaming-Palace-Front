@@ -1,14 +1,16 @@
 :root {
+	--black:#262831;
+	--green:#95c827;
 	--primary: #b9b9b9;
 	--dark: #061b28;
 	--gray: #756388;
 	--light: #ffffff;
+	--font-family-test: 'Poppins', sans-serif;
+	--font-family-brands: 'Press Start 2P', cursive;
 }
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
+	font-family: --font-family-test;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -20,7 +22,7 @@ code {
 
 
 .side-nav-container {
-	background-color: var(--dark);
+	background-color: var(--black);
 	width: 300px;
 	height: 100vh;
 	position: relative;
@@ -52,8 +54,9 @@ code {
 	color: var(--light);
 }
 .nav-brand h2{
-	margin-top: 13px;
-	font-size: 40px
+	margin-top: 28px;
+	font-size: 25px;
+	font-family: var(--font-family-brands);
 }
 .nav-brand img {
 	width: 40px;
@@ -70,7 +73,7 @@ code {
 .hamburger span {
 	display: block;
 	margin-top: 5px;
-	background-color: var(--light);
+	background-color: var(--green);
 	border-radius: 15px;
 	height: 5px;
 	width: 35px;
@@ -79,7 +82,7 @@ code {
 }
 
 .hamburger:hover span {
-	background-color: var(--primary);
+	background-color: var(--light);
 }
 
 .hamburger-in:hover span:nth-child(1) {
@@ -125,13 +128,16 @@ code {
 	text-transform: uppercase;
 	margin: auto 20px;
 	border-radius: 10px;
+	padding: 10px;
 }
 
 .menu-item-NX {
 	margin: auto;
 }
 .menu-item:hover {
-	background-color: var(--primary);
+	background-color: var(--green);
+	height: 50px;
+	
 }
 .menu-item img {
 	width: 30px;
@@ -172,42 +178,42 @@ code {
 	margin-left: 5px;
 }
 .logout-icon:hover {
-	background-color: var(--primary);
+	background-color: var(--green);
 }
 
 .home{
 	position: absolute;
 	margin-left: 30px;
-	margin-top: 1px;
-	font-size: 20px;
+	margin-top: 10px;
+	font-size: 23px;
 }
 .users{
 	position: absolute;
 	margin-left: 30px;
-	margin-top: 61px;
+	margin-top: 67px;
+	font-size: 22px;
 }
 .sales{
 	position: absolute;
 	margin-left: 30px;
-	margin-top: 118px;
+	margin-top: 123px;
+	font-size: 22px;
 }
 .analytics{
 	position: absolute;
 	margin-left: 30px;
-	margin-top: 175px;
+	margin-top: 181px;
+	font-size: 22px;
 }
 .products{
 	position: absolute;
 	margin-left: 30px;
-	margin-top: 232px;
+	margin-top: 182px;
+	font-size: 23px;
 }
 .create{
 	position: absolute;
 	margin-left: 30px;
-	margin-top: 289px;
-}
-.faq{
-	position: absolute;
-	margin-left: 30px;
-	margin-top: 347px;
+	margin-top: 240px;
+	font-size: 22px;
 }
