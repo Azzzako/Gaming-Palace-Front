@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function MyVerticallyCenteredModal(props) {
     return (
+
       <Modal  
         {...props}
         size="lg"
@@ -11,6 +12,7 @@ export default function MyVerticallyCenteredModal(props) {
         centered
         primary
       >
+
         <Modal.Body >
           <div className='d-grid gap-2 col-4 mx-auto'>
           <p class="align-justify-center">
@@ -21,6 +23,7 @@ export default function MyVerticallyCenteredModal(props) {
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
+        
       </Modal>
     );
   }

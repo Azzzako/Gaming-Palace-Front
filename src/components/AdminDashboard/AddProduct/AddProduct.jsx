@@ -1,12 +1,15 @@
+
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { postNewProduct } from "../../Redux/Actions/actions";
+import { Box } from "@mui/material"
+import { postNewProduct } from "../../../Redux/Actions/actions";
 import validator from "./ValidatorForm";
 import s from "./AddProduct.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyVerticallyCenteredModal from "./ModalForm";
 import Button from "react-bootstrap/Button";
 //import { Image } from "cloudinary-react";
+import SideBar from "../SideBar";
 
 export default function AddProduct() {
   const dispatch = useDispatch();
@@ -111,6 +114,14 @@ export default function AddProduct() {
   console.log(input);
   return (
     <div>
+      <Box  display="flex" >
+      <SideBar/>
+      <Box
+                display="grid"
+                height="30vh"
+                width="2000px"
+                margin="30px"
+            >
       <div className={s.container}>
         <form className={s.form} onSubmit={(e) => handleSubmit(e)}>
           <div className={s.formheader}>
@@ -241,6 +252,9 @@ export default function AddProduct() {
           />
         </form>
       </div>
+      </Box>
+      </Box>
+
     </div>
   );
 }

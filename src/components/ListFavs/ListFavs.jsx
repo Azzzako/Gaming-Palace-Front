@@ -7,20 +7,22 @@ import CardsFavs from './CardsFavs'
 
 const ListFavs = () => {
 
-const dispatch = useDispatch();
-const favourites = useSelector(state => state.favourites);
+  const dispatch = useDispatch();
+  const favourites = useSelector(state => state.favourites);
 
-const {user} = useAuth0();
-const users = useSelector(state=> state?.users);
-const findUser = users?.find(us => us?.email === user?.email)
-  
+  const { user } = useAuth0();
+  const users = useSelector(state => state?.users);
+  const findUser = users?.find(us => us?.email === user?.email)
+
   return (
     <div className='list-favs'>
-<div><Button onClick={()=> dispatch(deleteAllFavs({userId: findUser?.id}))}>Delete all favourites</Button></div>
-{
-  favourites.length>0 ? <CardsFavs/> :
-  <h1 color='white'>Please add items to your list</h1> 
-}
+      <h1 className='name_prod'>Favourites</h1>
+      <div><Button onClick={() => dispatch(deleteAllFavs({ userId: findUser?.id }))}>Delete all favourites</Button></div>
+      {
+        favourites.length > 0 ? <CardsFavs /> :
+        <div className='container_empty'><h1 color='white'>Please add items to your list</h1></div>
+
+      }
     </div>
   )
 }

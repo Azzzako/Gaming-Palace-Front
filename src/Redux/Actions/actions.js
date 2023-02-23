@@ -2,7 +2,7 @@
 import axios from "axios";
 
 
-import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART, ADD_CART, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER, UPDATE_USER } from "./constants";
+import { GET_ALL_PRODUCTS, GET_ALL_CATEGORIES, GET_DETAIL, GET_PRODUCT_FILTER, ADD_FAV, DELETE_FAV, GET_CART,GET_BY_MONTH, ADD_CART, DELETE_CART,GET_STATS,GET_BY_YEAR, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, GET_USER_BY_MAIL, DELETE_THIS_ORDER, UPDATE_USER } from "./constants";
 
 
 
@@ -37,11 +37,69 @@ export const getAllCategories = () => {
 	};
 };
 
+
+export const getByMonth = (month) => {
+	return async function (dispatch) {
+		const response = await axios.get(`http://localhost:3001/stats/getbymonth/${month}`)
+		return dispatch({
+			type: GET_BY_MONTH,
+			payload: response.data
+		});
+	};
+};
+
+export const getByYear = (year) => {
+	return async function (dispatch) {
+		const response = await axios.get(`http://localhost:3001/stats/getbyyear/${year}`)
+		return dispatch({
+			type: GET_BY_YEAR,
+			payload: response.data
+		});
+	};
+};
+
+
+
+export const getStats = () => {
+	return async function (dispatch) {
+		const response = await axios.get(`http://localhost:3001/stats`);
+		return dispatch({
+			type: GET_STATS,
+			payload: response.data,
+		});
+	};
+};
+
+
+
+
 export const postNewProduct = (data) => {
 	try {
 		return async function () {
 			const newProduct = await axios.post(`http://localhost:3001/products`, data);
 			return newProduct
+		}
+	} catch (error) {
+		console.log(error)
+	};
+};
+
+export const changeProduct = (data) => {
+	try {
+		return async function () {
+			const changeProduct = await axios.post(`http://localhost:3001/change`, data);
+			return changeProduct
+		}
+	} catch (error) {
+		console.log(error)
+	};
+};
+
+export const updateProduct = (data) => {
+	try {
+		return async function () {
+			const updateProduct = await axios.post(`http://localhost:3001/products`, data);
+			return updateProduct
 
 		}
 	} catch (error) {
@@ -145,13 +203,28 @@ export const postByMail = (email) => {
 
 export const getDetail = (id) => {
 	return async (dispatch) => {
-		const response = await axios.get(`http://localhost:3001/products/${id}`);
+		 axios.get(`http://localhost:3001/products/${id}`).then((x) => {
+			console.log("el response del review es este...")
+		console.log(x)
 		return dispatch({
 			type: GET_DETAIL,
-			payload: response.data,
+			payload: x.data, 
+		 })
+		
 		});
 	};
 };
+
+
+// export const getDetail = (id) => {
+// 	return async (dispatch) => {
+// 		const response = await axios.get(`http://localhost:3001/products/${id}`);
+// 		return dispatch({
+// 			type: GET_DETAIL,
+// 			payload: response.data,
+// 		});
+// 	};
+// };
 
 export const addFav = (id, item) => {
 	return async (dispatch) => {
@@ -294,5 +367,18 @@ export const sendNMailer = (aBody) => {
 export const changeStock = (info) => {
 	return async () => {
 		axios.post("http://localhost:3001/change/stock", info)
+	}
+}
+
+
+export const updateQtyCart = (item) => {
+	return async () => {
+		await axios.post("http://localhost:3001/updateproduct", item)
+	}
+}
+
+export const successBuy = (userid) => {
+	return async () => {
+		await axios.post("http://localhost:3001/stats/register", userid)
 	}
 }

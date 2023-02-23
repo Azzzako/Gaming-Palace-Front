@@ -2,42 +2,59 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { deepPurple } from '@mui/material/colors';
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import "./Dashboard.css"
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, updateUser } from '../../Redux/Actions/actions';
+import { getUser, updateUser, getAllProducts, getStats } from '../../Redux/Actions/actions';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import Carousel from 'react-bootstrap/Carousel';
 
 export const Dashboard = () => {
 
 
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(getUser())
-    // }, [dispatch])
+
+    // // useEffect(() => {
+    // //     dispatch(getUser())
+    // // }, [dispatch])
 
 
 
     const { user } = useAuth0()
     const usuario = useSelector(state => state.users)
-    const filteredUser = usuario.length > 0 ? usuario.filter(usr => usr.email === user?.email) : []
+    const filteredUser = usuario.length > 0 && usuario.find(usr => usr.email === user?.email) 
     const pictureURL = user?.picture
-    const [name, setName] = useState(filteredUser[0]?.name)
-    const [email, setEmail] = useState(filteredUser[0]?.email)
-    const [address, setAddress] = useState(filteredUser[0]?.address)
-    const [id, setId] = useState(filteredUser[0]?.id)
+    const [name, setName] = useState(filteredUser?.name)
+    const [email, setEmail] = useState(filteredUser?.email)
+    const [address, setAddress] = useState(filteredUser?.address)
+    const [id, setId] = useState(filteredUser?.id)
     const [infoUser, setInfoUser] = useState({
         name: name,
         email: email,
         address: address
     })
 
+
+
+//////////////////////////////////
+    const stats = useSelector((state) => state.allStats)
+    const products = useSelector((state) => state.allProducts)
+
     useEffect(() => {
-        setName(filteredUser[0]?.name)
-        setEmail(filteredUser[0]?.email)
-        setAddress(filteredUser[0]?.address)
-        setId(filteredUser[0]?.id)
+        dispatch(getAllProducts())
+        dispatch(getStats())
+        dispatch(getUser())
+    },[dispatch]);
+/////////////////////////////////
+
+
+    useEffect(() => {
+        setName(filteredUser?.name)
+        setEmail(filteredUser?.email)
+        setAddress(filteredUser?.address)
+        setId(filteredUser?.id)
     }, [filteredUser])
 
     useEffect(() =>  {
@@ -83,12 +100,30 @@ export const Dashboard = () => {
             }
         })
     }
+ const carritoUsuario= filteredUser?.Historiccarts
 
+    
+    let funcion1 = () => { 
+        let productsFil = []
+        for (let i = 0; i < products?.length; i++) {
+        for (let j = 0; j < carritoUsuario?.length; j++) {
+           let fil = products?.find(e => e.id === carritoUsuario[j].id)
+           productsFil.push(fil)
+        } 
+        return productsFil
+   
+}}
+      console.log("funcion1:", funcion1())   
+    
+    // console.log("Historiccarts:",filteredUser[0]?.Historiccarts?.Historicproducts)
 
+   
+    // console.log("usuario:", usuario)
+     
+    console.log("carrito:", carritoUsuario)
+    console.log("productos:", products)
 
-    console.log(filteredUser, infoUser)
-
-
+    console.log(filteredUser)
 
     return (
         <div className='dash_g'>
@@ -106,7 +141,58 @@ export const Dashboard = () => {
                 </div>
 
             </form>
+
+
+
+
+          {/* <div class="container">
+  <div class="card">
+    <div class="imgBx">
+      <img src="https://assets.codepen.io/4164355/shoes.png">
+    </div>
+    <div class="contentBx">
+      <h2>Nike Shoes GTX 4569</h2>
+      
+      <div class="color">
+        <h3>$500</h3>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <button>Buy Again</button>
+    </div>
+  </div>
+</div>  */}
+
+            <div >
+                
+                {funcion1()?.map(elemento=>(
+                <div class="container-du">
+                        <div class="card-du">
+                                
+                                    <div class="imgBx">
+                                <img src={elemento.imageurl} alt="*" width="100px"/>
+                                </div>
+
+                                <div class="contentBx">
+                                    <h3 className='text'>{elemento.name}</h3>
+                                    <h3 className='text'>US${elemento.price}</h3>
+                                    <Link className='btn-du' to={`/detail/${id}`}><span>Buy Again</span></Link>  
+                                </div> 
+                        </div>
+                    </div>
+                    
+                    
+                     
+                    
+    
+      
+            ))
+            }
+        
+        </div>
         </div>
 
     )
+    
 }

@@ -1,35 +1,59 @@
 .shop {
-
-    background: rgb(40, 43, 58);
+    background-image: url('../../assets/Shiny\ Overlay.svg');
+    background-size: cover;
     padding: 25px;
-    width: 80%;
-    margin: auto;
-    height: 800px;
+    width: 100%;
+}
+
+.shop_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .total-buy{
-   color: white;
-   margin-left: 1050px; 
-   margin-bottom: 130px;
+  display: flex;
+  justify-items: flex-end;
+  color: #95c827;
+  flex-direction: column;
+  font-size: 30px;
+font-family: var(--font-family-test);
 }
 
 
-.restore-btn{
+.pasarela{
 
+display: flex;
+flex-direction: row-reverse;
+justify-content: space-between;
+font-size: 30px;
+font-family: var(--font-family-test);
 
-    background-color: rgb(194, 191, 191);
-    border-radius: 20px;
-    width: 90px;
-    height: 40px;
-    line-height: 10px;
-    margin-left: 60px;
 }
 
 .go-btn{
-    position: absolute;
-    width: 150px;
-    border-radius: 20px;
-    margin-top: 50px;
-   
+    text-decoration: none;
+    color: #ffa524;
+   cursor: pointer;
+}
+
+.restore-btn{
+    cursor: pointer;
+    color: red;
+    
+}
+
+.total_buy{
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.encabezado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
