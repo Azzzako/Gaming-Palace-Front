@@ -66,6 +66,7 @@ export const PurchaseSuccess = () => {
         dispatch(successBuy({userid: findUser?.id}))
         dispatch(deleteItemCart(deleteItemsPayed))
         dispatch(restoreTotalBuy())
+        window.location = "/home"
         
     }
 
@@ -124,7 +125,7 @@ export const PurchaseSuccess = () => {
 
                     <div className="social_website">
                         <h3 className="text_purchase">Follow us! <SiFacebook /> <SiTwitter /> <SiInstagram /></h3>
-                        <Link to="/home"><button className="text_subtitle" onClick={() => deleteAll()}>Click here to go home</button></Link>
+                        <button className="text_subtitle" onClick={() => deleteAll()}>Click here to go home</button>
                     </div>
                 </div>
             </div>
