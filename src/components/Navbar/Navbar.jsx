@@ -24,8 +24,8 @@ const Navbar = () => {
     const { user, isAuthenticated } = useAuth0()
     const picture = user?.picture
     const location = useLocation();
-    // const filteredUser = usuario?.filter(usr => usr.email === user?.email)
-    // const adminShow = filteredUser[0]?.role
+    const filteredUser = usuario > 0 ? usuario?.find(usr => usr.email === user?.email) : []
+    
 
     const linkStyle = { 
         "textDecoration": "none",
@@ -74,9 +74,9 @@ const Navbar = () => {
                                 <Link to="/products" style={linkStyle}><div className="items">Products</div></Link>
                             </div>
 
-                            {/* {!isAuthenticated || adminShow === "customer" ?  <div></div> : <div className="menu_item">
+                            {!isAuthenticated || filteredUser[0]?.role === "customer" ?  <div></div> : <div className="menu_item">
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
-                            </div>} */}
+                            </div>}
 
 
                             <div className="container_icons">

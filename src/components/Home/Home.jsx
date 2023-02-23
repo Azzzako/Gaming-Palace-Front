@@ -9,12 +9,10 @@ import hyper from "../../image/imgCarrusel/hyper.png"
 import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
 import React, { useEffect } from "react";
-import { ConfirmData } from "../ConfirmData/ConfirmData";
-import { getUser, postByMail } from "../../Redux/Actions/actions";
+import { getUser } from "../../Redux/Actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getCart, getFavs } from "../../Redux/Actions/actions";
-import { persistor } from "../../Redux/store";
 
 
 
@@ -22,7 +20,6 @@ export const Home = () => {
 
 
     const dispatch = useDispatch();
-    const persistorState = persistor.getState()
     const {user} = useAuth0();
     const users = useSelector(state=> state?.users);
     const findUser = users.length>0 ? users.find(us => us?.email === user?.email) : null;
@@ -37,23 +34,15 @@ export const Home = () => {
         dispatch(getFavs(findUser?.id))
     },[findUser])
 
-    const onBeforeLift = async () => {
-        // Realizar operaciones necesarias para la carga inicial
-        // Devolver una promesa que se resuelva cuando se hayan cargado todos los datos
-        await dispatch(getAllProducts());
-        await dispatch(getUser());
-      };
-   
 
-
-    console.log(persistorState);
+    
 
 
     return (
 
         <div className="containerGeneral">
 
-            {/* <ConfirmData /> */}
+            
 
             <div className="carousel_1">
                 <Carousel variant="dark"
@@ -68,8 +57,8 @@ export const Home = () => {
                             alt="First slide"
                         />
                         <Carousel.Caption>
-                            <h3>Best performance</h3>
-                            <p>Products available</p>
+                            <h3 className="text_area">Best performance</h3>
+                            <p className="text_area">Products available</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -79,8 +68,8 @@ export const Home = () => {
                             alt="Second slide"
                         />
                         <Carousel.Caption>
-                            <h3>Improve your skills</h3>
-                            <p>The best keyboards</p>
+                            <h3 className="text_area">Improve your skills</h3>
+                            <p className="text_area">The best keyboards</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -90,8 +79,8 @@ export const Home = () => {
                             alt="Third slide"
                         />
                         <Carousel.Caption>
-                            <h3>Play at another level</h3>
-                            <p>
+                            <h3 className="text_area">Play at another level</h3>
+                            <p className="text_area">
                                 Buy Razer here!
                             </p>
                         </Carousel.Caption>

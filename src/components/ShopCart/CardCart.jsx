@@ -2,7 +2,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteItemCart, getCart, totalBuy, totalToPay, updateQtyCart } from '../../Redux/Actions/actions';
+import { deleteItemCart, getCart, totalBuy, totalToPay, updateQtyCart } 
+from '../../Redux/Actions/actions';
+import { BiCaretDown, BiCaretUp, BiTrash} from "react-icons/bi";
 import './CardCart.css'
 
 const CardCart = ({image, name, price, stock, id}) => {
@@ -57,27 +59,36 @@ const handleBuy = () => {
 
   return (
     <div className='cards-cart-cont'>
+      
       <div className='card-cart'>
-        <button className='cart-btn' onClick={()=>handleDeleteCart(id)}>{<BsTrash2Fill/>}</button>
-
+        
         <img src={image} alt='*' width='150px' height='100px'/>
-        <h4>{name}</h4>
-        <h2>US$ {price}</h2>
+
+        <div className='info_product'>
+          <h5 className='info__prod'>{name}</h5>
+        <h5 className='info__prod_price'>US$ {price}</h5>
+        </div>
+        
 
         <div className='input-cart'>
+        <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button>
+        <span>Total: {total}</span>
+        <span>Left: {stock}</span>
+        
+
+        <div className='icons_react' onClick={()=> decrement()}>{<BiCaretDown/>}</div>
+
         <input  name="qty" value={input} type="input" min="1" max={stock} class="form-control form" style={{width: '5rem'}} 
         onChange={(e)=>{handleInput(e)}}/>
 
-        <button onClick={()=> decrement()}> - </button>
-
-        <span>Stock: {stock}</span>
-
-        <button onClick={()=> increment()}> + </button>
+        <div className='icons_react' onClick={()=> increment()}>{<BiCaretUp/>}</div>
+        
 
         
+        
+        
+        <div className='cart-btn icons_react' onClick={()=>handleDeleteCart(id)}>{<BiTrash/>}</div>
         </div>
-        <span>Total: {total}</span>
-        <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button>
       </div>
     </div>
   )
