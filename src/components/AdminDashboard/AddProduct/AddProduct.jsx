@@ -30,6 +30,7 @@ export default function AddProduct() {
     description: "",
     category: "",
     imageurl: "",
+    stock: ""
   });
   console.log("IMAGEURL: ");
   console.log(input.imageurl);
@@ -94,6 +95,7 @@ const valModal =() =>{
         description: "",
         category: "",
         imageurl: "",
+        stock:""
       });
     }
   };
@@ -229,6 +231,9 @@ const valModal =() =>{
             </select>
           </div>
 
+          
+
+
           <div>
             <div>
             {errors.imageurl && (
@@ -246,7 +251,21 @@ const valModal =() =>{
               {/* <button onClick={uploadImage}>Upload</button> */}
             </div>
           </div>
-
+          
+<div>
+            {errors.stock && <div className={s.error}>{errors.stock}</div>}
+            <label className={s.formlabel}>stock</label>
+            <input
+            
+              type="number"
+              id="stock"
+              value={input.stock}
+              name="stock"
+              className={s.forminput}
+              placeholder="Stock"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
           <div>
             {errors.description && (
               <div className={s.errordescription}>{errors.description}</div>
