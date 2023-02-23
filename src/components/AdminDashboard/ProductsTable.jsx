@@ -226,7 +226,7 @@ function ProductsTable() {
 
                   <button
                       onClick={() => resetFilters()}
-                      className="btnfilterproducts"
+                      className="botonfiltp"
                     >
                       Reload Changes
                 </button>
@@ -271,7 +271,7 @@ function ProductsTable() {
 
                 <button
                     onClick={() => resetFilters()}
-                    className="btnfilterproducts"
+                    className="botonfiltp"
                 >
                     Reset filters
                 </button>

@@ -35,12 +35,9 @@ export const Home = () => {
     },[findUser])
 
 
-<<<<<<< HEAD
 
     // console.log(persistorState);
-=======
-    
->>>>>>> 14473a5b8b0ae639a06cd6f2ca5bf2a7c7cfaa0e
+
 
 
     return (
