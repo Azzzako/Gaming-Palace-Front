@@ -4,7 +4,7 @@ import { getDetail, newReview } from '../../Redux/Actions/actions';
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { TbUserCircle} from "react-icons/tb"
 import './Review.css'
-
+const Swal = require('sweetalert2')
 
 
 
@@ -14,9 +14,9 @@ const Review = () => {
 const [number, setNumber] = useState(0);
 const [hoverStar, setHoverStar] = useState(undefined);
 
-function handleClick (e) {
-  window.location.reload(false);
-}
+// function handleClick (e) {
+//   window.location.reload(false);
+// }
 
 
 
@@ -94,8 +94,8 @@ const funcionCorneta= ((e)=>{
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input)
-    
-    dispatch(newReview(input));
+    if (input.author.length>0){
+     dispatch(newReview(input));
     setInput({
       author: "",
       title: detail.name,
@@ -103,14 +103,24 @@ const handleSubmit = (e) => {
       rating: number,
       productId: detail.id,
       // userId: "",
-    });
+    });  window.location.reload(true);
+    } else
+    Swal.fire({
+      icon: 'error',
+      title: 'Error...',
+      text: 'Please enter a name author!',
+      timer: 1600
+    })
+   
     console.log("despachando creacion")
     console.log(input)
 };
 
-  useEffect(() => {
-    dispatch(getDetail(detail.id));
-  },[]);
+  // useEffect(() => { 
+  //   dispatch(getDetail(detail.id));
+ 
+    
+  // },[]);
 
 
  
@@ -173,11 +183,11 @@ const handleSubmit = (e) => {
             <h1>Leave a comment</h1>
             <textarea id="description" value={input.description} name= "description" placeholder={handlePlaceHolder()}  onChange={(e) => handleChange(e)}></textarea> 
             <input type="text" value={input.author} name= "author" placeholder= "  full name"  onChange={(e) => handleChange(e)} />
-            <label>(opcional)</label>
+            <label>(*)</label>
           </div>
 
           <div>
-            <button type="submit" id="createreview" name= "createreview" value="createreview" className='createreview'  onClick={(e) => handleClick(e)} >Submit</button>
+            <button type="submit" id="createreview" name= "createreview" value="createreview" className='createreview'   >Submit</button>
           </div>
           </div>
         </div>

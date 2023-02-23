@@ -253,7 +253,7 @@ function ProductsTable() {
                 </select>
 
 
-                {/* <label className="filter" for="trademark">Filter by Price: </label>
+                 {/* <label className="filter" for="trademark">Filter by Price: </label>
                 <select onChange={(e) => setOrder(e.target.value)}
                     
                 >
@@ -262,12 +262,12 @@ function ProductsTable() {
                     <option value="namedown">↕Z - A↕</option>
                     <option value="priceup">$$$</option>
                     <option value="pricedown">$</option>
-                </select>
+                </select> */}
 
                 <input type="submit"
                     value="Apply filters"
-                    className="btn-filter-products"
-                /> */}
+                    className="botonfiltp"
+                /> 
 
                 <button
                     onClick={() => resetFilters()}
@@ -410,6 +410,19 @@ function ProductsTable() {
               value={input && input.category}
               onChange={(e) => handleChange(e)}
             />
+
+<br />
+
+            
+<label>Image</label>
+   
+    <input
+      type="file"
+      onChange={(e) => setImage(e.target.files[0])}
+    ></input>
+    <br />
+
+
             <br />
             <label>Description</label>
             <input
@@ -420,17 +433,7 @@ function ProductsTable() {
               value={input && input.description}
               onChange={(e) => handleChange(e)}
             />
-            <br />
-
-            
-            <label>Image</label>
-                <h1></h1>
-                <input
-                  type="file"
-                  onChange={(e) => setImage(e.target.files[0])}
-                ></input>
-                <br />
-
+           
 
           </div>
           </form>
