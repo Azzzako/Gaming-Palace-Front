@@ -22,7 +22,7 @@ const Detail = (props) => {
   const productsCart = useSelector(state=> state.shopCart);
   const existProductsCart = productsCart.map(prod => prod.id)
 
-  const {user} = useAuth0();
+  const {user, isAuthenticated} = useAuth0();
   const users = useSelector(state=> state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 
@@ -128,13 +128,14 @@ const increment = () => {
                       <div class=" form-outline item col-10 mx-auto " >
                           <h3 className='my-3'>US$ {detail.price} </h3>
                           <div className='d-flex gap-2 my-3'>
-                            <input value={input} onChange={(e)=>{handleInput(e)}} type="input" min="1" max={detail.stock} class="form-control form" style={{width: '5rem'}} />
+                            {/* <input value={input} onChange={(e)=>{handleInput(e)}} type="input" min="1" max={detail.stock} class="form-control form" style={{width: '5rem'}} /> */}
 
 
 
                             <div className='icons'>
 
                               {
+                                !isAuthenticated ? <div></div> :
                                 existFavs.includes(detail.id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
                                 : <BsHeartFill color='lightslategray' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
                               }
@@ -152,9 +153,11 @@ const increment = () => {
 
                       
                     <div className='d-grid gap-2 col-10 mx-auto'>
-                        <button onClick={()=> handleBuy(detail.id)} type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button>
+                        {/* <button onClick={()=> handleBuy(detail.id)} type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button> */}
 
-                        <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}} onClick={()=>{handleCart(detail.id)}}>Add to cart</button>
+                        {
+                          !isAuthenticated ? <div></div> : <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}} onClick={()=>{handleCart(detail.id)}}>Add to cart</button>
+                        }
                     </div>
                       
 

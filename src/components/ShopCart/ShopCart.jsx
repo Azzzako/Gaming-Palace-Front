@@ -43,7 +43,7 @@ const ShopCart = () => {
       <div className='shop_wrapper'>
 
           
-        <span className='wtf'>Shop Cart</span><BsEmojiSmileFill color='green' />
+        <span className='wtf'>Shop Cart</span>
           
       
 

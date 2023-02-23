@@ -10,7 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const Card = ({ image, price, name, description, id, stock }) => {
 
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const users = useSelector(state => state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 
@@ -51,16 +51,22 @@ const Card = ({ image, price, name, description, id, stock }) => {
 
 
         <div className='icons'>
-          {
+          
+
+          { 
+            !isAuthenticated ? <div></div> :
             existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
             : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
           }     
        
-          {
-            stock <= 0 ? "Agotadisimo" :
+          { 
+            !isAuthenticated ? <div></div> :
+            stock <= 0 ? "Stocked out" :
             existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
             <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
-          }          
+          } 
+          
+                   
         </div>
 
 

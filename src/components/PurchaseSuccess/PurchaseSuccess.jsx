@@ -52,6 +52,7 @@ export const PurchaseSuccess = () => {
         setTimeout(()=>{
             dispatch(sendNMailer({
             destiny: `${email}`,
+            subject: 'Thanks you for your purchase',
             prodsPay: compra
         }))
         }, 2000)

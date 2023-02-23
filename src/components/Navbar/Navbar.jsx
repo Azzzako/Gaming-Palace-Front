@@ -25,8 +25,8 @@ const Navbar = () => {
     const picture = user?.picture
     const location = useLocation();
 
-    const filteredUser = usuario > 0 ? usuario?.find(usr => usr.email === user?.email) : []
-    
+    const filteredUser = usuario.length > 0 ? usuario.find(usr => usr.email === user?.email) : []
+    console.log("que es estooo", filteredUser)
 
 
     const linkStyle = { 
@@ -77,10 +77,10 @@ const Navbar = () => {
                             </div>
 
 
-                            {!isAuthenticated || filteredUser[0]?.role === "customer" ?  <div></div> : <div className="menu_item">
+                            {isAuthenticated && filteredUser?.role === "admin" ?  <div className="menu_item">
 
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
-                            </div>}
+                            </div> : <div></div>}
 
 
                             <div className="container_icons">

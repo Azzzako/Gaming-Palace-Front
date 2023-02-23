@@ -76,7 +76,7 @@ export default function AddProduct() {
 const valModal =() =>{
   
    if (Object.keys(errors).length === 0) {
-      if(input.category === "Select category"){
+      if(!input.category){
         return errors
       }
       dispatch(postNewProduct(input));
@@ -132,6 +132,9 @@ const valModal =() =>{
   };
   console.log("INPUT ES");
   console.log(input);
+
+
+
   return (
     <div>
       <Box  display="flex" >
