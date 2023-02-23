@@ -47,3 +47,21 @@
     color: #ffa524;
 
 }
+
+.invent{
+    font-family: var(--font-family-test);
+}   
+
+.buy-btn{
+    padding: 2px;
+    width: 100%;
+    border: none;
+    background-color: #95c827;
+    transition: 0.5s all ease;
+}
+
+.buy-btn:hover{
+    border: 1px solid black;
+    background-color: red;
+
+}

@@ -72,8 +72,8 @@ const handleBuy = () => {
 
         <div className='input-cart'>
         <button className='buy-btn' onClick={()=>handleBuy()}>Add buy</button>
-        <span>Total: {total}</span>
-        <span>Left: {stock}</span>
+        <span className='invent'>Total: ${total}</span>
+        <span className='invent'>Left: {stock}</span>
         
 
         <div className='icons_react' onClick={()=> decrement()}>{<BiCaretDown/>}</div>
