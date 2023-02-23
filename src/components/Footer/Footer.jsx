@@ -14,13 +14,13 @@ export default function Footer() {
       
       <Navbar className="footer_buttons">
       <Navbar.Text >
-        <Link to='/inconstruction'>
+        <Link to='/about'>
           <button className="btn btn-danger text-decoration-none">About us</button>
         </Link>
       </Navbar.Text >
 
       <Navbar.Text>
-        <Link to='/inconstruction'>
+        <Link to='/contact'>
           <button className="btn btn-danger text-decoration-none">Contact us</button>
         </Link>
       </Navbar.Text>

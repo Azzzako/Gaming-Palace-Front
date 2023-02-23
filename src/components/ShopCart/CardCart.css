@@ -1,69 +1,67 @@
 .cards-cart-cont {
-    
-    padding: 25px;
-    width: 80%;
-    margin: auto;
-    
-    
-}
-
-.card-cart {
-    margin-block: 10px;
-    padding: 15px;
-    border: 1px solid rgb(126, 126, 126);
-    background: rgb(235, 234, 234);
-    box-shadow: 5px 5px rgb(126, 126, 126);
-    border-radius: 15px;
-    position: row;
     display: flex;
-    flex-direction:row;
-    gap: 20px;
-    width: 800px;
-}
-.card-cart .input-cart{
-    position: absolute;
-    margin-left: 550px;
-    
 }
 
-.card-cart h2{
-    position: absolute;
-    margin-left: 170px;
-    margin-top: 50px;
-    font-size: 25px;
-    font-weight: 600;
+.card-cart{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10%;
+    background-color: white;
+    width: 100%;
+    gap: 40px;
 }
 
-.card-cart h4{
-    
-    font-size: 20px;
-    width: 470px;
+.card-cart img{
+    width: 40%;
+    object-fit: cover;
+    height: 150px;
 }
 
-.cart-btn {  
-    position: absolute;
-    background-color: rgb(194, 191, 191);
-    border-radius: 20px;
-    margin-top: 70px;
-    width: 50px;
-    height: 30px;
-    line-height: 10px;
-    margin-left: 660px;
-}
-.cart-btn:hover {
-  background: #5c5d5e;
-  border-color: red;
-  color: red;
+.input-cart{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+    align-items: center;
 }
 
-.buy-btn {  
-    position: absolute;
-    background-color: rgb(194, 191, 191);
-    border-radius: 20px;
-    margin-top: 70px;
-    width: 50px;
-    height: 30px;
-    line-height: 10px;
-    margin-left: 720px;
-    font-size: 12px;
+.icons_react{
+    font-size: 30px;
+    transition: 0.3s all ease;
+    cursor: pointer;
+}
+
+.icons_react:hover{
+    font-size: 40px;
+}
+
+.info_product{
+    font-family: var(--font-family-test);
+}
+
+.info__prod{
+    color: #95c827;
+}
+
+.info__prod_price{
+    color: #ffa524;
+
+}
+
+.invent{
+    font-family: var(--font-family-test);
+}   
+
+.buy-btn{
+    padding: 2px;
+    width: 100%;
+    border: none;
+    background-color: #95c827;
+    transition: 0.5s all ease;
+}
+
+.buy-btn:hover{
+    border: 1px solid black;
+    background-color: red;
+
 }

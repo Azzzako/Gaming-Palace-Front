@@ -8,17 +8,6 @@
 	--font-family-test: 'Poppins', sans-serif;
 	--font-family-brands: 'Press Start 2P', cursive;
 }
-body {
-	margin: 0;
-	font-family: --font-family-test;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
-}
 
 
 .side-nav-container {
